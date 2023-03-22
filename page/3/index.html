@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-004刷题和背面经" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/004%E5%88%B7%E9%A2%98%E5%92%8C%E8%83%8C%E9%9D%A2%E7%BB%8F/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.768Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
+<p>今天没背八股文，刷练习题，还做了德科的机试，三道题都没有完全通过所有用例，都是暴力解答，但是感觉思路没问题，估计是有些情况没考虑到。</p>
+<h1 id="华为机试练习题"><a href="#华为机试练习题" class="headerlink" title="华为机试练习题"></a>华为机试练习题</h1><h2 id="HJ18-IP地址和掩码并进行分类统计"><a href="#HJ18-IP地址和掩码并进行分类统计" class="headerlink" title="HJ18 IP地址和掩码并进行分类统计"></a>HJ18 IP地址和掩码并进行分类统计</h2><p>请解析IP地址和对应的掩码，进行分类识别。要求按照A&#x2F;B&#x2F;C&#x2F;D&#x2F;E类地址归类，不合法的地址和掩码单独归类。</p>
+<p>所有的IP地址划分为 A,B,C,D,E五类</p>
+<p>A类地址从1.0.0.0到126.255.255.255;</p>
+<p>B类地址从128.0.0.0到191.255.255.255;</p>
+<p>C类地址从192.0.0.0到223.255.255.255;</p>
+<p>D类地址从224.0.0.0到239.255.255.255；</p>
+<p>E类地址从240.0.0.0到255.255.255.255</p>
+<p>私网IP范围是：</p>
+<p>从10.0.0.0到10.255.255.255</p>
+<p>从172.16.0.0到172.31.255.255</p>
+<p>从192.168.0.0到192.168.255.255</p>
+<p>子网掩码为二进制下前面是连续的1，然后全是0。（例如：255.255.255.32就是一个非法的掩码）</p>
+<p>（注意二进制下全是1或者全是0均为非法子网掩码）</p>
+<p>注意：</p>
+<ol>
+<li><p>类似于【0.<em>.</em>.<em>】和【127.</em>.*.*】的IP地址不属于上述输入的任意一类，也不属于不合法ip地址，计数时请忽略</p>
+</li>
+<li><p>私有IP地址和A,B,C,D,E类地址是不冲突的</p>
+</li>
+</ol>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>IP合法性判断用多条件暴力判断（代码会看起来有些长），卡到我的是<strong>掩码判断</strong>：首先如何判断前面全是1和后面全是0的组合，其次还要注意，要求的是整体的二进制，前面是1后面是0，最后就是如何转进制，还得注意<strong>首部补零</strong>（一般第一个想法就是转进制判断，网上也有用正则暴力判断的，不推荐）。掩码判断是学习别人代码的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(num+<span class="number">256</span>).<span class="title function_">toString</span>(<span class="number">2</span>).<span class="title function_">substring</span>(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>很巧妙，256的二进制是<code>100000000</code> 后八位是零，转为二进制，源数据加在后面八位上，再用<code>substring</code> 从第一位置取子串。整体代码如下，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rl = <span class="built_in">require</span>(<span class="string">&quot;readline&quot;</span>).<span class="title function_">createInterface</span>(&#123; <span class="attr">input</span>: process.<span class="property">stdin</span> &#125;);</span><br><span class="line"><span class="keyword">var</span> iter = rl[<span class="title class_">Symbol</span>.<span class="property">asyncIterator</span>]();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readline</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; (<span class="keyword">await</span> iter.<span class="title function_">next</span>()).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// Write your code here</span></span><br><span class="line">    <span class="keyword">let</span> res=[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">    <span class="keyword">while</span>(line = <span class="keyword">await</span> <span class="title function_">readline</span>())&#123;</span><br><span class="line">        <span class="comment">// 不纳入计数的</span></span><br><span class="line">        <span class="keyword">if</span>(line[<span class="number">0</span>]===<span class="string">&#x27;0&#x27;</span>|| line.<span class="title function_">slice</span>(<span class="number">0</span>,<span class="number">3</span>)===<span class="string">&#x27;127&#x27;</span>) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">let</span> count=<span class="title function_">check</span>(line)</span><br><span class="line">        <span class="title class_">Object</span>.<span class="title function_">keys</span>(count).<span class="title function_">forEach</span>(<span class="function"><span class="params">i</span>=&gt;</span>res[i]++)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">check</span>(<span class="params">tokens</span>)&#123;</span><br><span class="line">    tokens = line.<span class="title function_">split</span>(<span class="string">&#x27;~&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> a = tokens[<span class="number">0</span>];  <span class="comment">// ip</span></span><br><span class="line">    <span class="keyword">let</span> b = tokens[<span class="number">1</span>];  <span class="comment">// 掩码</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> arr=a.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span>(arr.<span class="property">length</span>!=<span class="number">4</span> || !arr[<span class="number">0</span>] || arr[<span class="number">0</span>]&lt;<span class="number">0</span>) <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(arr[<span class="number">0</span>]&lt;<span class="number">127</span>)&#123;</span><br><span class="line">        <span class="comment">// A类</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i]!=<span class="string">&#x27;&#x27;</span> &amp;&amp; arr[i]&lt;<span class="number">256</span> &amp;&amp; arr[i]&gt;=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> isTrueMask=<span class="title function_">checkSub</span>(b);</span><br><span class="line">        <span class="keyword">if</span>(isTrueMask)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[<span class="number">0</span>]==<span class="number">10</span>)&#123;</span><br><span class="line">                <span class="comment">// 私有</span></span><br><span class="line">                <span class="keyword">return</span> &#123;<span class="number">0</span>:<span class="number">1</span>, <span class="number">6</span>:<span class="number">1</span>&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">0</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[<span class="number">0</span>]&lt;<span class="number">192</span>)&#123;</span><br><span class="line">        <span class="comment">// B类</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i]!=<span class="string">&#x27;&#x27;</span> &amp;&amp; arr[i]&lt;<span class="number">256</span> &amp;&amp; arr[i]&gt;=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> isTrueMask=<span class="title function_">checkSub</span>(b);</span><br><span class="line">        <span class="keyword">if</span>(isTrueMask)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[<span class="number">0</span>]==<span class="number">172</span> &amp;&amp; arr[<span class="number">1</span>]&gt;<span class="number">15</span> &amp;&amp; arr[<span class="number">1</span>]&lt;<span class="number">32</span>)&#123;</span><br><span class="line">                <span class="comment">// 私有</span></span><br><span class="line">                <span class="keyword">return</span> &#123;<span class="number">1</span>:<span class="number">1</span>, <span class="number">6</span>:<span class="number">1</span>&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">1</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[<span class="number">0</span>]&lt;<span class="number">224</span>)&#123;</span><br><span class="line">        <span class="comment">// C类</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i]!=<span class="string">&#x27;&#x27;</span> &amp;&amp; arr[i]&lt;<span class="number">256</span> &amp;&amp; arr[i]&gt;=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> isTrueMask=<span class="title function_">checkSub</span>(b);</span><br><span class="line">        <span class="keyword">if</span>(isTrueMask)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[<span class="number">0</span>]==<span class="number">192</span> &amp;&amp; arr[<span class="number">1</span>]==<span class="number">168</span>)&#123;</span><br><span class="line">                <span class="comment">// 私有</span></span><br><span class="line">                <span class="keyword">return</span> &#123;<span class="number">2</span>:<span class="number">1</span>, <span class="number">6</span>:<span class="number">1</span>&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">2</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[<span class="number">0</span>]&lt;<span class="number">240</span>)&#123;</span><br><span class="line">        <span class="comment">// D类</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i]!=<span class="string">&#x27;&#x27;</span> &amp;&amp; arr[i]&lt;<span class="number">256</span> &amp;&amp; arr[i]&gt;=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> isTrueMask=<span class="title function_">checkSub</span>(b);</span><br><span class="line">        <span class="keyword">if</span>(isTrueMask) <span class="keyword">return</span> &#123;<span class="number">3</span>:<span class="number">1</span>&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[<span class="number">0</span>]&lt;<span class="number">256</span>)&#123;</span><br><span class="line">        <span class="comment">// E类</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i]!=<span class="string">&#x27;&#x27;</span> &amp;&amp; arr[i]&lt;<span class="number">256</span> &amp;&amp; arr[i]&gt;=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> isTrueMask=<span class="title function_">checkSub</span>(b);</span><br><span class="line">        <span class="keyword">if</span>(isTrueMask) <span class="keyword">return</span> &#123;<span class="number">4</span>:<span class="number">1</span>&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkSub</span>(<span class="params">str</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> arr=str.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span>(arr.<span class="property">length</span>!=<span class="number">4</span> || !arr[<span class="number">0</span>] || arr[<span class="number">0</span>]&lt;<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">let</span> mask=<span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)&#123;</span><br><span class="line">        mask+=<span class="title function_">toBinary</span>(<span class="built_in">parseInt</span>(arr[i]))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(mask.<span class="title function_">indexOf</span>(<span class="string">&#x27;01&#x27;</span>)!=-<span class="number">1</span> || mask.<span class="title function_">indexOf</span>(<span class="string">&#x27;10&#x27;</span>)==-<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">toBinary</span>(<span class="params">num</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> (num+<span class="number">256</span>).<span class="title function_">toString</span>(<span class="number">2</span>).<span class="title function_">substring</span>(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="正式机试"><a href="#正式机试" class="headerlink" title="正式机试"></a>正式机试</h1><h2 id="填补合并不连续区间"><a href="#填补合并不连续区间" class="headerlink" title="填补合并不连续区间"></a>填补合并不连续区间</h2><p>给了一个由多组区间<code>[a1,b1], [a2,b2], ...[an,bn]</code>组成的数据和一个连接器<code>[x1, x2, ...xm]</code>，现在要求是用连接器中的值将区间之间的间隙填补上，使得这组区间尽可能合并起来。输出合并后，区间的个数。一个间隙只能用一个连接器组成的填补。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line"><span class="comment">// 区间</span></span><br><span class="line">[<span class="number">1</span>,<span class="number">10</span>],[<span class="number">15</span>,<span class="number">20</span>],[<span class="number">18</span>,<span class="number">30</span>],[<span class="number">33</span>,<span class="number">40</span>]</span><br><span class="line"><span class="comment">// 连接器</span></span><br><span class="line">[<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">输出：</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><code>[1,10]</code>和<code>[15, 20]</code>之间不连续，用<code>5</code>将其填充，就能合并成<code>[1，20]</code>的区间，同理<code>[18,30]</code>和<code>[33, 40]</code>之间就可以用<code>3</code>填充。<code>[15,20]</code>和<code>[18, 30]</code>之间有重叠，能直接合并成一个区间，最终结果等于<code>1</code>。</p>
+<h2 id="字符串A冗余覆盖B"><a href="#字符串A冗余覆盖B" class="headerlink" title="字符串A冗余覆盖B"></a>字符串A冗余覆盖B</h2><p>现有两个字符串<code>s1</code>，<code>s2</code>和一个正整数<code>k</code>，要求在s2中找到满足如下条件的子串：</p>
+<ol>
+<li><p>子串长度等于s1.length+k;</p>
+</li>
+<li><p>子串中包含了s1中出现的所有字母；</p>
+</li>
+<li><p>子串中的字母出现的次数不少于s1对应字母出现的次数；</p>
+</li>
+</ol>
+<p>字符串中的字母都是小写的。</p>
+<h2 id="异常打卡"><a href="#异常打卡" class="headerlink" title="异常打卡"></a>异常打卡</h2><p>异常考勤信息（死去的回忆在攻击我！！！），一组考勤信息有工号，时间，距离，打卡设备，注册设备，出现以下情况的就是异常：</p>
+<ol>
+<li><p>打卡设备和注册设备不同；</p>
+</li>
+<li><p>或者，同一人的前后两次打卡记录的时间少于60分钟并且距离大于5km</p>
+</li>
+</ol>
+<p>输出异常打卡信息，如果是第二种情况，前后两条打卡记录都算异常，都要输出。输出顺序按照输入顺序。</p>
+<p>这题只通过了百分之十几的用例，不知道哪里不对。</p>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>给自己制定了一个计划，<strong>三天小总结，9天大总结</strong>。今天是第四篇文章了，小总结前3天的内容。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><table>
+<thead>
+<tr>
+<th>标题</th>
+<th>概述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>#001#突击服务器和网络通识</td>
+<td>准备一个软件实施的面试，特地找了<strong>服务器</strong>、<strong>网络</strong>、<strong>操作系统</strong>的题</td>
+</tr>
+<tr>
+<td>#002#投简历和刷题</td>
+<td>软件实施不招了，北京德科约了近期机试，去刷题了，也看了一些<strong>vue</strong>面试题</td>
+</tr>
+<tr>
+<td>#003#刷题和华为机试练习</td>
+<td>刷牛客编程题，本来是打算当天晚上机试，HR没法链接，发的是练习题库（WTF，很贴心），推到了第二天</td>
+</tr>
+</tbody></table>
+<p>总的来说：</p>
+<ol>
+<li><p>八股文常背常新；</p>
+</li>
+<li><p>前端岗位现在对跨端方面的要求较多，桌面端（electorn）和移动端（h5 hybrid, 小程序，react native）还有后端（nodeJS），要求知识面广，再者钻研的方向刚好和岗位匹配（好难！！！）。当然大多数还是纯Web开发岗位，但是要求编写组件能力，要对框架有很深的理解（源码级理解起步，可见对编码能力要求很高，对浏览器的理解也要充分）；</p>
+</li>
+<li><p>MDN文档也是常看常新，API上写的有些例子挺巧妙的，对一些API的使用更熟悉，感谢阮一峰老师写的ES6入门，官网文档真不适合学习。</p>
+</li>
+</ol>
+<p>（想用xmind画思维导图的，之后再用吧）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">前端八股--&gt; A(计网)</span><br><span class="line">A--&gt;TCP连接</span><br><span class="line">A--&gt;HTTP状态码</span><br><span class="line">前端八股--&gt; B(操作系统)</span><br><span class="line">B--&gt;进程和线程</span><br><span class="line">B--&gt;死锁</span><br><span class="line">前端八股--&gt; c(服务器)</span><br><span class="line">c--&gt;docker</span><br><span class="line">c--&gt;nginx</span><br><span class="line">前端八股--&gt;d(Vue框架)</span><br><span class="line">d--&gt;...</span><br></pre></td></tr></table></figure>
+
+<h2 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h2><p>这三天刷的题目全是对字符串、数组的操作（不过，实际工作80%这些够用了）；<code>?:</code>；<code>||</code>；<code>&amp;&amp;</code>；类型的隐式转化（加法，判断条件单纯是个变量，这里有大坑，能理解为什么<code>typescript</code> 热度越来越高）；数组的空位、undefined和null对遍历的影响；类型转化和逻辑判断的结合。这里就不重复写代码了，针对遇到的问题，总结一下，这一篇写不完。明天总结一下上面提到的问题，刚好八股文里也有提到。计网、操作系统、服务器、Vue框架的复习总结不写了，一天干不了这么多的活，计划做一个简答的思维导图记忆。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/004%E5%88%B7%E9%A2%98%E5%92%8C%E8%83%8C%E9%9D%A2%E7%BB%8F/" data-id="clfjqowu80003ewaae7nf9hmx" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-003刷题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/003%E5%88%B7%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.762Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong></p>
+<p>                                                                                                                                    —-鹅城县长</p>
+<p>今天没看面试题，直接进入彩蛋环节。</p>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>刷牛客上的代码题，全是数组相关的，还有几道华为机试题。</p>
+<h1 id="华为机试练习题"><a href="#华为机试练习题" class="headerlink" title="华为机试练习题"></a>华为机试练习题</h1><h2 id="HJ3-明明的随机数"><a href="#HJ3-明明的随机数" class="headerlink" title="HJ3 明明的随机数"></a>HJ3 明明的随机数</h2><p>描述</p>
+<p>明明生成了N个1到500之间的随机整数。请你删去其中重复的数字，即相同的数字只保留一个，把其余相同的数去掉，然后再把这些数从小到大排序，按照排好的顺序输出。</p>
+<p>输入描述：</p>
+<p>第一行先输入随机整数的个数 N 。 接下来的 N 行每行输入一个整数，代表明明生成的随机数。 具体格式可以参考下面的”示例”。</p>
+<p>输出描述：</p>
+<p>输出多行，表示输入数据处理后的结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rl = <span class="built_in">require</span>(<span class="string">&quot;readline&quot;</span>).<span class="title function_">createInterface</span>(&#123; <span class="attr">input</span>: process.<span class="property">stdin</span> &#125;);</span><br><span class="line"><span class="keyword">var</span> iter = rl[<span class="title class_">Symbol</span>.<span class="property">asyncIterator</span>]();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readline</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; (<span class="keyword">await</span> iter.<span class="title function_">next</span>()).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// Write your code here</span></span><br><span class="line">    <span class="keyword">let</span> arr=<span class="title class_">Array</span>.<span class="title function_">from</span>(&#123;<span class="attr">length</span>:<span class="number">500</span>&#125;).<span class="title function_">fill</span>(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">let</span> n = <span class="built_in">parseInt</span>(<span class="keyword">await</span> <span class="title function_">readline</span>())</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        <span class="keyword">let</span> i=<span class="keyword">await</span> <span class="title function_">readline</span>()</span><br><span class="line">        arr[i-<span class="number">1</span>]++</span><br><span class="line">    &#125;</span><br><span class="line">    arr.<span class="title function_">forEach</span>(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(value&gt;<span class="number">0</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(index+<span class="number">1</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>其他两道入门题<code>HJ1 字符串最后一个单词的长度</code>、<code>HJ2 计算某字符出现次数</code>。</p>
+<h1 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h1><h2 id="NC29-二维数组的查找"><a href="#NC29-二维数组的查找" class="headerlink" title="NC29 二维数组的查找"></a>NC29 二维数组的查找</h2><p>在一个二维数组array中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p>[</p>
+<p>[1,2,8,9],<br>[2,4,9,12],<br>[4,7,10,13],<br>[6,8,11,15]  </p>
+<p>]</p>
+<p>给定 target &#x3D; 7，返回 true。</p>
+<p>给定 target &#x3D; 3，返回 false。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Find</span>(<span class="params">target, array</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 时间复杂度：m*n；对第一行和第一列的判断从宏观看没有作用</span></span><br><span class="line"><span class="comment">     * 优解思路，利用数据的规律，从左下角沿对角线向上查找</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">if</span> (!array || array.<span class="property">toString</span>===<span class="string">&#x27;[]&#x27;</span> || array[<span class="number">0</span>].<span class="property">toString</span>===<span class="string">&#x27;[]&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 第一行</span></span><br><span class="line">    <span class="keyword">let</span> n=array.<span class="property">length</span>, m=array[<span class="number">0</span>].<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">let</span> i=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(array[<span class="number">0</span>][i]==target) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(array[<span class="number">0</span>][i]&gt;target &amp;&amp; i==<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(array[<span class="number">0</span>][i]&gt;target &amp;&amp; i!=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> j=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span>(;j&lt;n;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(array[j][<span class="number">0</span>]==target) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(array[j][<span class="number">0</span>]&gt;target)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> x=<span class="number">1</span>;x&lt;j;x++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> y=<span class="number">1</span>;y&lt;i;y++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[x][y]==target) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="title class_">Find</span> : <span class="title class_">Find</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>优解思路，利用数据的规律，从左下角沿对角线向上查找</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Find</span>(<span class="params">target, array</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 时间复杂度：m*n；对第一行和第一列的判断从宏观看没有作用</span></span><br><span class="line"><span class="comment">     * 优解，利用数据的规律，从左下角沿对角线向上查找</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">if</span> (!array || array.<span class="property">toString</span>===<span class="string">&#x27;[]&#x27;</span> || array[<span class="number">0</span>].<span class="property">toString</span>===<span class="string">&#x27;[]&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> n=array.<span class="property">length</span>, m=array[<span class="number">0</span>].<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=n-<span class="number">1</span>, j=<span class="number">0</span>; i&gt;=<span class="number">0</span> &amp;&amp; j&lt;m;)&#123;</span><br><span class="line">        <span class="keyword">if</span>(array[i][j]==target) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">if</span>(array[i][j]&gt;target) i--;</span><br><span class="line">        <span class="keyword">else</span> j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="title class_">Find</span> : <span class="title class_">Find</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="NC65-斐波那契数列"><a href="#NC65-斐波那契数列" class="headerlink" title="NC65 斐波那契数列"></a>NC65 斐波那契数列</h2><p>学习递归的经典例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Fibonacci</span>(<span class="params">n</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span> || n==<span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Fibonacci</span>(n-<span class="number">1</span>)+<span class="title class_">Fibonacci</span>(n-<span class="number">2</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="title class_">Fibonacci</span> : <span class="title class_">Fibonacci</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>优化思路：</p>
+<ol>
+<li>记忆化搜索</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> f=<span class="title class_">Array</span>.<span class="title function_">from</span>(&#123;<span class="attr">length</span>:<span class="number">50</span>&#125;)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Fibonacci</span>(<span class="params">n</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="comment">// 直接用递归，会发现存在重复计算的，用数组将计算结果保留，用空间换时间，典型优化思路</span></span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(f[n]) <span class="keyword">return</span> f[n];</span><br><span class="line">    <span class="keyword">return</span> f[n]=<span class="title class_">Fibonacci</span>(n-<span class="number">1</span>)+<span class="title class_">Fibonacci</span>(n-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="title class_">Fibonacci</span> : <span class="title class_">Fibonacci</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>动态规划</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> f=<span class="title class_">Array</span>.<span class="title function_">from</span>(&#123;<span class="attr">length</span>:<span class="number">50</span>&#125;)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Fibonacci</span>(<span class="params">n</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 动态规划：拆解问题，用简单的子问题解法解决复杂问题</span></span><br><span class="line"><span class="comment">     * 这是动态规划吗？算，只是一种算法设计思路</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">let</span> a=<span class="number">1</span>,b=<span class="number">1</span>,c=<span class="number">1</span></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">3</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    c=a+b, a=b, b=c;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="title class_">Fibonacci</span> : <span class="title class_">Fibonacci</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/003%E5%88%B7%E9%A2%98/" data-id="clfjqowu70002ewaa42o6frkv" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-002投简历和刷题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/002%E6%8A%95%E7%AE%80%E5%8E%86%E5%92%8C%E5%88%B7%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.756Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong></p>
+<p>                                                                                                                                    —-鹅城县长</p>
+<p>今天看了<strong>vue</strong>的知识，但不算系统复习，直接进入彩蛋环节。</p>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>实施的面试可能没机会了，凉了。所以下午在招聘软件上和HR对线。有一个外包公司回复了，发了一个笔试题。于是下午刷了一下题目，想临时抱佛脚。牛客上面的字符串的三道题，一起来看看吧。</p>
+<h1 id="字符串编程题"><a href="#字符串编程题" class="headerlink" title="字符串编程题"></a>字符串编程题</h1><h2 id="NC89-字符串变形"><a href="#NC89-字符串变形" class="headerlink" title="NC89 字符串变形"></a>NC89 字符串变形</h2><p>对于一个长度为 n 字符串，我们需要对它做一些变形。</p>
+<p>首先这个字符串中包含着一些空格，就像”Hello World”一样，然后我们要做的是把这个字符串中由空格隔开的单词反序，同时反转每个字符的大小写。</p>
+<p>比如”Hello World”变形后就变成了”wORLD hELLO”。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">trans</span>(<span class="params">s, n</span>)&#123;</span><br><span class="line">    <span class="comment">//write code here</span></span><br><span class="line">    <span class="comment">// 参考用时最短的代码发现：</span></span><br><span class="line">    <span class="comment">// 1. 提前对字符串再拼接是没有必要的</span></span><br><span class="line">    <span class="comment">// 2. 大小写字母的转化可以简化为：</span></span><br><span class="line">    <span class="comment">// tmpArr[j]==tmpArr[j].toLowerCase()?tmpArr[j].toUpperCase():tmpArr[j].toLowerCase()</span></span><br><span class="line">    <span class="keyword">let</span> revStr=s.<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> tmpArr=revStr.<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">let</span> letter=tmpArr[i]</span><br><span class="line">        <span class="keyword">if</span>(letter!==<span class="string">&#x27; &#x27;</span> &amp;&amp; letter&gt;=<span class="string">&#x27;a&#x27;</span> &amp;&amp; letter&lt;=<span class="string">&quot;z&quot;</span>)&#123;</span><br><span class="line">            tmpArr[i]=letter.<span class="title function_">toUpperCase</span>()</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(letter!==<span class="string">&#x27; &#x27;</span> &amp;&amp; letter&gt;=<span class="string">&#x27;A&#x27;</span> &amp;&amp; letter&lt;=<span class="string">&quot;Z&quot;</span>)&#123;</span><br><span class="line">            tmpArr[i]=letter.<span class="title function_">toLowerCase</span>()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> tmpArr.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    trans : trans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="NC55-最长公共前缀"><a href="#NC55-最长公共前缀" class="headerlink" title="NC55 最长公共前缀"></a>NC55 最长公共前缀</h2><p>给你一个大小为 n 的字符串数组 strs ，其中包含n个字符串 , 编写一个函数来查找字符串数组中的最长公共前缀，返回这个公共前缀。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * </span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> strs string字符串一维数组 </span></span><br><span class="line"><span class="comment">  * <span class="doctag">@return</span> string字符串</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">longestCommonPrefix</span>(<span class="params"> strs </span>) &#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="comment">// 参考他人代码发现：</span></span><br><span class="line">    <span class="comment">// 1.排序起初是考虑对数值型字符串，按字典顺序排会造成 112排在2前面。但是题目只是为了找最长前缀，不需要将短字符串排在长字符串前面。</span></span><br><span class="line">    <span class="comment">// 2.基于以上，找最长前缀的逻辑也可以简化，直接取第一和最后一个元素，找他们的公共前缀就可以了</span></span><br><span class="line">    strs.<span class="title function_">sort</span>(<span class="function">(<span class="params">a,b</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a.<span class="property">length</span>&gt;b.<span class="property">length</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a.<span class="property">length</span>===b.<span class="property">length</span>) <span class="keyword">return</span> a&gt;b;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">let</span> first=strs[<span class="number">0</span>]?strs[<span class="number">0</span>]:<span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">let</span> i=first.<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> subStr=first.<span class="title function_">slice</span>(<span class="number">0</span>,i);</span><br><span class="line">        <span class="keyword">let</span> isMatch=strs.<span class="title function_">every</span>(<span class="function">(<span class="params">value</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="comment">// 前缀，符合则返回0</span></span><br><span class="line">            <span class="keyword">return</span> value.<span class="title function_">indexOf</span>(subStr)===<span class="number">0</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">if</span>(isMatch) <span class="keyword">break</span>;</span><br><span class="line">        i--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> first.<span class="title function_">slice</span>(<span class="number">0</span>,i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    longestCommonPrefix : longestCommonPrefix</span><br><span class="line">&#125;;x : longestCommonPrefix</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="NC113-验证IP地址"><a href="#NC113-验证IP地址" class="headerlink" title="NC113 验证IP地址"></a>NC113 验证IP地址</h2><p>编写一个函数来验证输入的字符串是否是有效的 IPv4 或 IPv6 地址  </p>
+<p>IPv4 地址由十进制数和点来表示，每个地址包含4个十进制数，其范围为 0 - 255， 用(“.”)分割。比如，172.16.254.1；<br>同时，IPv4 地址内的数不会以 0 开头。比如，地址 172.16.254.01 是不合法的。  </p>
+<p>IPv6 地址由8组16进制的数字来表示，每组表示 16 比特。这些组数字通过 (“:”)分割。比如,  2001:0db8:85a3:0000:0000:8a2e:0370:7334 是一个有效的地址。而且，我们可以加入一些以 0 开头的数字，字母可以使用大写，也可以是小写。所以， 2001:db8:85a3:0:0:8A2E:0370:7334 也是一个有效的 IPv6 address地址 (即，忽略 0 开头，忽略大小写)。  </p>
+<p>然而，我们不能因为某个组的值为 0，而使用一个空的组，以至于出现 (::) 的情况。 比如， 2001:0db8:85a3::8A2E:0370:7334 是无效的 IPv6 地址。<br>同时，在 IPv6 地址中，多余的 0 也是不被允许的。比如， 02001:0db8:85a3:0000:0000:8a2e:0370:7334 是无效的。  </p>
+<p>说明: 你可以认为给定的字符串里没有空格或者其他特殊字符。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 验证IP地址</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> IP string字符串 一个IP地址字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> string字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">solve</span>(<span class="params"> IP </span>) &#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="comment">// 参考他人代码，并没有很特别的地方，所以这个就不分析了。感觉牛客上的题解比较正常，LeetCode上大神好多</span></span><br><span class="line">    <span class="keyword">let</span> res=<span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="variable constant_">IP</span>.<span class="title function_">includes</span>(<span class="string">&#x27;.&#x27;</span>) &amp;&amp; !<span class="variable constant_">IP</span>.<span class="title function_">includes</span>(<span class="string">&#x27;:&#x27;</span>))&#123;</span><br><span class="line">        <span class="comment">// .  ipv4的分割符</span></span><br><span class="line">        <span class="keyword">let</span> arr=<span class="variable constant_">IP</span>.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> value <span class="keyword">of</span> arr)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!(value)  || <span class="built_in">isNaN</span>(value) || (value!=<span class="number">0</span> &amp;&amp; value.<span class="title function_">indexOf</span>(<span class="number">0</span>)===<span class="number">0</span>) || (value&gt;<span class="number">255</span>) || (value&lt;<span class="number">0</span>))&#123;</span><br><span class="line">                res=<span class="string">&quot;Neither&quot;</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res||<span class="string">&#x27;IPv4&#x27;</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="variable constant_">IP</span>.<span class="title function_">includes</span>(<span class="string">&#x27;:&#x27;</span>) &amp;&amp; !<span class="variable constant_">IP</span>.<span class="title function_">includes</span>(<span class="string">&#x27;.&#x27;</span>))&#123;</span><br><span class="line">        <span class="comment">// :  ipv6的分割符</span></span><br><span class="line">        <span class="keyword">let</span> arr=<span class="variable constant_">IP</span>.<span class="title function_">split</span>(<span class="string">&#x27;:&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> value <span class="keyword">of</span> arr)&#123;</span><br><span class="line">            <span class="keyword">let</span> vArr=value.<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">            <span class="comment">// 空，或超出4位长度</span></span><br><span class="line">            <span class="keyword">if</span> ((!value) || (vArr.<span class="property">length</span>&gt;<span class="number">4</span>))&#123;</span><br><span class="line">                res=<span class="string">&#x27;Neither&#x27;</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 不是16进制的数值</span></span><br><span class="line">            <span class="comment">// 存在非16进制就返回 Neither</span></span><br><span class="line">            vArr.<span class="title function_">some</span>(<span class="function">(<span class="params">el</span>)=&gt;</span>&#123;</span><br><span class="line">                el=el.<span class="title function_">toUpperCase</span>()</span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">isNaN</span>(el) &amp;&amp; (el&gt;<span class="string">&#x27;F&#x27;</span> || el&lt;<span class="string">&#x27;A&#x27;</span>) )&#123;</span><br><span class="line">                    res=<span class="string">&#x27;Neither&#x27;</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res||<span class="string">&#x27;IPv6&#x27;</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Neither&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    solve : solve</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><p>vue的学习还是逃不过了解vue2.0啊！！！难受哦</p>
+<p><strong>说说vue</strong></p>
+<p>前端开发框架，核心特性是数据驱动型，即MVVM模型，M（model）就是业务逻辑块，负责交互；V（view）视图层，即页面，最终的效果；VM（viewmodel）视图模块层，用来连接M和V，数据更新后，最终如何从M更新到V就是这层在负责。和传统开发相比：vue基本不直接操作DOM；和react相比：不同在于react使用单向数据流；diff逻辑不同，react及时更新到虚拟DOM上，然后批量更新到DOM中，vue边对比边更新。</p>
+<p><strong>vue生命周期</strong></p>
+<p>v2和v3的简单对照</p>
+<table>
+<thead>
+<tr>
+<th>周期</th>
+<th>描述</th>
+<th>和v3区别（销毁过程改名）</th>
+<th>v3中对应的钩子函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>beforeCreate</td>
+<td></td>
+<td></td>
+<td>使用组合式api，直接用<strong>setup</strong>代替</td>
+</tr>
+<tr>
+<td>created</td>
+<td>组件的数据和事件已经被初始化，可以被调用</td>
+<td></td>
+<td><strong>setup</strong></td>
+</tr>
+<tr>
+<td>beforeMount</td>
+<td>编译模板但是没有渲染</td>
+<td></td>
+<td>其余单词前+<strong>on</strong></td>
+</tr>
+<tr>
+<td>mounted</td>
+<td>DOM初始化完成，可以进行操作</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>beforeUpdate</td>
+<td>data数据已经是最新了</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>updated</td>
+<td>页面和data都是最新的数据</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>beforeDestroy</td>
+<td>data和method等等还可以访问</td>
+<td>beforeUnmount</td>
+<td></td>
+</tr>
+<tr>
+<td>destroyed</td>
+<td>组件销毁，内部数据不可用</td>
+<td>unmounted</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>new vue()的过程</strong></p>
+<p>拿源码一通分析，不是很理解，记得一个UP主说的，就做两件事儿：初始化和创建数据更新机制。</p>
+<p>说说SPA</p>
+<p>单页面程序，网页程序的模型，通过动态重写实现页面的变化。基于对url的监听API的实现，看看大佬写的代码。</p>
+<p><strong>hash模式</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义 Router  </span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Router</span> &#123;  </span><br><span class="line">    <span class="title function_">constructor</span> () &#123;  </span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">routes</span> = &#123;&#125;; <span class="comment">// 存放路由path及callback  </span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">currentUrl</span> = <span class="string">&#x27;&#x27;</span>;  </span><br><span class="line">          </span><br><span class="line">        <span class="comment">// 监听路由change调用相对应的路由回调  </span></span><br><span class="line">        <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="variable language_">this</span>.<span class="property">refresh</span>, <span class="literal">false</span>);  </span><br><span class="line">        <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;hashchange&#x27;</span>, <span class="variable language_">this</span>.<span class="property">refresh</span>, <span class="literal">false</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="title function_">route</span>(<span class="params">path, callback</span>)&#123;  </span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">routes</span>[path] = callback;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="title function_">push</span>(<span class="params">path</span>) &#123;  </span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">routes</span>[path] &amp;&amp; <span class="variable language_">this</span>.<span class="property">routes</span>[path]()  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 使用 router  </span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">miniRouter</span> = <span class="keyword">new</span> <span class="title class_">Router</span>();  </span><br><span class="line">miniRouter.<span class="title function_">route</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;page1&#x27;</span>))  </span><br><span class="line">miniRouter.<span class="title function_">route</span>(<span class="string">&#x27;/page2&#x27;</span>, <span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;page2&#x27;</span>))  </span><br><span class="line">  </span><br><span class="line">miniRouter.<span class="title function_">push</span>(<span class="string">&#x27;/&#x27;</span>) <span class="comment">// page1  </span></span><br><span class="line">miniRouter.<span class="title function_">push</span>(<span class="string">&#x27;/page2&#x27;</span>) <span class="comment">// page2  </span></span><br></pre></td></tr></table></figure>
+
+<p><strong>history模式</strong>，这个不大懂</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义 Router  </span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Router</span> &#123;  </span><br><span class="line">    <span class="title function_">constructor</span> () &#123;  </span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">routes</span> = &#123;&#125;;  </span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">listerPopState</span>()  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="title function_">init</span>(<span class="params">path</span>) &#123;  </span><br><span class="line">        history.<span class="title function_">replaceState</span>(&#123;<span class="attr">path</span>: path&#125;, <span class="literal">null</span>, path);  </span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">routes</span>[path] &amp;&amp; <span class="variable language_">this</span>.<span class="property">routes</span>[path]();  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="title function_">route</span>(<span class="params">path, callback</span>)&#123;  </span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">routes</span>[path] = callback;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="title function_">push</span>(<span class="params">path</span>) &#123;  </span><br><span class="line">        history.<span class="title function_">pushState</span>(&#123;<span class="attr">path</span>: path&#125;, <span class="literal">null</span>, path);  </span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">routes</span>[path] &amp;&amp; <span class="variable language_">this</span>.<span class="property">routes</span>[path]();  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    listerPopState () &#123;  </span><br><span class="line">        <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;popstate&#x27;</span> , <span class="function"><span class="params">e</span> =&gt;</span> &#123;  </span><br><span class="line">            <span class="keyword">const</span> path = e.<span class="property">state</span> &amp;&amp; e.<span class="property">state</span>.<span class="property">path</span>;  </span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">routers</span>[path] &amp;&amp; <span class="variable language_">this</span>.<span class="property">routers</span>[path]()  </span><br><span class="line">        &#125;)  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 使用 Router  </span></span><br><span class="line">  </span><br><span class="line"><span class="variable language_">window</span>.<span class="property">miniRouter</span> = <span class="keyword">new</span> <span class="title class_">Router</span>();  </span><br><span class="line">miniRouter.<span class="title function_">route</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">()=&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;page1&#x27;</span>))  </span><br><span class="line">miniRouter.<span class="title function_">route</span>(<span class="string">&#x27;/page2&#x27;</span>, <span class="function">()=&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;page2&#x27;</span>))  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 跳转  </span></span><br><span class="line">miniRouter.<span class="title function_">push</span>(<span class="string">&#x27;/page2&#x27;</span>)  <span class="comment">// page2  </span></span><br></pre></td></tr></table></figure>
+
+<p>v-if和v-for的使用注意点</p>
+<p>用在同一组件上，<code>v-for</code>会优先于<code>v-if</code>做解析，本身<code>v-if</code>就消耗资源，如果循环次数非常多，那肯定是不行的。解决方案：</p>
+<ol>
+<li>控制一个列表的显示可以将<code>v-if</code>写在<code>template</code>上</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template v-<span class="keyword">if</span>=<span class="string">&quot;isShow&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">&quot;item in items&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>利用计算属性或其他方案，将不需要显示的项过滤掉，看代码</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">computed</span>: &#123;</span><br><span class="line">    <span class="attr">items</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">list</span>.<span class="title function_">filter</span>(<span class="keyword">function</span> (<span class="params">item</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> item.<span class="property">isShow</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/002%E6%8A%95%E7%AE%80%E5%8E%86%E5%92%8C%E5%88%B7%E9%A2%98/" data-id="clfjqowu60001ewaa1pc968w3" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-001实施复习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/001%E5%AE%9E%E6%96%BD%E5%A4%8D%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.747Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong></p>
+<p>                                                                                                                                    —-鹅城县长</p>
+<h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><p><strong>http状态码</strong></p>
+<p>状态码的第一位决定了不同的响应状态，有</p>
+<ul>
+<li><p>1xx 表示消息</p>
+</li>
+<li><p>2xx 表示成功</p>
+</li>
+<li><p>3xx 表示重定向</p>
+</li>
+<li><p>4xx 表示请求错误</p>
+</li>
+<li><p>5xx 表示服务器错误</p>
+</li>
+</ul>
+<p>常见的有，</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td>请求成功</td>
+</tr>
+<tr>
+<td>403</td>
+<td>禁止请求，服务器拒绝请求</td>
+</tr>
+<tr>
+<td>404</td>
+<td>未找到，服务器没有找到请求的资源</td>
+</tr>
+<tr>
+<td>500</td>
+<td>服务器遇到错误，无法完成请求</td>
+</tr>
+<tr>
+<td>504</td>
+<td>网关超时，服务器作为网关或代理，没有及时从上游服务器收到请求</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>tcp连接的三次握手和四次挥手</strong></p>
+<p>建立<code>tcp</code>连接，需要经过三次握手：</p>
+<ol>
+<li><p>客户端发送<code>SYN</code>报文给服务器；</p>
+</li>
+<li><p>服务器响应<code>ack</code>报文给客户端，确认客户端的发送能力；</p>
+</li>
+<li><p>客户端发送<code>ack</code>报文给服务器。客户端确认服务器的接收和发送能力，服务器确认了客户端的接收能力，然后就能进行数据传输了。</p>
+</li>
+</ol>
+<p><strong>为什么做三次握手，而不是两次？</strong>，第三次握手能够让服务器知道客户端的接收能力是正常的。</p>
+<p>断开<code>tcp</code>连接，需要经过四次挥手：</p>
+<ol>
+<li><p>客户端发送<code>FIN</code>报文，并停止发送数据，向服务器请求断开连接；</p>
+</li>
+<li><p>服务器发送<code>ack</code>报文响应；</p>
+</li>
+<li><p>服务器在发送完所有数据后，发送<code>FIN</code>报文，告诉客户端可以断开了；</p>
+</li>
+<li><p>客户端发送<code>ack</code>报文响应，完成断开。</p>
+</li>
+</ol>
+<p><strong>为什么是四次，不是三次？</strong>，服务器做接收到客户端的断开请求时，有时还有数据需要继续发送，所以不立即发送<code>FIN</code>报文，于是就有了四次挥手。</p>
+<p><strong>其他</strong></p>
+<p>这部分看了，但是不好记忆，也不好描述：</p>
+<ol>
+<li><p><code>udp</code>和<code>tcp</code>的对比（udp不可靠）；</p>
+</li>
+<li><p>http1.0 1.1 2.0</p>
+</li>
+<li><p>地址栏输入<code>url</code>敲下回车后发生了什么（url解析 -&gt; 域名解析，获得IP -&gt; 建立请求，服务器响应 -&gt; 网站渲染，首先解析dom树，然后css树，然后计算完成大小和位置的布局信息，然后是图像像素信息，最后交给GPU渲染）</p>
+</li>
+<li><p><code>tcp/IP</code>：指的是一系列互联网协议构成的协议族，模型可分为五层或者四层，五层是应用层、传输层、网络层、数据链路层、物理层。其中还有和<code>OSI</code>模型的对照内容需要了解。</p>
+</li>
+</ol>
+<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><p><strong>进程和线程</strong></p>
+<ol>
+<li>线程是进程的子集，每个进程包含多个线程；2. 每个进程有各自独立的内存空间，而所有线程共享一片相同的内存空间；3.每个线程有自己的栈内存存储本地数据。</li>
+</ol>
+<p><strong>死锁</strong></p>
+<p>一个进程请求其他进程拥有的资源，并且不释放自己获取的资源，不断请求，产生死锁。死锁产生条件：1. 互斥：一个资源在同一时间内只能由一个进程获得；2. 请求和保持，一个进程因请求资源而堵塞时，对已获得的资源不释放；3. 不剥夺，进程已获得的资源在未使用完成时，不能剥夺，只能在使用完时自己释放；4. 循环等待，存在循环等待链，每个进程都在等待链中等待下一个进程资源，造成这组进程永远处于等待状态。</p>
+<h1 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h1><h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2><p>docker是软件平台，用于创建、管理、分发应用程序。类似于轻量级的虚拟机，</p>
+<p><strong>区别于虚拟机</strong>：不同于虚拟机，容器内只运行应用程序，不是一个完整操作系统。</p>
+<p><strong>完整的docker包含那些部分</strong>：client 客户端；daemon 守护进程；images 镜像；container 容器</p>
+<p><strong>容器生命周期</strong>：创建create、运行start（run，创建并运行）、停止（stop）启动（start）重启（restart）、杀死（kill，不删除容器，能再次启动）、销毁（destroy，删除，需要重新创建容器）</p>
+<p><strong>常用指令</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>docker images</td>
+<td>列出本机所有镜像</td>
+</tr>
+<tr>
+<td>docker pull 镜像名[:tag]</td>
+<td>下载镜像[对应版本]，名字后加上<code>:</code>接数字，表示下载哪个版本</td>
+</tr>
+<tr>
+<td>docker search</td>
+<td>搜索镜像</td>
+</tr>
+<tr>
+<td>docker rmi -f 镜像id</td>
+<td>删除镜像</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>dockerfile</strong>：存放配置镜像的指令的文件，docker使用dockerfile自动构建镜像。</p>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>用于构建web服务器，常用于反向代理。常用功能：1. 反向代理：客户端向服务器发送请求时，首先会经过nginx服务器，nginx将请求分发给相应的web服务器；2. 负载均衡：将大量的前端请求或数据流量分担到后端多个网络节点上分别处理，减少用户等待时间。</p>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>根据不同的实际情况，可采取不同的均衡算法，介绍如下。</p>
+<p><strong>普通轮询算法</strong></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">upstream</span> OrdinaryPolling &#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8081</span>;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">        <span class="attribute">server_name</span>  localhost;</span><br><span class="line"></span><br><span class="line">        <span class="section">location</span> / &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://OrdinaryPolling;</span><br><span class="line">            <span class="attribute">index</span>  index.html index.htm index.jsp;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码表明，<code>upstream</code>代码块声明了名为<code>OrdinaryPolling</code>的负载均衡配置，<code>server</code>代码块配置虚拟主机，监听<code>localhost</code>主机上的<code>80</code>端口（端口默认为80），当请求地址为<code>/</code>时，采用反向代理<code>proxy_pass</code>设置的方案，将请求分发给<code>127.0.0.1:8080</code>和<code>8081</code>两个服务器，默认响应<code>index.html</code>文件。</p>
+<p><strong>加权轮询算法</strong></p>
+<p>当服务器配置不同，希望高配置的服务器处理更多的请求，这时就可以采用<strong>加权轮询</strong>。配置如下，</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">upstream</span> OrdinaryPolling &#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8080</span> weight=<span class="number">5</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8081</span> weight=<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时，nginx会根据权重给不同服务器分担不同的请求量，8080和80801处理的量比例为5:2。不设置<code>weight</code>则默认都是1，就是普通轮询。</p>
+<p><strong>基于IP路由负载</strong></p>
+<p>当服务器需要保存信息完成验证时，如登录验证时，保存session，当请求在第一个服务器没处理完，通过nginx轮询到第二个服务器上，那么这个服务器是没有会话信息的。又需要重新登录。此时可以采用<code>基于IP负载</code>。配置如下，</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">upstream</span> OrdinaryPolling &#123;</span><br><span class="line">    ip_hash;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8080</span> weight=<span class="number">5</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8081</span> weight=<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>upstream</code> 指令块中增加了<code>ip_hash</code> 指令。该指令就是告诉 nginx 服务器，同一个 IP 地址客户端发送的请求都将分发到同一个服务器进行处理.</p>
+<p><strong>基于服务器响应时间负载分配</strong></p>
+<p>根据服务器响应时间分配，时间越短的优先分配。<code>upstream</code> 指令块中增加了<code>fair</code> 指令.</p>
+<p><strong>对不同域名实现负载均衡</strong></p>
+<p>结合<code>location</code> 指令块可以实现对不同域名实现负载均衡。配置如下，</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">upstream</span> wordbackend &#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8081</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="section">upstream</span> pptbackend &#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8082</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8083</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">        <span class="attribute">server_name</span>  localhost;</span><br><span class="line"></span><br><span class="line">        <span class="section">location</span> /word/ &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://wordbackend;</span><br><span class="line">            <span class="attribute">index</span>  index.html index.htm index.jsp;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="section">location</span> /ppt/ &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://pptbackend;</span><br><span class="line">            <span class="attribute">index</span>  index.html index.htm index.jsp;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>当路径为 <code>word</code> 时，会分配到 <code>127.0.0.1:8080</code>和<code>8081</code>上，当路径为 <code>ppt</code> 时，会分配到 <code>8082</code>和<code>8083</code>上。</p>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>为了一个软件实施的岗位做准备，网上关于实施的面试题大多都是计算机通识内容，再结合工作经验，实施中数据库和服务器的技术需要着重关注（还在等面试通知，逆天^,..,.,^）。网络相关的知识点还要没复习到的，也有理解或记不清的内容。还有数据库的知识点。当然服务器也需要再补补</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/001%E5%AE%9E%E6%96%BD%E5%A4%8D%E4%B9%A0/" data-id="clfjqowu30000ewaa2udw6kh4" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:20:35.551Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/22/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/hello-world/" data-id="clfjpsu6d0000ywaaaw48eupp" data-title="Hello World" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/22/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8MDN%E6%96%87%E6%A1%A3/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/22/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/22/022%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0uniapp/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/22/021todos%E5%88%9D%E7%89%88/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/22/020uniapp%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言日志，各位看官就当乐子看吧。 正经人谁写日记啊？！！    ——鹅城县长 当提及Vue时，会说起什么呢？  基础：指令的区别或者原理，如v-show、v-if 解析过程，即生命周期； 它的特性的原理：如何实现响应式，这其中就包括ref、reactive； 组件 vue3的区别  今天看看如何实现响应式的，还有vue2是如何实现的。 vue3和vue2的区别Proxy和definePropert">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/03/22/013%E5%89%8D%E7%AB%AF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言日志，各位看官就当乐子看吧。 正经人谁写日记啊？！！    ——鹅城县长 当提及Vue时，会说起什么呢？  基础：指令的区别或者原理，如v-show、v-if 解析过程，即生命周期； 它的特性的原理：如何实现响应式，这其中就包括ref、reactive； 组件 vue3的区别  今天看看如何实现响应式的，还有vue2是如何实现的。 vue3和vue2的区别Proxy和definePropert">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-22T13:42:24.809Z">
+<meta property="article:modified_time" content="2023-03-12T16:03:55.178Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-013前端" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/013%E5%89%8D%E7%AB%AF/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.809Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
+<p>当提及<code>Vue</code>时，会说起什么呢？</p>
+<ol>
+<li>基础：指令的区别或者原理，如<code>v-show</code>、<code>v-if</code></li>
+<li>解析过程，即生命周期；</li>
+<li>它的特性的原理：如何实现响应式，这其中就包括<code>ref</code>、<code>reactive</code>；</li>
+<li>组件</li>
+<li><code>vue3</code>的区别</li>
+</ol>
+<p>今天看看如何实现响应式的，还有vue2是如何实现的。</p>
+<h1 id="vue3和vue2的区别"><a href="#vue3和vue2的区别" class="headerlink" title="vue3和vue2的区别"></a>vue3和vue2的区别</h1><h2 id="Proxy和defineProperty"><a href="#Proxy和defineProperty" class="headerlink" title="Proxy和defineProperty"></a>Proxy和defineProperty</h2><p>原文：<a target="_blank" rel="noopener" href="https://vue3js.cn/interview/vue3/proxy.html">https://vue3js.cn/interview/vue3/proxy.html</a></p>
+<h3 id="defineProperty"><a href="#defineProperty" class="headerlink" title="defineProperty"></a>defineProperty</h3><p>vue2 使用<code>defineProperty</code>生成响应式对象。下面通过代码看看如何实现的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">update</span>(<span class="params">value</span>)&#123;</span><br><span class="line">    app.<span class="property">innerText</span>=obj.<span class="property">foo</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">defineReactive</span>(<span class="params">obj, key, val</span>)&#123;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(obj, key, &#123;</span><br><span class="line">        <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`get <span class="subst">$&#123;key&#125;</span>: <span class="subst">$&#123;val&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">return</span> val;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">set</span>(<span class="params">newVal</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(newVal !== val)&#123;</span><br><span class="line">                val=newVal</span><br><span class="line">                <span class="title function_">update</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用<code>defineProperty</code>实现<code>obj.foo</code>的数据响应式，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj=&#123;&#125;</span><br><span class="line"><span class="title function_">defineProperty</span>(obj, <span class="string">&#x27;foo&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    obj.<span class="property">foo</span> = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">toLocaleTimeString</span>()</span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+
+<p>1秒后，数据发生变化，<code>update</code>方法会被触发。当存在多个<code>key</code>时，需要利用遍历，给<code>obj</code>中的每个<code>key</code>设置<code>get</code>和<code>set</code>方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">observe</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">&#x27;object&#x27;</span> || obj==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">keys</span>(obj).<span class="title function_">forEach</span>(<span class="function"><span class="params">k</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">defineReactive</span>(obj, k, obj[k])</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果<code>value</code>也是个对象，那么还需要在<code>defineProperty</code>中利用递归，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// defineReactive 函数</span></span><br><span class="line"><span class="title function_">observe</span>(val)    <span class="comment">// 递归设置val</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(obj, key, &#123;</span><br><span class="line">    <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`get <span class="subst">$&#123;key&#125;</span>: <span class="subst">$&#123;val&#125;</span>`</span>)</span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">set</span>(<span class="params">newVal</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(newVal !== val)&#123;</span><br><span class="line">            val=newVal</span><br><span class="line">            <span class="title function_">update</span>()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>当赋的是一个对象时，<code>set</code>同样需要递归</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">set</span>(<span class="params">newVal</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(newVal !== val)&#123;</span><br><span class="line">        <span class="title function_">observe</span>(newVal)</span><br><span class="line">        <span class="title function_">notifyUpdate</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>基本的对象响应式完整代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">update</span>(<span class="params">value</span>)&#123;</span><br><span class="line">    app.<span class="property">innerText</span>=obj.<span class="property">foo</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">defineReactive</span>(<span class="params">obj, key, val</span>)&#123;</span><br><span class="line">    <span class="title function_">observe</span>(val)</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(obj, key, &#123;</span><br><span class="line">        <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`get <span class="subst">$&#123;key&#125;</span>: <span class="subst">$&#123;val&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">return</span> val;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">set</span>(<span class="params">newVal</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(newVal !== val)&#123;</span><br><span class="line">                <span class="title function_">observe</span>(newVal)</span><br><span class="line">                <span class="title function_">notifyUpdate</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">observe</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">&#x27;object&#x27;</span> || obj==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">keys</span>(obj).<span class="title function_">forEach</span>(<span class="function"><span class="params">k</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">defineReactive</span>(obj, k, obj[k])</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">const</span> obj=&#123;</span><br><span class="line">    <span class="attr">foo</span>: <span class="string">&#x27;foo&#x27;</span>,</span><br><span class="line">    <span class="attr">bar</span>: <span class="string">&#x27;bar&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">observe</span>(obj)</span><br></pre></td></tr></table></figure>
+
+<p>但是，其中还存在较多问题：</p>
+<ol>
+<li>无法劫持<strong>删除</strong>和<strong>添加</strong>操作</li>
+<li>对<strong>数组</strong>的监听，并不好用，对数组的api（push，pop等）无法劫持</li>
+<li>可以看到当数据是嵌套对象时，需要递归，会对性能产生影响（这个问题 vue3 似乎也存在）</li>
+</ol>
+<p>对上述1，2两个问题，<code>vue2</code>的解决方案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组重写</span></span><br><span class="line"><span class="keyword">const</span> originalProto=<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span></span><br><span class="line"><span class="keyword">const</span> arrayProto=<span class="title class_">Object</span>.<span class="title function_">create</span>(originalProto)</span><br><span class="line">[<span class="string">&#x27;push&#x27;</span>, <span class="string">&#x27;pop&#x27;</span>, <span class="string">&#x27;shift&#x27;</span>, <span class="string">&#x27;unshift&#x27;</span>, <span class="string">&#x27;splice&#x27;</span>, <span class="string">&#x27;reverse&#x27;</span>, <span class="string">&#x27;sort&#x27;</span>].<span class="title function_">forEach</span>(<span class="function"><span class="params">method</span> =&gt;</span> &#123;</span><br><span class="line">    arrayProto[method] = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">originalProto</span>(method).<span class="title function_">apply</span>(<span class="variable language_">this</span>.<span class="property">arguments</span>);</span><br><span class="line">        dep.<span class="title function_">notice</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h3><p><code>Proxy</code>可以代理对象的默认行为，我们可以改变默认行为，实现自定义。能代理的行为有：</p>
+<ul>
+<li>get(target,propKey,receiver)：拦截对象属性的读取</li>
+<li>set(target,propKey,value,receiver)：拦截对象属性的设置</li>
+<li>has(target,propKey)：拦截propKey in proxy的操作，返回一个布尔值</li>
+<li>deleteProperty(target,propKey)：拦截delete proxy[propKey]的操作，返回一个布尔值</li>
+<li>ownKeys(target)：拦截Object.keys(proxy)、for…in等循环，返回一个数组</li>
+<li>getOwnPropertyDescriptor(target, propKey)：拦截Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象</li>
+<li>defineProperty(target, propKey, propDesc)：拦截Object.defineProperty(proxy, propKey, propDesc)，返回一个布尔值</li>
+<li>其他：<code>preventExtensions(target)</code>、<code>getPrototypeOf(target)</code>、<code>isExtensible(target)</code>、<code>setPrototypeOf(target, proto)</code>、<code>apply(target, object, args)</code>、<code>construct(target, args)</code></li>
+</ul>
+<p><code>Reflect</code>对象，用于调用对象原先的默认行为，上面提到的所有内容。</p>
+<p><strong>补充</strong><br>通过<code>Proxy.revocable(target, handler);</code>可以创建一个可撤销的代理对象。调用<code>revoke()</code>方法即可撤销。</p>
+<p>使用<code>Proxy</code>实现一个响应式方法<code>reactive</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">reactive</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">&#x27;object&#x27;</span> &amp;&amp; obj != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> obj</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Proxy相当于在对象外层加拦截</span></span><br><span class="line">    <span class="keyword">const</span> observed = <span class="keyword">new</span> <span class="title class_">Proxy</span>(obj, &#123;</span><br><span class="line">        <span class="title function_">get</span>(<span class="params">target, key, receiver</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> res = <span class="title class_">Reflect</span>.<span class="title function_">get</span>(target, key, receiver)</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`获取<span class="subst">$&#123;key&#125;</span>:<span class="subst">$&#123;res&#125;</span>`</span>)</span><br><span class="line">            <span class="comment">// 如果是嵌套对象，使用递归</span></span><br><span class="line">            <span class="keyword">return</span> <span class="title function_">isObject</span>(res) ? <span class="title function_">reactive</span>(res) : res</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">set</span>(<span class="params">target, key, value, receiver</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> res = <span class="title class_">Reflect</span>.<span class="title function_">set</span>(target, key, value, receiver)</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`设置<span class="subst">$&#123;key&#125;</span>:<span class="subst">$&#123;value&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">deleteProperty</span>(<span class="params">target, key</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> res = <span class="title class_">Reflect</span>.<span class="title function_">deleteProperty</span>(target, key)</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`删除<span class="subst">$&#123;key&#125;</span>:<span class="subst">$&#123;res&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> observed</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>和<code>defineProperty</code>不同，<code>Proxy</code>直接劫持对象，所以不需要通过遍历劫持对象属性了。</p>
+<h2 id="挂载时发生了什么"><a href="#挂载时发生了什么" class="headerlink" title="挂载时发生了什么"></a>挂载时发生了什么</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// App.vue</span></span><br><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="comment">// 从一个单文件组件中导入根组件</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>)</span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-createApp"><a href="#1-createApp" class="headerlink" title="1. createApp"></a>1. createApp</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> createApp = (<span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="title function_">ensureRenderer</span>().<span class="title function_">createApp</span>(...args)</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-ensureRenderer"><a href="#2-ensureRenderer" class="headerlink" title="2. ensureRenderer"></a>2. ensureRenderer</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">ensureRenderer</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> renderer || (renderer = <span class="title function_">createRenderer</span>(rendererOptions))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-createRenderer"><a href="#3-createRenderer" class="headerlink" title="3. createRenderer"></a>3. createRenderer</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> createRenderer&lt;</span><br><span class="line">  <span class="title class_">HostNode</span> = <span class="title class_">RendererNode</span>,</span><br><span class="line">  <span class="title class_">HostElement</span> = <span class="title class_">RendererElement</span></span><br><span class="line">&gt;(<span class="attr">options</span>: <span class="title class_">RendererOptions</span>&lt;<span class="title class_">HostNode</span>, <span class="title class_">HostElement</span>&gt;) &#123;</span><br><span class="line">  <span class="keyword">return</span> baseCreateRenderer&lt;<span class="title class_">HostNode</span>, <span class="title class_">HostElement</span>&gt;(options)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-baseCreateRenderer"><a href="#4-baseCreateRenderer" class="headerlink" title="4. baseCreateRenderer"></a>4. baseCreateRenderer</h3><p>这个函数中，实现了<code>vnode</code>、<code>diff</code>、<code>patch</code>，很大很重要，目前只关注其返回值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">baseCreateRenderer</span>(<span class="params"></span></span><br><span class="line"><span class="params">  options: RendererOptions,</span></span><br><span class="line"><span class="params">  createHydrationFns?: <span class="keyword">typeof</span> createHydrationFunctions</span></span><br><span class="line"><span class="params"></span>): any &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="attr">insert</span>: hostInsert,</span><br><span class="line">    <span class="attr">remove</span>: hostRemove,</span><br><span class="line">    <span class="attr">patchProp</span>: hostPatchProp,</span><br><span class="line">    <span class="attr">createElement</span>: hostCreateElement,</span><br><span class="line">    <span class="attr">createText</span>: hostCreateText,</span><br><span class="line">    <span class="attr">createComment</span>: hostCreateComment,</span><br><span class="line">    <span class="attr">setText</span>: hostSetText,</span><br><span class="line">    <span class="attr">setElementText</span>: hostSetElementText,</span><br><span class="line">    <span class="attr">parentNode</span>: hostParentNode,</span><br><span class="line">    <span class="attr">nextSibling</span>: hostNextSibling,</span><br><span class="line">    <span class="attr">setScopeId</span>: hostSetScopeId = <span class="variable constant_">NOOP</span>,</span><br><span class="line">    <span class="attr">cloneNode</span>: hostCloneNode,</span><br><span class="line">    <span class="attr">insertStaticContent</span>: hostInsertStaticContent</span><br><span class="line">  &#125; = options</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ....此处省略两千行，我们先不管</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    render,</span><br><span class="line">    hydrate,</span><br><span class="line">    <span class="attr">createApp</span>: <span class="title function_">createAppAPI</span>(render, hydrate)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-createAppAPI"><a href="#5-createAppAPI" class="headerlink" title="5. createAppAPI"></a>5. createAppAPI</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> createAppAPI&lt;<span class="title class_">HostElement</span>&gt;(</span><br><span class="line">  <span class="attr">render</span>: <span class="title class_">RootRenderFunction</span>,</span><br><span class="line">  hydrate?: <span class="title class_">RootHydrateFunction</span></span><br><span class="line">): <span class="title class_">CreateAppFunction</span>&lt;<span class="title class_">HostElement</span>&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">createApp</span>(<span class="params">rootComponent, rootProps = <span class="literal">null</span></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (rootProps != <span class="literal">null</span> &amp;&amp; !<span class="title function_">isObject</span>(rootProps)) &#123;</span><br><span class="line">      __DEV__ &amp;&amp; <span class="title function_">warn</span>(<span class="string">`root props passed to app.mount() must be an object.`</span>)</span><br><span class="line">      rootProps = <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建默认APP配置</span></span><br><span class="line">    <span class="keyword">const</span> context = <span class="title function_">createAppContext</span>()</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="attr">app</span>: <span class="title class_">App</span> = &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment">// 都是一些眼熟的方法</span></span><br><span class="line">        <span class="title function_">use</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="title function_">mixin</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="title function_">component</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="title function_">directive</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line"></span><br><span class="line">        <span class="comment">// mount 我们拎出来讲</span></span><br><span class="line">        <span class="title function_">mount</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="title function_">unmount</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> app</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-createAppContext"><a href="#6-createAppContext" class="headerlink" title="6. createAppContext"></a>6. createAppContext</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">createAppContext</span>(<span class="params"></span>): <span class="title class_">AppContext</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">config</span>: &#123;</span><br><span class="line">      <span class="attr">isNativeTag</span>: <span class="variable constant_">NO</span>,</span><br><span class="line">      <span class="attr">devtools</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">performance</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">globalProperties</span>: &#123;&#125;,</span><br><span class="line">      <span class="attr">optionMergeStrategies</span>: &#123;&#125;,</span><br><span class="line">      <span class="attr">isCustomElement</span>: <span class="variable constant_">NO</span>,</span><br><span class="line">      <span class="attr">errorHandler</span>: <span class="literal">undefined</span>,</span><br><span class="line">      <span class="attr">warnHandler</span>: <span class="literal">undefined</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">mixins</span>: [],</span><br><span class="line">    <span class="attr">components</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">directives</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">provides</span>: <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="literal">null</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>OK，结束了，虽然有很多东西没看到：如何实现响应式的、如何构建VNode的，之后再看吧！</p>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>今天去了我这的市图书馆，环境还不错哈。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/013%E5%89%8D%E7%AB%AF/" data-id="clfjqowud000cewaacaxz36fo" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/03/22/014vue3%E5%93%8D%E5%BA%94%E5%BC%8F%E6%BA%90%E7%A0%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/03/22/012%E5%A8%B1%E4%B9%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/22/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8MDN%E6%96%87%E6%A1%A3/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/22/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/22/022%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0uniapp/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/22/021todos%E5%88%9D%E7%89%88/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/22/020uniapp%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
