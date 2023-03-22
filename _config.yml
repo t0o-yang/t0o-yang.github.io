@@ -40,7 +40,10 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true # 图像等资源访问
+marked: # 启用后，资源图片将会被自动解析为其对应文章的路径，直接用md语法
+  prependRoot: true
+  postAsset: true
 relative_link: false
 future: true
 highlight:
