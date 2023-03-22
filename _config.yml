@@ -103,5 +103,5 @@ theme: landscape
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@gitee.com:t0o-yang/ylog.git
+  repo: git@gitee.com:t0o-yang/t0o-yang.git
   branch: master
