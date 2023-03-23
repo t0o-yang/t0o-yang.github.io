@@ -71,6 +71,43 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-016手写Promise" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/016%E6%89%8B%E5%86%99Promise/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.826Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
+<p>实现<code>Promise</code></p>
+<h1 id="实现Promise"><a href="#实现Promise" class="headerlink" title="实现Promise"></a>实现Promise</h1><p>原文：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7032564107899322381#heading-0">手撕Promise</a></p>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Promise 构造函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义状态</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PENDING</span>=<span class="string">&#x27;pending&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">FULFILLED</span>=<span class="string">&#x27;fulfilled&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">REJECTED</span>=<span class="string">&#x27;rejected&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Promise</span>(<span class="params">executor</span>)&#123;</span><br><span class="line">    <span class="comment">// 保证 this 指向实例</span></span><br><span class="line">    <span class="keyword">const</span> that=<span class="variable language_">this</span> </span><br><span class="line">    that.<span class="property">status</span>=<span class="variable constant_">PENDING</span> <span class="comment">// 初始化状态</span></span><br><span class="line">    that.<span class="property">data</span>=<span class="literal">undefined</span> <span class="comment">// 完成（成功或失败）后回调的值</span></span><br><span class="line">    that.<span class="property">callbacks</span>=[]    <span class="comment">// 回调队列，用&#123; onResolve, onReject &#125;对象存储指定的回调</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// resolve 改变实例状态为成功的函数</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">resolve</span>(<span class="params">value</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(that.<span class="property">status</span>!==<span class="variable constant_">PENDING</span>) <span class="keyword">return</span>;</span><br><span class="line">        that.<span class="property">status</span>=<span class="variable constant_">FULFILLED</span>;</span><br><span class="line">        that.<span class="property">data</span>=value;</span><br><span class="line">        <span class="comment">// 需要回调，调用 queueMicrotask 执行</span></span><br><span class="line">        <span class="keyword">if</span>(that.<span class="property">callbacks</span>.<span class="property">length</span>&gt;<span class="number">0</span>) &#123;</span><br><span class="line">            <span class="title function_">queueMicrotask</span>(that.<span class="property">callbacks</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">cb</span> =&gt;</span> <span class="title function_">cb</span>(that.<span class="property">data</span>)))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中提到了一个<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_DOM_API/Microtask_guide">微任务ueMicrotask()</a>的概念。</p>
+<h2 id="微任务和任务"><a href="#微任务和任务" class="headerlink" title="微任务和任务"></a>微任务和任务</h2><p>MDN上写的很难懂啊。<br>关键区别：首先，每当一个任务存在，事件循环都会检查该任务是否正把控制权交给其他 JavaScript 代码。如若不然，事件循环就会运行微任务队列中的所有微任。<br>其次，如果一个微任务通过调用 queueMicrotask(), 向队列中加入了更多的微任务，则那些新加入的微任务 会早于下一个任务运行。</p>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>中小企业对小程序、移动端的需求很大，先学学小程序。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/016%E6%89%8B%E5%86%99Promise/" data-id="clfjqowuf000fewaa6loagn0i" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-015相等、拷贝" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/03/22/015%E7%9B%B8%E7%AD%89%E3%80%81%E6%8B%B7%E8%B4%9D/" class="article-date">
@@ -734,75 +771,6 @@
 
 
   
-    <article id="post-006大实话" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/22/006%E5%A4%A7%E5%AE%9E%E8%AF%9D/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.776Z" itemprop="datePublished">2023-03-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/22/006%E5%A4%A7%E5%AE%9E%E8%AF%9D/">006大实话</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
-<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
-<p>今天极懒哦，没有复习，但是想到日志还是得写。</p>
-<h1 id="数组常用方法"><a href="#数组常用方法" class="headerlink" title="数组常用方法"></a>数组常用方法</h1><ul>
-<li><p>数组基本操作有，push\unshift\concat,用于数组添加；pop\shift\slice,用于数组删除；splice用于修改数组；indexOf用于查找数组，es6中增加了find、includes；</p>
-</li>
-<li><p>用于排序的方法，有 reverse、sort</p>
-</li>
-<li><p>用于数组的转换有 join ，将数组转变为字符串，参数是字符串分割符</p>
-</li>
-<li><p>遍历相关的方法有 some、every、foreach、filter、map、reduce</p>
-</li>
-</ul>
-<p>方法细节：</p>
-<p>push：接收多个参数，并添加到目标数组的末尾，返回数组最新长度</p>
-<p>unshift: 接收多个参数，并添加到目标数组的开头，返回数组最新长度</p>
-<p>concat: 将目标数组和参数合并到一个数组中，返回一个新数组，<strong>不改变原数组</strong></p>
-<p>pop：删除数组最后一个成员，返回删除的项</p>
-<p>shift：删除数组第一项，返回删除的项</p>
-<p>slice：获取数组的部分，并将其返回，<strong>不改变原数组</strong></p>
-<p>splice：删除数组的一部分元素，并在删除的位置上添加新的元素。splice(start,0,item),在 start 位置前添加 item ；splice(0,delCount) 删除 delCount 个数组成员，返回被删除的元素。</p>
-<p>indexOf: 返回给定元素在数组中第一次出现的位置，如果没有返回 -1，不能找 NaN </p>
-<p>find：找到第一个符合条件的数组成员，如果没有返回 undefined，参数是一个回调函数，所有成员依次执行该函数，直到找到第一个返回值为 true 的成员</p>
-<p>includes： 判断数组中是否包含给定的一个值，false和0不相等，使用零值相等算法确定是否找到元素</p>
-<p>区别：indexOf 不能找 NaN，find，includes 可以</p>
-<p>sort：对数组排序，默认按照字典顺序排序</p>
-<p>reverse：颠倒数组排序，返回改变后的数组</p>
-<p>join：已给定的分隔符，将数组成员连成字符串返回，默认用逗号。undefined、null和空位都会变换成空字符串</p>
-<p>some、every： 判断数组成员是否满足某个条件，some只要一个成员返回值为 true 则 some 返回 true；every 则需要所有成员返回 true。空数组 some 返回 false ，every 返回 true</p>
-<p>forEach，map：对所有成员执行参数函数，forEach没有返回值，map有，<strong>不改变原数组</strong></p>
-<p>filter：对所有成员执行参数函数，过滤出返回值为 true 的数组成员，返回一个新数组，<strong>不改变原数组</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/006%E5%A4%A7%E5%AE%9E%E8%AF%9D/" data-id="clfjqowu90005ewaa8llrgo2t" data-title="006大实话" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -860,6 +828,10 @@
       <ul>
         
           <li>
+            <a href="/2023/03/23/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/">024uniapp第三天</a>
+          </li>
+        
+          <li>
             <a href="/2023/03/22/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">023gitee+hexo搭建个人博客</a>
           </li>
         
@@ -873,10 +845,6 @@
         
           <li>
             <a href="/2023/03/22/022%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0uniapp/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/22/021todos%E5%88%9D%E7%89%88/">(no title)</a>
           </li>
         
       </ul>

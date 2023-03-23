@@ -71,6 +71,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-024uniapp第三天" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/23/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/" class="article-date">
+  <time class="dt-published" datetime="2023-03-23T09:29:57.000Z" itemprop="datePublished">2023-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/23/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/">024uniapp第三天</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>系统学习第三天哦，进度到做一个新闻案例，马上结尾了。</p>
+<p><img src="/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/%E6%96%B0%E9%97%BB%E6%A1%88%E4%BE%8B%E7%BD%91%E9%A1%B5.png" alt="新闻案例网页"></p>
+<h1 id="免费api"><a href="#免费api" class="headerlink" title="免费api"></a>免费api</h1><p>获取狗子图片：<a target="_blank" rel="noopener" href="http://dog.ceo/api/breeds/image/random">http://dog.ceo/api/breeds/image/random</a></p>
+<p>获取猫咪图片：<a target="_blank" rel="noopener" href="http://api.thecatapi.com/v1/images/search?limit=1">http://api.thecatapi.com/v1/images/search?limit=1</a><br><code>limit</code>如果不等于1，则会返回10张图片</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/23/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/" data-id="clfl8adym0000doaahos4c75r" data-title="024uniapp第三天" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-023gitee-hexo搭建个人博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/03/22/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
@@ -576,43 +618,6 @@
 
 
   
-    <article id="post-016手写Promise" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/22/016%E6%89%8B%E5%86%99Promise/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.826Z" itemprop="datePublished">2023-03-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
-<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
-<p>实现<code>Promise</code></p>
-<h1 id="实现Promise"><a href="#实现Promise" class="headerlink" title="实现Promise"></a>实现Promise</h1><p>原文：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7032564107899322381#heading-0">手撕Promise</a></p>
-<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Promise 构造函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义状态</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PENDING</span>=<span class="string">&#x27;pending&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">FULFILLED</span>=<span class="string">&#x27;fulfilled&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">REJECTED</span>=<span class="string">&#x27;rejected&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Promise</span>(<span class="params">executor</span>)&#123;</span><br><span class="line">    <span class="comment">// 保证 this 指向实例</span></span><br><span class="line">    <span class="keyword">const</span> that=<span class="variable language_">this</span> </span><br><span class="line">    that.<span class="property">status</span>=<span class="variable constant_">PENDING</span> <span class="comment">// 初始化状态</span></span><br><span class="line">    that.<span class="property">data</span>=<span class="literal">undefined</span> <span class="comment">// 完成（成功或失败）后回调的值</span></span><br><span class="line">    that.<span class="property">callbacks</span>=[]    <span class="comment">// 回调队列，用&#123; onResolve, onReject &#125;对象存储指定的回调</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// resolve 改变实例状态为成功的函数</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">resolve</span>(<span class="params">value</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(that.<span class="property">status</span>!==<span class="variable constant_">PENDING</span>) <span class="keyword">return</span>;</span><br><span class="line">        that.<span class="property">status</span>=<span class="variable constant_">FULFILLED</span>;</span><br><span class="line">        that.<span class="property">data</span>=value;</span><br><span class="line">        <span class="comment">// 需要回调，调用 queueMicrotask 执行</span></span><br><span class="line">        <span class="keyword">if</span>(that.<span class="property">callbacks</span>.<span class="property">length</span>&gt;<span class="number">0</span>) &#123;</span><br><span class="line">            <span class="title function_">queueMicrotask</span>(that.<span class="property">callbacks</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">cb</span> =&gt;</span> <span class="title function_">cb</span>(that.<span class="property">data</span>)))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其中提到了一个<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_DOM_API/Microtask_guide">微任务ueMicrotask()</a>的概念。</p>
-<h2 id="微任务和任务"><a href="#微任务和任务" class="headerlink" title="微任务和任务"></a>微任务和任务</h2><p>MDN上写的很难懂啊。<br>关键区别：首先，每当一个任务存在，事件循环都会检查该任务是否正把控制权交给其他 JavaScript 代码。如若不然，事件循环就会运行微任务队列中的所有微任。<br>其次，如果一个微任务通过调用 queueMicrotask(), 向队列中加入了更多的微任务，则那些新加入的微任务 会早于下一个任务运行。</p>
-<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>中小企业对小程序、移动端的需求很大，先学学小程序。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/016%E6%89%8B%E5%86%99Promise/" data-id="clfjqowuf000fewaa6loagn0i" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -670,6 +675,10 @@
       <ul>
         
           <li>
+            <a href="/2023/03/23/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/">024uniapp第三天</a>
+          </li>
+        
+          <li>
             <a href="/2023/03/22/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">023gitee+hexo搭建个人博客</a>
           </li>
         
@@ -683,10 +692,6 @@
         
           <li>
             <a href="/2023/03/22/022%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0uniapp/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/22/021todos%E5%88%9D%E7%89%88/">(no title)</a>
           </li>
         
       </ul>
