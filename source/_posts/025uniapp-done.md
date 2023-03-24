@@ -6,6 +6,6 @@ tags:
 
 # 总结
 
-uniapp学习告一段落
+uniapp学习告一段落，gitee上审核严格，换github了
 
 hbuilderx打开的Chrome的搜索引擎无法修改
