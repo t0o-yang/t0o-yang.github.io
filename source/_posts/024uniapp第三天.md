@@ -8,9 +8,10 @@ tags:
 
 系统学习第三天哦，进度到做一个新闻案例，马上结尾了。
 
-![新闻案例网页](/images/新闻案例网页.png)
+![新闻案例网页](../images/enName.png)
+![新闻案例网页](/images/enName.png)
 
-![新闻案例网页](024uniapp第三天/新闻案例网页.png)
+![新闻案例网页](024uniapp第三天/enName.png)
 
 # 免费api
 
@@ -26,6 +27,7 @@ tags:
 ![新闻案例网页](https://gitee.com/t0o-yang/t0o-yang/raw/hexo/source/_posts/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/%E6%96%B0%E9%97%BB%E6%A1%88%E4%BE%8B%E7%BD%91%E9%A1%B5.png)
 
 {% asset_img 新闻案例网页.png 新闻案例网页 %}
+{% asset_img enName.png 新闻案例网页 %}
 
 
 
