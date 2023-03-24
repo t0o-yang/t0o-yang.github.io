@@ -11,7 +11,7 @@ tags:
 ![新闻案例网页](../images/enName.png)
 ![新闻案例网页](../images/新闻案例网页.png)
 
-![新闻案例网页](024uniapp第三天/enName.png)
+![新闻案例网页](./024uniapp第三天/enName.png)
 
 # 免费api
 
