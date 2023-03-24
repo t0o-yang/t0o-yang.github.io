@@ -9,7 +9,7 @@ tags:
 系统学习第三天哦，进度到做一个新闻案例，马上结尾了。
 
 ![新闻案例网页](../images/enName.png)
-![新闻案例网页](/images/新闻案例网页.png)
+![新闻案例网页](../images/新闻案例网页.png)
 
 ![新闻案例网页](024uniapp第三天/enName.png)
 
