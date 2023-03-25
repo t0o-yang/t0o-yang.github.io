@@ -4,24 +4,21 @@
   <meta charset="utf-8">
   
   
-  <title>025uniapp-done | Hexo</title>
+  <title>#026#搭建网站服务器 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="我的新闻小程序体验版，二维码：  这是一张一半大小的图，用于测试是否能正常显示   总结uniapp学习告一段落，gitee上审核严格，换成github了，只不过网络时好时坏。 引用图片，最终确定方案： 1![新闻案例网页](..&#x2F;images&#x2F;新闻案例网页.png) 在source文件夹下创建images目录，把图片放在这里。再根据相对路径引用。">
+  <meta name="description" content="前言找了一个云服务，从零开始搭建一个网站服务器。 云服务用的是移动云的，免费试用一个月。学生可以用阿里或腾讯云，学生认证后，价格挺便宜的。 搭建过程连接远程服务器买好服务器之后，连接服务器，先通过官方控制台中提供的远程连接工具，试一试连接是否正常。如果失败，看这个：云主机无法远程登录自查。服务器系统如果是Linux的，则默认用户是root，（root用户密码不知道，我只重置后登录的）。 选择ssh">
 <meta property="og:type" content="article">
-<meta property="og:title" content="025uniapp-done">
-<meta property="og:url" content="http://example.com/2023/03/24/025uniapp-done/index.html">
+<meta property="og:title" content="#026#搭建网站服务器">
+<meta property="og:url" content="http://example.com/2023/03/25/026-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="我的新闻小程序体验版，二维码：  这是一张一半大小的图，用于测试是否能正常显示   总结uniapp学习告一段落，gitee上审核严格，换成github了，只不过网络时好时坏。 引用图片，最终确定方案： 1![新闻案例网页](..&#x2F;images&#x2F;新闻案例网页.png) 在source文件夹下创建images目录，把图片放在这里。再根据相对路径引用。">
+<meta property="og:description" content="前言找了一个云服务，从零开始搭建一个网站服务器。 云服务用的是移动云的，免费试用一个月。学生可以用阿里或腾讯云，学生认证后，价格挺便宜的。 搭建过程连接远程服务器买好服务器之后，连接服务器，先通过官方控制台中提供的远程连接工具，试一试连接是否正常。如果失败，看这个：云主机无法远程登录自查。服务器系统如果是Linux的，则默认用户是root，（root用户密码不知道，我只重置后登录的）。 选择ssh">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://example.com/images/%E6%88%91%E7%9A%84%E6%96%B0%E9%97%BB%E4%BD%93%E9%AA%8C%E7%A0%81.jpg">
-<meta property="og:image" content="http://example.com/2023/03/24/images/%E6%88%91%E7%9A%84%E6%96%B0%E9%97%BB%E4%BD%93%E9%AA%8C%E7%A0%81.jpg">
-<meta property="article:published_time" content="2023-03-24T03:19:36.000Z">
-<meta property="article:modified_time" content="2023-03-24T16:04:09.173Z">
+<meta property="og:image" content="http://example.com/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-03-25%20151511.png">
+<meta property="article:published_time" content="2023-03-25T06:55:23.000Z">
+<meta property="article:modified_time" content="2023-03-25T16:26:19.970Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="uniapp">
-<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/%E6%88%91%E7%9A%84%E6%96%B0%E9%97%BB%E4%BD%93%E9%AA%8C%E7%A0%81.jpg">
+<meta name="twitter:image" content="http://example.com/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-03-25%20151511.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -78,10 +75,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-025uniapp-done" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-026-搭建网站服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/03/24/025uniapp-done/" class="article-date">
-  <time class="dt-published" datetime="2023-03-24T03:19:36.000Z" itemprop="datePublished">2023-03-24</time>
+    <a href="/2023/03/25/026-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2023-03-25T06:55:23.000Z" itemprop="datePublished">2023-03-25</time>
 </a>
     
   <div class="article-category">
@@ -96,7 +93,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      025uniapp-done
+      #026#搭建网站服务器
     </h1>
   
 
@@ -104,44 +101,39 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="我的新闻"><a href="#我的新闻" class="headerlink" title="我的新闻"></a>我的新闻</h1><p>小程序体验版，二维码：</p>
-<p><img src="/../images/%E6%88%91%E7%9A%84%E6%96%B0%E9%97%BB%E4%BD%93%E9%AA%8C%E7%A0%81.jpg" alt="我的新闻"></p>
-<p>这是一张一半大小的图，用于测试是否能正常显示</p>
-<img src="../images/我的新闻体验码.jpg" alt="我的新闻-缩略图" title="我的新闻-缩略图" style="width:50%">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>找了一个云服务，从零开始搭建一个网站服务器。</p>
+<h2 id="云服务"><a href="#云服务" class="headerlink" title="云服务"></a>云服务</h2><p>用的是移动云的，免费试用一个月。学生可以用阿里或腾讯云，学生认证后，价格挺便宜的。</p>
+<h1 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h1><h2 id="连接远程服务器"><a href="#连接远程服务器" class="headerlink" title="连接远程服务器"></a>连接远程服务器</h2><p>买好服务器之后，连接服务器，先通过官方控制台中提供的远程连接工具，试一试连接是否正常。如果失败，看这个：<a target="_blank" rel="noopener" href="https://console.ecloud.10086.cn/op-help-center/doc/article/23872">云主机无法远程登录自查</a>。服务器系统如果是<code>Linux</code>的，则默认用户是<code>root</code>，（root用户密码不知道，我只重置后登录的）。</p>
+<p>选择ssh工具，如<code>terminus</code>，或window自带的ssh客户端，本机远程连接服务器。连接方法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">username 指用户名，Linux默认是root; ip 云服务器的IP地址</span></span><br><span class="line">ssh username@ip</span><br></pre></td></tr></table></figure>
 
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>uniapp学习告一段落，gitee上审核严格，换成github了，只不过网络时好时坏。</p>
-<p>引用图片，最终确定方案：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![新闻案例网页](../images/新闻案例网页.png)</span><br></pre></td></tr></table></figure>
-<p>在source文件夹下创建<code>images</code>目录，把图片放在这里。再根据相对路径引用。</p>
+<p>之后需要输入用户密码，如果第一次连接，会提示，输入确认词就好了，看到下面的输出就表示连接成功了。</p>
+<p><img src="/../imags/../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-03-25%20151511.png" alt="ssh连接成功"></p>
+<h2 id="搭建网站服务器"><a href="#搭建网站服务器" class="headerlink" title="搭建网站服务器"></a>搭建网站服务器</h2><p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/399787386">从零开始教你使用云服务器搭建个人网站</a></p>
+<h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>通过<code>yum</code>安装nginx，首先，建议将yum源改成国内源。</p>
+<p>执行以下代码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx</span><br></pre></td></tr></table></figure>
+
+<p>移动云的云主机没法安装任何包，尝试换yum源，都没有成功。<br><strong>解决了</strong>，没有添加流出的安全组，订阅的时候，自己改了以下默认的网络的安全组。在不熟悉服务器的情况下，建议默认使用官方的设置。</p>
+<p>目前，网站还不能访问，访问不了html文件，不知道问题在哪。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/24/025uniapp-done/" data-id="clfmqs4tj001gtwaa3194byxz" data-title="025uniapp-done" class="article-share-link">Compartir</a>
+      <a data-url="http://example.com/2023/03/25/026-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="clfo6pafx0000wwaacnxh1mxo" data-title="#026#搭建网站服务器" class="article-share-link">Compartir</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2023/03/25/026-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nuevo</strong>
-      <div class="article-nav-title">
-        
-          #026#搭建网站服务器
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/03/23/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/03/24/025uniapp-done/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Viejo</strong>
-      <div class="article-nav-title">024uniapp第三天</div>
+      <div class="article-nav-title">025uniapp-done</div>
     </a>
   
 </nav>
