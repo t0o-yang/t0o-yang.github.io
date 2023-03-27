@@ -4,20 +4,18 @@
   <meta charset="utf-8">
   
   
-  <title>027JS基础第一天 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="JS基础第一天，数据类型检测方案：typeof，instanceof，Object.prototype.toString.call()">
+  <meta name="description" content="前端JS ES6数据类型网上关于JS数据类型的说法不一致，我按照MDN文档介绍和typeof的返回值为标准吧。 常规就是八种，  Number 数字 String 字符串 Boolean 布尔 Symbol 符号 Object 对象 Function 函数 null 空 undefined 未定义分两大类，基本类型和引用类型，引用类型：Object、Function，其余都是基本类型。还有说是九种">
 <meta property="og:type" content="article">
-<meta property="og:title" content="027JS基础第一天">
-<meta property="og:url" content="http://example.com/2023/03/26/027JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/03/22/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%96%87/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="JS基础第一天，数据类型检测方案：typeof，instanceof，Object.prototype.toString.call()">
+<meta property="og:description" content="前端JS ES6数据类型网上关于JS数据类型的说法不一致，我按照MDN文档介绍和typeof的返回值为标准吧。 常规就是八种，  Number 数字 String 字符串 Boolean 布尔 Symbol 符号 Object 对象 Function 函数 null 空 undefined 未定义分两大类，基本类型和引用类型，引用类型：Object、Function，其余都是基本类型。还有说是九种">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-03-26T15:42:25.000Z">
-<meta property="article:modified_time" content="2023-03-27T15:37:22.848Z">
+<meta property="article:published_time" content="2023-03-22T13:42:24.862Z">
+<meta property="article:modified_time" content="2023-03-27T15:38:03.806Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="JS">
-<meta property="article:tag" content="数据类型">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -75,34 +73,19 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-027JS基础第一天" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-前端八股文" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/03/26/027JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/" class="article-date">
-  <time class="dt-published" datetime="2023-03-26T15:42:25.000Z" itemprop="datePublished">2023-03-26</time>
+    <a href="/2023/03/22/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%96%87/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.862Z" itemprop="datePublished">2023-03-22</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      027JS基础第一天
-    </h1>
-  
-
-      </header>
-    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>找了一个前端面试汇总，之后打印出来，直接背。看这个，<a target="_blank" rel="noopener" href="https://juejin.cn/post/7016593221815910408#heading-41">前端八股</a></p>
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>网上关于JS数据类型的说法不一致，我按照MDN文档<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Language_Overview#%E6%A6%82%E8%A7%88">介绍</a>和typeof的返回值为标准吧。</p>
+        <h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><h2 id="JS-ES6"><a href="#JS-ES6" class="headerlink" title="JS ES6"></a>JS ES6</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>网上关于JS数据类型的说法不一致，我按照MDN文档<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Language_Overview#%E6%A6%82%E8%A7%88">介绍</a>和typeof的返回值为标准吧。</p>
 <p>常规就是八种，</p>
 <ul>
 <li>Number 数字</li>
@@ -142,36 +125,151 @@
 <p>可以避免随意通过<code>Symbol.toStringTag</code>修改类。但是就不能使用自定义类名了</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">C</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">data</span>=<span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    get [<span class="title class_">Symbol</span>.<span class="property">toStringTag</span>]() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;MClass&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> cls=<span class="keyword">new</span> <span class="title function_">C</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">type</span>(cls))    <span class="comment">// C</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(cls))    <span class="comment">// [object MClass]</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这九天，第一个三天，将todos项目改造成uniapp；第二个三天，看B站上uniapp的课程，算是系统学了uniapp，做了一个青年帮新闻的案例；最后，免费试用了移动云一个月的云主机，打算把新闻网站部署上线，目前还没成功。之后的总结改成周更。</p>
+<h3 id="var、let和const"><a href="#var、let和const" class="headerlink" title="var、let和const"></a>var、let和const</h3><p>var、let、const都是声明变量的关键词，主要区别是</p>
+<ol>
+<li><p>变量提升，var声明的变量会出现变量提升的情况，即可以在声明前使用变量；let和const声明前使用会报错；</p>
+</li>
+<li><p>暂时性死区，var不存在，let和const存在，在声明语句之前，不能获取和设置变量；</p>
+</li>
+<li><p>作用域不同，let和const作用于块级作用域，var作用于函数作用域；</p>
+</li>
+<li><p>重新赋值，const声明的是一个常量，值不能改变。let，var可以；</p>
+</li>
+<li><p>重复声明，let和const在同一作用域内不能重复声明，var不限制；</p>
+</li>
+</ol>
+<h3 id="作用域、作用域链"><a href="#作用域、作用域链" class="headerlink" title="作用域、作用域链"></a>作用域、作用域链</h3><p><strong>作用域</strong>指变量和函数能够被访问的区域，作用域可分为：</p>
+<ul>
+<li>全局作用域，在函数和大括号之外声明的变量，都在全局作用域下，可以在程序的任意位置访问；</li>
+<li>函数作用域，在函数内声明的变量，只能在函数内部访问；</li>
+<li>块级作用域，在大括号内使用<code>let</code>和<code>const</code>声明的变量，只存在于块级作用域内，在大括号外不能访问；</li>
+</ul>
+<p><strong>作用域链</strong>：在JS中使用变量时，首先JS引擎会在当前作用域中寻找该变量，如果没找到，会到其上层作用域寻找，直至变量找到或到了全局作用域。如果在全局作用域内没有找到，会隐式声明该变量（非严格模式下，返回 undefined）或直接报错。</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p><strong>闭包</strong>指一个函数和对其周围状态的引用捆绑在一起，即闭包让内层函数可以访问到外层函数的作用域。<br>闭包的使用场景：保存变量（延长变量的生命周期）；保护变量（创建私有化变量）。例子，柯里化函数</p>
+<h3 id="this对象"><a href="#this对象" class="headerlink" title="this对象"></a>this对象</h3><p>this对象是函数运行时自动生成的一个内部对象，只能在函数内使用。它始终指向调用这个函数的对象。在不同的使用场合下，this有不同的值，大致可以分为以下4种：</p>
+<ul>
+<li>默认绑定，普通函数调用，this指向<code>window</code>；</li>
+<li>隐式绑定，函数作为对象的方法被调用，this指向这个对象；</li>
+<li>new 绑定，作为构造函数调用，new 会返回一个实例对象，this指向这个实例对象，特殊情况<ul>
+<li>遇到函数返回一个对象，则this指向返回的对象<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">user</span> = <span class="string">&#x27;xxx&#x27;</span>;  </span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="title function_">fn</span>();  </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">user</span>); <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure></li>
+<li>返回一个简单类型的数据，则this还是指向实例对象<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">user</span> = <span class="string">&#x27;xxx&#x27;</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> fn;  </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">user</span>); <span class="comment">//xxx</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>显式绑定，使用<code>call</code>、<code>apply</code>、<code>bind</code>可以显式改变函数的this指向</li>
+<li>箭头函数的this，箭头函数没有自己的this指向，它的this指向上一级作用域的this</li>
+</ul>
+<h3 id="数组的扩展"><a href="#数组的扩展" class="headerlink" title="数组的扩展"></a>数组的扩展</h3><ol>
+<li><p><code>...</code>扩展运算符，可将数组变成逗号分割的参数序列，常用于函数调用</p>
+</li>
+<li><p>新增两个创建数组的方法：Array.from()将类数组对象和可遍历对象转化为真正的数组，，Array.of()类似Array构造函数的功能，但是参数个数不同不会有不同结果</p>
+</li>
+<li><p>新增的实例对象方法</p>
+<ol>
+<li><p>遍历：keys, values, entries。这也是对象的遍历方式，因为数组是个特殊的对象，所以能用</p>
+</li>
+<li><p>查找：find 返回数组中第一个满足条件的成员, findIndex 返回数组中第一个满足条件的成员的位置，includes 判断是否包含给定值</p>
+</li>
+<li><p>修改: copyWithin 在当前数组内部将指定位置的成员复制到其他位置, fill 使用给定值填充一个数组</p>
+</li>
+<li><p>转化： flat 展开嵌套的数组，返回一个新数组， flatMap 对数组的每个成员执行一个函数，然后对返回值组成的数组执行 flat 方法，只展开一层</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="对象的扩展"><a href="#对象的扩展" class="headerlink" title="对象的扩展"></a>对象的扩展</h3><ol>
+<li><p>属性简写，可以将变量和函数名直接写在大括号内，作为对象的属性和方法</p>
+</li>
+<li><p>属性名表达式，在中括号内写表达式，在es6中允许在用字面量定义对象时，用表达式的形式表示属性名</p>
+</li>
+<li><p><code>...</code> 对象的扩展运算符，取出参数对象的所有可遍历属性，拷贝到当前对象中，常用于复制对象</p>
+</li>
+<li><p>super 关键词，指向当前对象的原型对象</p>
+</li>
+<li><p>遍历对象的属性</p>
+<ol>
+<li><p>for…in 遍历自身和继承的的可枚举</p>
+</li>
+<li><p>keys 自身的可枚举的，不含继承的</p>
+</li>
+<li><p>getOwnPropertyNames 自身所有属性，含不可枚举的</p>
+</li>
+<li><p>getOwnPropertySymbols 自身的所有 Symbols 属性的键名</p>
+</li>
+<li><p>Reflect.ownKeys 自身所有键名（不论 symbols 还是 可枚举），不含继承的</p>
+</li>
+</ol>
+<p>遍历对象的键名，都遵守同样的属性遍历的次序规则：首先遍历数值键，按照数值升序；其次遍历字符串键，按加入时间升序；最后遍历 symbols 键，按加入时间升序</p>
+</li>
+<li><p>对象新增的方法：</p>
+<ol>
+<li><p>遍历：Object.keys, Object.values, Object.entries</p>
+</li>
+<li><p>改：Object.assign 合并对象，将源对象合并到目标对象，浅拷贝</p>
+</li>
+<li><p>转化：Object.fromEntries entries的逆操作，将键值对数组转化成对象</p>
+</li>
+<li><p>Object.is 对比方法，相对于 &#x3D;&#x3D;&#x3D; ,区别是 is 中，+0不等于-0，NaN等于NaN。&#x3D;&#x3D;&#x3D; 相反</p>
+</li>
+<li><p>Object.setPrototypeOf 设置原型，Object.getPrototypeOf 获取原型。Object.getOwnPropertyDescriptors 获取自身属性描述</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="数组常用方法"><a href="#数组常用方法" class="headerlink" title="数组常用方法"></a>数组常用方法</h3><ul>
+<li><p>数组基本操作有，push\unshift\concat,用于数组添加；pop\shift\slice,用于数组删除；splice用于修改数组；indexOf用于查找数组，es6中增加了find、includes；</p>
+</li>
+<li><p>用于排序的方法，有 reverse、sort</p>
+</li>
+<li><p>用于数组的转换有 join ，将数组转变为字符串，参数是字符串分割符</p>
+</li>
+<li><p>遍历相关的方法有 some、every、foreach、filter、map、reduce</p>
+</li>
+</ul>
+<p>方法细节：</p>
+<p>push：接收多个参数，并添加到目标数组的末尾，返回数组最新长度</p>
+<p>unshift: 接收多个参数，并添加到目标数组的开头，返回数组最新长度</p>
+<p>concat: 将目标数组和参数合并到一个数组中，返回一个新数组，<strong>不改变原数组</strong></p>
+<p>pop：删除数组最后一个成员，返回删除的项</p>
+<p>shift：删除数组第一项，返回删除的项</p>
+<p>slice：获取数组的部分，并将其返回，<strong>不改变原数组</strong></p>
+<p>splice：删除数组的一部分元素，并在删除的位置上添加新的元素。splice(start,0,item),在 start 位置前添加 item ；splice(0,delCount) 删除 delCount 个数组成员，返回被删除的元素。</p>
+<p>indexOf: 返回给定元素在数组中第一次出现的位置，如果没有返回 -1，不能找 NaN </p>
+<p>find：找到第一个符合条件的数组成员，如果没有返回 undefined，参数是一个回调函数，所有成员依次执行该函数，直到找到第一个返回值为 true 的成员</p>
+<p>includes： 判断数组中是否包含给定的一个值，false和0不相等，使用零值相等算法确定是否找到元素</p>
+<p>区别：indexOf 不能找 NaN，find，includes 可以</p>
+<p>sort：对数组排序，默认按照字典顺序排序</p>
+<p>reverse：颠倒数组排序，返回改变后的数组</p>
+<p>join：已给定的分隔符，将数组成员连成字符串返回，默认用逗号。undefined、null和空位都会变换成空字符串</p>
+<p>some、every： 判断数组成员是否满足某个条件，some只要一个成员返回值为 true 则 some 返回 true；every 则需要所有成员返回 true。空数组 some 返回 false ，every 返回 true</p>
+<p>forEach，map：对所有成员执行参数函数，forEach没有返回值，map有，<strong>不改变原数组</strong></p>
+<p>filter：对所有成员执行参数函数，过滤出返回值为 true 的数组成员，返回一个新数组，<strong>不改变原数组</strong></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/26/027JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/" data-id="clfplb8rs00004waaf0r6ejcy" data-title="027JS基础第一天" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%96%87/" data-id="clfr003qw0001ncaaf666cu5d" data-title="" class="article-share-link">Teilen</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2023/03/27/028JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E5%A4%A9/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/03/22/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8MDN%E6%96%87%E6%A1%A3/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Neuer</strong>
       <div class="article-nav-title">
         
-          028JS基础第二天
+          (no title)
         
       </div>
     </a>
   
   
-    <a href="/2023/03/25/026-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/03/22/022%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0uniapp/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">#026#搭建网站服务器</div>
+      <div class="article-nav-title">022系统学习uniapp</div>
     </a>
   
 </nav>
