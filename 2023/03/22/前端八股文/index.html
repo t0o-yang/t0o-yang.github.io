@@ -6,17 +6,20 @@
   
   <title>前端八股文 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="前端JS ES6数据类型网上关于JS数据类型的说法不一致，我按照MDN文档介绍和typeof的返回值为标准吧。 常规就是八种，  Number 数字 String 字符串 Boolean 布尔 Symbol 符号 Object 对象 Function 函数 null 空 undefined 未定义分两大类，基本类型和引用类型，引用类型：Object、Function，其余都是基本类型。还有说是九种">
+  <meta name="description" content="记录前端八股文，方便自己查阅。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端八股文">
 <meta property="og:url" content="http://example.com/2023/03/22/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%96%87/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前端JS ES6数据类型网上关于JS数据类型的说法不一致，我按照MDN文档介绍和typeof的返回值为标准吧。 常规就是八种，  Number 数字 String 字符串 Boolean 布尔 Symbol 符号 Object 对象 Function 函数 null 空 undefined 未定义分两大类，基本类型和引用类型，引用类型：Object、Function，其余都是基本类型。还有说是九种">
+<meta property="og:description" content="记录前端八股文，方便自己查阅。">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/342e581223d2471d9484fc48beb9f8e1~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e362c1770f62428fbf3faabd99d2a64c~tplv-k3u1fbpfcp-zoom-1.image">
 <meta property="article:published_time" content="2023-03-22T13:42:24.862Z">
-<meta property="article:modified_time" content="2023-03-27T15:45:14.539Z">
+<meta property="article:modified_time" content="2023-03-28T16:29:39.855Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/342e581223d2471d9484fc48beb9f8e1~tplv-k3u1fbpfcp-zoom-1.image">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -79,6 +82,10 @@
   <time class="dt-published" datetime="2023-03-22T13:42:24.862Z" itemprop="datePublished">2023-03-22</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -167,6 +174,62 @@
 </li>
 <li>显式绑定，使用<code>call</code>、<code>apply</code>、<code>bind</code>可以显式改变函数的this指向</li>
 <li>箭头函数的this，箭头函数没有自己的this指向，它的this指向上一级作用域的this</li>
+</ul>
+<h3 id="call、apply、bind"><a href="#call、apply、bind" class="headerlink" title="call、apply、bind"></a>call、apply、bind</h3><ul>
+<li>三者都是显式改变函数中的this指向。</li>
+<li>第一个参数就是指向的对象，如果参数为空或是null、undefined，则默认指向window</li>
+<li>都可以传参，但call接收的是参数序列，apply接收数组，而且call和apply都是一次性传入，bind可以分多次传入</li>
+<li>bind是返回绑定this之后的函数，而call和apply是立即执行</li>
+</ul>
+<h4 id="实现bind"><a href="#实现bind" class="headerlink" title="实现bind"></a>实现bind</h4><p>IE8及以下不支持bind，所以可能会问这个问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">myBind</span>=<span class="keyword">function</span>(<span class="params">context</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="variable language_">this</span> !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;错误&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> self=<span class="variable language_">this</span>,</span><br><span class="line">    args=<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">Fn</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> self.<span class="title function_">apply</span>(<span class="variable language_">this</span> <span class="keyword">instanceof</span> <span class="title class_">Fn</span>?<span class="keyword">new</span> <span class="title function_">self</span>([].<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>)):context,args.<span class="title function_">concat</span>([].<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>)))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="原型、原型链"><a href="#原型、原型链" class="headerlink" title="原型、原型链"></a>原型、原型链</h3><p>‌ <strong>原型:</strong>  在 JS 中，每当定义一个对象（函数也是对象）时，对象中都会包含一些预定义的属性。其中每个<code>函数对象</code>都有一个<code>prototype</code> 属性，这个属性指向函数的<code>原型对象</code>。<br>原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为<strong>原型链</strong>。下面总结：</p>
+<ul>
+<li>每个 class都有显示原型 prototype</li>
+<li>每个实例都有隐式原型 <code>__proto__</code></li>
+<li>实例的 <code>__proto__</code> 指向对应 class 的 prototype</li>
+</ul>
+<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><ol>
+<li>首先创建了一个新的空对象</li>
+<li>设置原型，将对象的原型设置为函数的prototype对象。</li>
+<li>让函数的this指向这个对象，执行构造函数的代码（为这个新对象添加属性）</li>
+<li>判断函数的返回值类型，如果是值类型，返回创建的对象。如果是引用类型，就返回这个引用类型的对象。</li>
+</ol>
+<h4 id="实现new"><a href="#实现new" class="headerlink" title="实现new"></a>实现new</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">mynew</span>(<span class="params">func, ...args</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line">    obj.<span class="property">__proto__</span> = func.<span class="property"><span class="keyword">prototype</span></span></span><br><span class="line">    <span class="keyword">let</span> result = func.<span class="title function_">apply</span>(obj, args)</span><br><span class="line">    <span class="keyword">return</span> result <span class="keyword">instanceof</span> <span class="title class_">Object</span> ? result : obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="eventloop-事件循环机制"><a href="#eventloop-事件循环机制" class="headerlink" title="eventloop 事件循环机制"></a>eventloop 事件循环机制</h3><p><code>JS</code>是单线程的，为了防止一个函数执行时间过长阻塞后面的代码，所以会先将同步代码压入执行栈中，依次执行，将异步代码推入异步队列，异步队列又分为宏任务队列和微任务队列，因为宏任务队列的执行时间较长，所以微任务队列要优先于宏任务队列。微任务队列的代表就是，<code>Promise.then</code>，<code>MutationObserver</code>，宏任务的话就是<code>setImmediate setTimeout setInterval</code></p>
+<p>JS运行的环境。一般为浏览器或者Node。 在浏览器环境中，有JS 引擎线程和渲染线程，且两个线程互斥。 Node环境中，只有JS 线程。 不同环境执行机制有差异，不同任务进入不同Event Queue队列。 当主程结束，先执行准备好微任务，然后再执行准备好的宏任务，一个轮询结束。</p>
+<h4 id="浏览器中的事件环（Event-Loop"><a href="#浏览器中的事件环（Event-Loop" class="headerlink" title="浏览器中的事件环（Event Loop)"></a><strong>浏览器中的事件环（Event Loop)</strong></h4><p>事件环的运行机制是，先会执行栈中的内容，栈中的内容执行后执行微任务，微任务清空后再执行宏任务，先取出一个宏任务，再去执行微任务，然后在取宏任务清微任务这样不停的循环。</p>
+<ul>
+<li><p>eventLoop 是由JS的宿主环境（浏览器）来实现的；</p>
+</li>
+<li><p>事件循环可以简单的描述为以下四个步骤:</p>
+<ol>
+<li>函数入栈，当Stack中执行到异步任务的时候，就将他丢给WebAPIs,接着执行同步任务,直到Stack为空；</li>
+<li>此期间WebAPIs完成这个事件，把回调函数放入队列中等待执行（微任务放到微任务队列，宏任务放到宏任务队列）</li>
+<li>执行栈为空时，Event Loop把微任务队列执行清空；</li>
+<li>微任务队列清空后，进入宏任务队列，取队列的第一项任务放入Stack(栈）中执行，执行完成后，查看微任务队列是否有任务，有的话，清空微任务队列。重复4，继续从宏任务中取任务执行，执行完成之后，继续清空微任务，如此反复循环，直至清空所有的任务。</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/342e581223d2471d9484fc48beb9f8e1~tplv-k3u1fbpfcp-zoom-1.image" alt="事件循环流程"></p>
+</li>
+<li><p>浏览器中的任务源(task):</p>
+<ul>
+<li><code>宏任务(macrotask)</code>：<br>宿主环境提供的，比如浏览器<br>ajax、setTimeout、setInterval、setTmmediate(只兼容ie)、script、requestAnimationFrame、messageChannel、UI渲染、一些浏览器api</li>
+<li><code>微任务(microtask)</code>：<br>语言本身提供的，比如promise.then<br>then、queueMicrotask(基于then)、mutationObserver(浏览器提供)、messageChannel 、mutationObersve</li>
+</ul>
+</li>
+</ul>
+<p>传送门 ☞ <a target="_blank" rel="noopener" href="https://juejin.cn/post/7001881781125251086"># 宏任务和微任务</a></p>
+<h4 id="Node-环境中的事件环（Event-Loop"><a href="#Node-环境中的事件环（Event-Loop" class="headerlink" title="Node 环境中的事件环（Event Loop)"></a><strong>Node 环境中的事件环（Event Loop)</strong></h4><p><code>Node</code>是基于V8引擎的运行在服务端的<code>JavaScript</code>运行环境，在处理高并发、I&#x2F;O密集(文件操作、网络操作、数据库操作等)场景有明显的优势。虽然用到也是V8引擎，但由于服务目的和环境不同，导致了它的API与原生JS有些区别，其Event Loop还要处理一些I&#x2F;O，比如新的网络连接等，所以Node的Event Loop(事件环机制)与浏览器的是不太一样。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e362c1770f62428fbf3faabd99d2a64c~tplv-k3u1fbpfcp-zoom-1.image" alt="2020120317343116.png"> 执行顺序如下：</p>
+<ul>
+<li><code>timers</code>: 计时器，执行setTimeout和setInterval的回调</li>
+<li><code>pending callbacks</code>: 执行延迟到下一个循环迭代的 I&#x2F;O 回调</li>
+<li><code>idle, prepare</code>: 队列的移动，仅系统内部使用</li>
+<li><code>poll轮询</code>: 检索新的 I&#x2F;O 事件;执行与 I&#x2F;O 相关的回调。事实上除了其他几个阶段处理的事情，其他几乎所有的异步都在这个阶段处理。</li>
+<li><code>check</code>: 执行<code>setImmediate</code>回调，setImmediate在这里执行</li>
+<li><code>close callbacks</code>: 执行<code>close</code>事件的<code>callback</code>，一些关闭的回调函数，如：socket.on(‘close’, …)</li>
 </ul>
 <h3 id="数组的扩展"><a href="#数组的扩展" class="headerlink" title="数组的扩展"></a>数组的扩展</h3><ol>
 <li><p><code>...</code>扩展运算符，可将数组变成逗号分割的参数序列，常用于函数调用</p>
@@ -296,7 +359,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a></li></ul>
     </div>
   </div>
 
@@ -306,7 +369,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
     </div>
   </div>
 
@@ -316,7 +379,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JS/" style="font-size: 15px;">JS</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 20px;">uniapp</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JS/" style="font-size: 15px;">JS</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 20px;">uniapp</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
     </div>
   </div>
 
@@ -338,6 +401,10 @@
       <ul>
         
           <li>
+            <a href="/2023/03/28/029JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E5%A4%A9/">029JS基础第三天</a>
+          </li>
+        
+          <li>
             <a href="/2023/03/27/028JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E5%A4%A9/">028JS基础第二天</a>
           </li>
         
@@ -351,10 +418,6 @@
         
           <li>
             <a href="/2023/03/24/025uniapp-done/">025uniapp-done</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/23/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/">024uniapp第三天</a>
           </li>
         
       </ul>
