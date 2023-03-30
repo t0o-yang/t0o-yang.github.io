@@ -57,12 +57,12 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-hírfolyam"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Keresés"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Keresés"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -70,6 +70,88 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-003刷题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/003%E5%88%B7%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.762Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/22/003%E5%88%B7%E9%A2%98/">003刷题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong></p>
+<p>                                                                                                                                    —-鹅城县长</p>
+<p>今天没看面试题，直接进入彩蛋环节。</p>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>刷牛客上的代码题，全是数组相关的，还有几道华为机试题。</p>
+<h1 id="华为机试练习题"><a href="#华为机试练习题" class="headerlink" title="华为机试练习题"></a>华为机试练习题</h1><h2 id="HJ3-明明的随机数"><a href="#HJ3-明明的随机数" class="headerlink" title="HJ3 明明的随机数"></a>HJ3 明明的随机数</h2><p>描述</p>
+<p>明明生成了N个1到500之间的随机整数。请你删去其中重复的数字，即相同的数字只保留一个，把其余相同的数去掉，然后再把这些数从小到大排序，按照排好的顺序输出。</p>
+<p>输入描述：</p>
+<p>第一行先输入随机整数的个数 N 。 接下来的 N 行每行输入一个整数，代表明明生成的随机数。 具体格式可以参考下面的”示例”。</p>
+<p>输出描述：</p>
+<p>输出多行，表示输入数据处理后的结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rl = <span class="built_in">require</span>(<span class="string">&quot;readline&quot;</span>).<span class="title function_">createInterface</span>(&#123; <span class="attr">input</span>: process.<span class="property">stdin</span> &#125;);</span><br><span class="line"><span class="keyword">var</span> iter = rl[<span class="title class_">Symbol</span>.<span class="property">asyncIterator</span>]();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readline</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; (<span class="keyword">await</span> iter.<span class="title function_">next</span>()).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// Write your code here</span></span><br><span class="line">    <span class="keyword">let</span> arr=<span class="title class_">Array</span>.<span class="title function_">from</span>(&#123;<span class="attr">length</span>:<span class="number">500</span>&#125;).<span class="title function_">fill</span>(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">let</span> n = <span class="built_in">parseInt</span>(<span class="keyword">await</span> <span class="title function_">readline</span>())</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        <span class="keyword">let</span> i=<span class="keyword">await</span> <span class="title function_">readline</span>()</span><br><span class="line">        arr[i-<span class="number">1</span>]++</span><br><span class="line">    &#125;</span><br><span class="line">    arr.<span class="title function_">forEach</span>(<span class="function">(<span class="params">value,index</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(value&gt;<span class="number">0</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(index+<span class="number">1</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>其他两道入门题<code>HJ1 字符串最后一个单词的长度</code>、<code>HJ2 计算某字符出现次数</code>。</p>
+<h1 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h1><h2 id="NC29-二维数组的查找"><a href="#NC29-二维数组的查找" class="headerlink" title="NC29 二维数组的查找"></a>NC29 二维数组的查找</h2><p>在一个二维数组array中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p>[</p>
+<p>[1,2,8,9],<br>[2,4,9,12],<br>[4,7,10,13],<br>[6,8,11,15]  </p>
+<p>]</p>
+<p>给定 target &#x3D; 7，返回 true。</p>
+<p>给定 target &#x3D; 3，返回 false。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Find</span>(<span class="params">target, array</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 时间复杂度：m*n；对第一行和第一列的判断从宏观看没有作用</span></span><br><span class="line"><span class="comment">     * 优解思路，利用数据的规律，从左下角沿对角线向上查找</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">if</span> (!array || array.<span class="property">toString</span>===<span class="string">&#x27;[]&#x27;</span> || array[<span class="number">0</span>].<span class="property">toString</span>===<span class="string">&#x27;[]&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 第一行</span></span><br><span class="line">    <span class="keyword">let</span> n=array.<span class="property">length</span>, m=array[<span class="number">0</span>].<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">let</span> i=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(array[<span class="number">0</span>][i]==target) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(array[<span class="number">0</span>][i]&gt;target &amp;&amp; i==<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(array[<span class="number">0</span>][i]&gt;target &amp;&amp; i!=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> j=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span>(;j&lt;n;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(array[j][<span class="number">0</span>]==target) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(array[j][<span class="number">0</span>]&gt;target)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> x=<span class="number">1</span>;x&lt;j;x++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> y=<span class="number">1</span>;y&lt;i;y++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[x][y]==target) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="title class_">Find</span> : <span class="title class_">Find</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>优解思路，利用数据的规律，从左下角沿对角线向上查找</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Find</span>(<span class="params">target, array</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 时间复杂度：m*n；对第一行和第一列的判断从宏观看没有作用</span></span><br><span class="line"><span class="comment">     * 优解，利用数据的规律，从左下角沿对角线向上查找</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">if</span> (!array || array.<span class="property">toString</span>===<span class="string">&#x27;[]&#x27;</span> || array[<span class="number">0</span>].<span class="property">toString</span>===<span class="string">&#x27;[]&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> n=array.<span class="property">length</span>, m=array[<span class="number">0</span>].<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=n-<span class="number">1</span>, j=<span class="number">0</span>; i&gt;=<span class="number">0</span> &amp;&amp; j&lt;m;)&#123;</span><br><span class="line">        <span class="keyword">if</span>(array[i][j]==target) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">if</span>(array[i][j]&gt;target) i--;</span><br><span class="line">        <span class="keyword">else</span> j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="title class_">Find</span> : <span class="title class_">Find</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="NC65-斐波那契数列"><a href="#NC65-斐波那契数列" class="headerlink" title="NC65 斐波那契数列"></a>NC65 斐波那契数列</h2><p>学习递归的经典例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Fibonacci</span>(<span class="params">n</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span> || n==<span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Fibonacci</span>(n-<span class="number">1</span>)+<span class="title class_">Fibonacci</span>(n-<span class="number">2</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="title class_">Fibonacci</span> : <span class="title class_">Fibonacci</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>优化思路：</p>
+<ol>
+<li>记忆化搜索</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> f=<span class="title class_">Array</span>.<span class="title function_">from</span>(&#123;<span class="attr">length</span>:<span class="number">50</span>&#125;)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Fibonacci</span>(<span class="params">n</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="comment">// 直接用递归，会发现存在重复计算的，用数组将计算结果保留，用空间换时间，典型优化思路</span></span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(f[n]) <span class="keyword">return</span> f[n];</span><br><span class="line">    <span class="keyword">return</span> f[n]=<span class="title class_">Fibonacci</span>(n-<span class="number">1</span>)+<span class="title class_">Fibonacci</span>(n-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="title class_">Fibonacci</span> : <span class="title class_">Fibonacci</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>动态规划</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> f=<span class="title class_">Array</span>.<span class="title function_">from</span>(&#123;<span class="attr">length</span>:<span class="number">50</span>&#125;)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Fibonacci</span>(<span class="params">n</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 动态规划：拆解问题，用简单的子问题解法解决复杂问题</span></span><br><span class="line"><span class="comment">     * 这是动态规划吗？算，只是一种算法设计思路</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">let</span> a=<span class="number">1</span>,b=<span class="number">1</span>,c=<span class="number">1</span></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">3</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    c=a+b, a=b, b=c;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="title class_">Fibonacci</span> : <span class="title class_">Fibonacci</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/003%E5%88%B7%E9%A2%98/" data-id="clfmqs4t40004twaa6zuy12mp" data-title="003刷题" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-002投简历和刷题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -205,7 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/002%E6%8A%95%E7%AE%80%E5%8E%86%E5%92%8C%E5%88%B7%E9%A2%98/" data-id="clfmqs4sy0000twaa703x80ho" data-title="002投简历和刷题" class="article-share-link">Megosztás</a>
+      <a data-url="http://example.com/2023/03/22/002%E6%8A%95%E7%AE%80%E5%8E%86%E5%92%8C%E5%88%B7%E9%A2%98/" data-id="clfmqs4sy0000twaa703x80ho" data-title="002投简历和刷题" class="article-share-link">Share</a>
       
       
       
@@ -396,7 +478,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/001%E5%AE%9E%E6%96%BD%E5%A4%8D%E4%B9%A0/" data-id="clfmqs4t20001twaadgwigcfu" data-title="001实施复习" class="article-share-link">Megosztás</a>
+      <a data-url="http://example.com/2023/03/22/001%E5%AE%9E%E6%96%BD%E5%A4%8D%E4%B9%A0/" data-id="clfmqs4t20001twaadgwigcfu" data-title="001实施复习" class="article-share-link">Share</a>
       
       
       
@@ -447,7 +529,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/hello-world/" data-id="clfmqs4ti001ctwaaf71o6tq4" data-title="Hello World" class="article-share-link">Megosztás</a>
+      <a data-url="http://example.com/2023/03/22/hello-world/" data-id="clfmqs4ti001ctwaaf71o6tq4" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -463,7 +545,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Előző</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
   </nav>
 
 </section>
@@ -472,7 +554,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategóriák</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a></li></ul>
     </div>
@@ -482,9 +564,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Címkék</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
     </div>
   </div>
 
@@ -492,16 +574,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Címkefelhő</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JS/" style="font-size: 15px;">JS</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 20px;">uniapp</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JS/" style="font-size: 15px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 20px;">uniapp</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archív</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
     </div>
@@ -511,9 +593,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Legfrissebb bejegyzések</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/03/30/031%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%B8%80%E5%A4%A9/">031前端框架第一天</a>
+          </li>
         
           <li>
             <a href="/2023/03/29/030JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%9B%9B%E5%A4%A9/">030JS基础第四天</a>
@@ -529,10 +615,6 @@
         
           <li>
             <a href="/2023/03/26/027JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/">027JS基础第一天</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/25/026-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/">#026#搭建网站服务器</a>
           </li>
         
       </ul>
