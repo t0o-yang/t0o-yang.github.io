@@ -71,6 +71,105 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-005小总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/005%E5%B0%8F%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.772Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/22/005%E5%B0%8F%E6%80%BB%E7%BB%93/">005小总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
+<p>今天极懒哦，没有复习，但是想到日志还是得写。</p>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h2><ol>
+<li><p><strong>修改（创建）</strong>：字符串是不允许修改的，所以修改都是用一个新值覆盖，创建一个副本（<code>replace</code>后续介绍）</p>
+<ul>
+<li><p>trim、trimLeft、trimRight，删除前后、前或后的空格符</p>
+</li>
+<li><p>concat，拼接成一个新的字符串，还有常用的<code>+</code>和<code>$&#123;&#125;</code></p>
+</li>
+<li><p>repeat，接收一个整数，表示将字符串复制多少次，并拼接起来返回结果。</p>
+</li>
+<li><p>padEnd，padStart，用给定值填充字符串末尾或开头，如有需要，则会重复给定值</p>
+<pre><code>let stringValue = &quot;foo&quot;;
+console.log(stringValue.padStart(6)); // &quot; foo&quot;
+console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
+</code></pre>
+</li>
+<li><p>toLowerCase、toUpperCase，大小字符转化</p>
+</li>
+</ul>
+</li>
+<li><p><strong>查询</strong>：读取其中的某个字符，或判断是否包含特定值</p>
+<ul>
+<li><p>indexOf，搜索给定字符串，并返回位置，如无，返回-1</p>
+</li>
+<li><p>startWith，判断字符串是否以给定值开头，返回布尔值</p>
+</li>
+<li><p>includes，判断是否包含给定值，返回布尔值</p>
+</li>
+</ul>
+</li>
+<li><p><strong>读取</strong>：获取字符</p>
+<ul>
+<li><p>charAt，返回指定索引的字符</p>
+</li>
+<li><p>slice，获取字符串的局部切片</p>
+</li>
+<li><p>substr，子串</p>
+</li>
+<li><p>substring，子串，string小写哦哦哦</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h2><p><code>split</code>，字符串转为数组，按照给定分割符，拆分字符串，返回数组</p>
+<h2 id="模板匹配"><a href="#模板匹配" class="headerlink" title="模板匹配"></a>模板匹配</h2><p>经常需要判断是否包含特定值，或者符合某种规则，<code>indexOf</code>和<code>includes</code>判断会比较复杂，这个时候就需要用正则表达式也许会更轻松。</p>
+<ul>
+<li><p>match，获取满足正则的片段。接收一个参数，可以是一个正则表达式字符串，也可以是一个<code>RegExp</code>对象，返回数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text = <span class="string">&quot;cat, bat, sat, fat&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> pattern = <span class="regexp">/.at/g</span>;</span><br><span class="line"><span class="keyword">let</span> matches = text.<span class="title function_">match</span>(pattern);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(matches);  <span class="comment">// [&#x27;cat&#x27;, &#x27;bat&#x27;, &#x27;sat&#x27;, &#x27;fat&#x27;]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>search，接收一个参数，可以是一个正则表达式字符串，也可以是一个<code>RegExp</code>对象，找到则返回匹配索引，否则返回 -1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text = <span class="string">&quot;cat, bat, sat, fat&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> pos = text.<span class="title function_">search</span>(<span class="regexp">/at/</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(pos);  <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>replace，接收两个参数，第一个参数为匹配的内容，第二个参数为替换的元素（可用函数）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text = <span class="string">&quot;cat, bat, sat, fat&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> result = text.<span class="title function_">replace</span>(<span class="string">&quot;at&quot;</span>, <span class="string">&quot;ond&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result); <span class="comment">// &quot;cond, bat, sat, fat&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/005%E5%B0%8F%E6%80%BB%E7%BB%93/" data-id="clfmqs4t40003twaaefqaf4gf" data-title="005小总结" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-004刷题和背面经" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/03/22/004%E5%88%B7%E9%A2%98%E5%92%8C%E8%83%8C%E9%9D%A2%E7%BB%8F/" class="article-date">
@@ -694,7 +793,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
     </div>
   </div>
 
@@ -704,7 +803,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JS/" style="font-size: 15px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 20px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/JS/" style="font-size: 15px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 20px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
     </div>
   </div>
 
@@ -713,7 +812,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archiv</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
     </div>
   </div>
 
@@ -724,6 +823,10 @@
     <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/04/02/033Vue%E7%AC%AC%E4%B8%89%E5%A4%A9/">033Vue第三天</a>
+          </li>
         
           <li>
             <a href="/2023/03/31/032%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%BA%8C%E5%A4%A9/">032前端框架第二天</a>
@@ -739,10 +842,6 @@
         
           <li>
             <a href="/2023/03/28/029JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E5%A4%A9/">029JS基础第三天</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/27/028JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E5%A4%A9/">028JS基础第二天</a>
           </li>
         
       </ul>
