@@ -4,18 +4,20 @@
   <meta charset="utf-8">
   
   
-  <title>006大实话 | Hexo</title>
+  <title>034Vue第四天 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="前言日志，各位看官就当乐子看吧。 正经人谁写日记啊？！！    ——鹅城县长 今天极懒哦，没有复习，但是想到日志还是得写。 数组常用方法 数组基本操作有，push\unshift\concat,用于数组添加；pop\shift\slice,用于数组删除；splice用于修改数组；indexOf用于查找数组，es6中增加了find、includes；  用于排序的方法，有 reverse、sort">
+  <meta name="description" content="今天偷个懒">
 <meta property="og:type" content="article">
-<meta property="og:title" content="006大实话">
-<meta property="og:url" content="http://example.com/2023/03/22/006%E5%A4%A7%E5%AE%9E%E8%AF%9D/index.html">
+<meta property="og:title" content="034Vue第四天">
+<meta property="og:url" content="http://example.com/2023/04/02/034Vue%E7%AC%AC%E5%9B%9B%E5%A4%A9/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前言日志，各位看官就当乐子看吧。 正经人谁写日记啊？！！    ——鹅城县长 今天极懒哦，没有复习，但是想到日志还是得写。 数组常用方法 数组基本操作有，push\unshift\concat,用于数组添加；pop\shift\slice,用于数组删除；splice用于修改数组；indexOf用于查找数组，es6中增加了find、includes；  用于排序的方法，有 reverse、sort">
+<meta property="og:description" content="今天偷个懒">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-03-22T13:42:24.776Z">
-<meta property="article:modified_time" content="2023-03-24T16:06:55.543Z">
+<meta property="article:published_time" content="2023-04-02T14:28:55.000Z">
+<meta property="article:modified_time" content="2023-04-02T15:14:39.926Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="data()">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -73,10 +75,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-006大实话" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-034Vue第四天" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/03/22/006%E5%A4%A7%E5%AE%9E%E8%AF%9D/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.776Z" itemprop="datePublished">2023-03-22</time>
+    <a href="/2023/04/02/034Vue%E7%AC%AC%E5%9B%9B%E5%A4%A9/" class="article-date">
+  <time class="dt-published" datetime="2023-04-02T14:28:55.000Z" itemprop="datePublished">2023-04-02</time>
 </a>
     
   <div class="article-category">
@@ -91,7 +93,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      006大实话
+      034Vue第四天
     </h1>
   
 
@@ -99,64 +101,28 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
-<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
-<p>今天极懒哦，没有复习，但是想到日志还是得写。</p>
-<h1 id="数组常用方法"><a href="#数组常用方法" class="headerlink" title="数组常用方法"></a>数组常用方法</h1><ul>
-<li><p>数组基本操作有，push\unshift\concat,用于数组添加；pop\shift\slice,用于数组删除；splice用于修改数组；indexOf用于查找数组，es6中增加了find、includes；</p>
-</li>
-<li><p>用于排序的方法，有 reverse、sort</p>
-</li>
-<li><p>用于数组的转换有 join ，将数组转变为字符串，参数是字符串分割符</p>
-</li>
-<li><p>遍历相关的方法有 some、every、foreach、filter、map、reduce</p>
-</li>
-</ul>
-<p>方法细节：</p>
-<p>push：接收多个参数，并添加到目标数组的末尾，返回数组最新长度</p>
-<p>unshift: 接收多个参数，并添加到目标数组的开头，返回数组最新长度</p>
-<p>concat: 将目标数组和参数合并到一个数组中，返回一个新数组，<strong>不改变原数组</strong></p>
-<p>pop：删除数组最后一个成员，返回删除的项</p>
-<p>shift：删除数组第一项，返回删除的项</p>
-<p>slice：获取数组的部分，并将其返回，<strong>不改变原数组</strong></p>
-<p>splice：删除数组的一部分元素，并在删除的位置上添加新的元素。splice(start,0,item),在 start 位置前添加 item ；splice(0,delCount) 删除 delCount 个数组成员，返回被删除的元素。</p>
-<p>indexOf: 返回给定元素在数组中第一次出现的位置，如果没有返回 -1，不能找 NaN </p>
-<p>find：找到第一个符合条件的数组成员，如果没有返回 undefined，参数是一个回调函数，所有成员依次执行该函数，直到找到第一个返回值为 true 的成员</p>
-<p>includes： 判断数组中是否包含给定的一个值，false和0不相等，使用零值相等算法确定是否找到元素</p>
-<p>区别：indexOf 不能找 NaN，find，includes 可以</p>
-<p>sort：对数组排序，默认按照字典顺序排序</p>
-<p>reverse：颠倒数组排序，返回改变后的数组</p>
-<p>join：已给定的分隔符，将数组成员连成字符串返回，默认用逗号。undefined、null和空位都会变换成空字符串</p>
-<p>some、every： 判断数组成员是否满足某个条件，some只要一个成员返回值为 true 则 some 返回 true；every 则需要所有成员返回 true。空数组 some 返回 false ，every 返回 true</p>
-<p>forEach，map：对所有成员执行参数函数，forEach没有返回值，map有，<strong>不改变原数组</strong></p>
-<p>filter：对所有成员执行参数函数，过滤出返回值为 true 的数组成员，返回一个新数组，<strong>不改变原数组</strong></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天主要写<code>VideoTV</code>项目的代码，遇到一个问题，最新的数据没有渲染到模板中。Vue面试题看一题吧。</p>
+<h3 id="data为什么是个函数"><a href="#data为什么是个函数" class="headerlink" title="data为什么是个函数"></a>data为什么是个函数</h3><p>一个组价是有多个实例的，这些实例本质上用的都是同一个构造函数，如果data是对象的话，修改一个实例中的data会影响到其他实例的数据，为确保不冲突，data必须是个函数。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/006%E5%A4%A7%E5%AE%9E%E8%AF%9D/" data-id="clfmqs4t50005twaa455o0drf" data-title="006大实话" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/02/034Vue%E7%AC%AC%E5%9B%9B%E5%A4%A9/" data-id="clfzjnmpj0000lcaaealb5xbi" data-title="034Vue第四天" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data/" rel="tag">data()</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2023/03/22/007%E5%AE%9E%E7%8E%B0Modal/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          007实现Modal
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/03/22/005%E5%B0%8F%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/04/02/033Vue%E7%AC%AC%E4%B8%89%E5%A4%A9/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">005小总结</div>
+      <div class="article-nav-title">033Vue第三天</div>
     </a>
   
 </nav>
