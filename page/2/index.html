@@ -57,12 +57,12 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Rechercher"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -70,6 +70,319 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-030JS基础第四天" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/29/030JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%9B%9B%E5%A4%A9/" class="article-date">
+  <time class="dt-published" datetime="2023-03-29T15:17:30.000Z" itemprop="datePublished">2023-03-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/29/030JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%9B%9B%E5%A4%A9/">030JS基础第四天</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>要早起些，把总结时间也提前。</p>
+<h3 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Commitment</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="variable constant_">PENDING</span>=<span class="string">&#x27;待定&#x27;</span>; <span class="keyword">static</span> <span class="variable constant_">FULFILLED</span>=<span class="string">&#x27;成功&#x27;</span>; <span class="keyword">static</span> <span class="variable constant_">REJECTED</span>=<span class="string">&#x27;拒绝&#x27;</span>;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">func</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">status</span>=<span class="title class_">Commitment</span>.<span class="property">PENDING</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">result</span>=<span class="literal">null</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">resolveCallbacks</span>=[];</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">rejectCallbacks</span>=[];</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="title function_">func</span>(<span class="variable language_">this</span>.<span class="property">resolve</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>),<span class="variable language_">this</span>.<span class="property">reject</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="params">result</span>)&#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">PENDING</span>)&#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">status</span>=<span class="title class_">Commitment</span>.<span class="property">FULFILLED</span>;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">result</span>=result;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">resolveCallbacks</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">callback</span>=&gt;</span>&#123;</span><br><span class="line">                    <span class="title function_">callback</span>(result);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">reject</span>(<span class="params">result</span>)&#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">PENDING</span>)&#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">status</span>=<span class="title class_">Commitment</span>.<span class="property">REJECTED</span>;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">result</span>=result;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">rejectCallbacks</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">callback</span>=&gt;</span>&#123;</span><br><span class="line">                    <span class="title function_">callback</span>(result);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">then</span>(<span class="params">onFULFILLED,onREJECTED</span>)&#123;</span><br><span class="line">        onFULFILLED=<span class="keyword">typeof</span> onFULFILLED === <span class="string">&#x27;function&#x27;</span>?<span class="attr">onFULFILLED</span>:<span class="function">()=&gt;</span>&#123;&#125;;</span><br><span class="line">        onREJECTED=<span class="keyword">typeof</span> onREJECTED === <span class="string">&#x27;function&#x27;</span>?<span class="attr">onREJECTED</span>:<span class="function">()=&gt;</span>&#123;&#125;;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">PENDING</span>)&#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">resolveCallbacks</span>.<span class="title function_">push</span>(onFULFILLED);</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">rejectCallbacks</span>.<span class="title function_">push</span>(onREJECTED);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">FULFILLED</span>)&#123;</span><br><span class="line">            <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">                <span class="title function_">onFULFILLED</span>(<span class="variable language_">this</span>.<span class="property">result</span>);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">REJECTED</span>)&#123;</span><br><span class="line">            <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">                <span class="title function_">onREJECTED</span>(<span class="variable language_">this</span>.<span class="property">result</span>);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="节流防抖"><a href="#节流防抖" class="headerlink" title="节流防抖"></a>节流防抖</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 防抖函数  一个需要频繁触发的函数，在规定时间内，只让最后一次生效，前面的不生效</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fn要被节流的函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> delay规定的时间</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn, delay</span>) &#123;</span><br><span class="line">    <span class="comment">//记录上一次的延时器</span></span><br><span class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">       <span class="comment">//清除上一次的演示器</span></span><br><span class="line">        <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">        <span class="comment">//重新设置新的延时器</span></span><br><span class="line">        timer = <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">            <span class="comment">//修正this指向问题</span></span><br><span class="line">            fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>);</span><br><span class="line">        &#125;, delay); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 节流函数 一个函数执行一次后，只有大于设定的执行周期才会执行第二次。有个需要频繁触发的函数，出于优化性能的角度，在规定时间内，只让函数触发的第一次生效，后面的不生效。</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fn要被节流的函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> delay规定的时间</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn, delay</span>) &#123;</span><br><span class="line">    <span class="comment">//记录上一次函数触发的时间</span></span><br><span class="line">    <span class="keyword">var</span> lastTime = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="comment">//记录当前函数触发的时间</span></span><br><span class="line">        <span class="keyword">var</span> nowTime = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">        <span class="keyword">if</span>(nowTime - lastTime &gt; delay)&#123;</span><br><span class="line">            <span class="comment">//修正this指向问题</span></span><br><span class="line">            fn.<span class="title function_">call</span>(<span class="variable language_">this</span>);</span><br><span class="line">            <span class="comment">//同步执行结束时间</span></span><br><span class="line">            lastTime = nowTime;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/29/030JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%9B%9B%E5%A4%A9/" data-id="clftur91d0000n8aa9kg48aza" data-title="030JS基础第四天" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-029JS基础第三天" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/28/029JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E5%A4%A9/" class="article-date">
+  <time class="dt-published" datetime="2023-03-28T15:08:28.000Z" itemprop="datePublished">2023-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/28/029JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E5%A4%A9/">029JS基础第三天</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>bind实现、原型、事件循环背起来都挺难的，而且不好描述。明天还要看看。</p>
+<h3 id="call、apply、bind"><a href="#call、apply、bind" class="headerlink" title="call、apply、bind"></a>call、apply、bind</h3><ul>
+<li>三者都是显式改变函数中的this指向。</li>
+<li>第一个参数就是指向的对象，如果参数为空或是null、undefined，则默认指向window</li>
+<li>都可以传参，但call接收的是参数序列，apply接收数组，而且call和apply都是一次性传入，bind可以分多次传入</li>
+<li>bind是返回绑定this之后的函数，而call和apply是立即执行</li>
+</ul>
+<h4 id="实现bind"><a href="#实现bind" class="headerlink" title="实现bind"></a>实现bind</h4><p>IE8及以下不支持bind，所以可能会问这个问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">myBind</span>=<span class="keyword">function</span>(<span class="params">context</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="variable language_">this</span> !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;错误&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> self=<span class="variable language_">this</span>,</span><br><span class="line">    args=<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">Fn</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> self.<span class="title function_">apply</span>(<span class="variable language_">this</span> <span class="keyword">instanceof</span> <span class="title class_">Fn</span>?<span class="keyword">new</span> <span class="title function_">self</span>([].<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>)):context,args.<span class="title function_">concat</span>([].<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>)))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="原型、原型链"><a href="#原型、原型链" class="headerlink" title="原型、原型链"></a>原型、原型链</h3><p>‌ <strong>原型:</strong>  在 JS 中，每当定义一个对象（函数也是对象）时，对象中都会包含一些预定义的属性。其中每个<code>函数对象</code>都有一个<code>prototype</code> 属性，这个属性指向函数的<code>原型对象</code>。<br>原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为<strong>原型链</strong>。下面总结：</p>
+<ul>
+<li>每个 class都有显示原型 prototype</li>
+<li>每个实例都有隐式原型 <code>__proto__</code></li>
+<li>实例的 <code>__proto__</code> 指向对应 class 的 prototype</li>
+</ul>
+<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><ol>
+<li>首先创建了一个新的空对象</li>
+<li>设置原型，将对象的原型设置为函数的prototype对象。</li>
+<li>让函数的this指向这个对象，执行构造函数的代码（为这个新对象添加属性）</li>
+<li>判断函数的返回值类型，如果是值类型，返回创建的对象。如果是引用类型，就返回这个引用类型的对象。</li>
+</ol>
+<h4 id="实现new"><a href="#实现new" class="headerlink" title="实现new"></a>实现new</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">mynew</span>(<span class="params">func, ...args</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line">    obj.<span class="property">__proto__</span> = func.<span class="property"><span class="keyword">prototype</span></span></span><br><span class="line">    <span class="keyword">let</span> result = func.<span class="title function_">apply</span>(obj, args)</span><br><span class="line">    <span class="keyword">return</span> result <span class="keyword">instanceof</span> <span class="title class_">Object</span> ? result : obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="eventloop-事件循环机制"><a href="#eventloop-事件循环机制" class="headerlink" title="eventloop 事件循环机制"></a>eventloop 事件循环机制</h3><p><code>JS</code>是单线程的，为了防止一个函数执行时间过长阻塞后面的代码，所以会先将同步代码压入执行栈中，依次执行，将异步代码推入异步队列，异步队列又分为宏任务队列和微任务队列，因为宏任务队列的执行时间较长，所以微任务队列要优先于宏任务队列。微任务队列的代表就是，<code>Promise.then</code>，<code>MutationObserver</code>，宏任务的话就是<code>setImmediate setTimeout setInterval</code></p>
+<p>JS运行的环境。一般为浏览器或者Node。 在浏览器环境中，有JS 引擎线程和渲染线程，且两个线程互斥。 Node环境中，只有JS 线程。 不同环境执行机制有差异，不同任务进入不同Event Queue队列。 当主程结束，先执行准备好微任务，然后再执行准备好的宏任务，一个轮询结束。</p>
+<h4 id="浏览器中的事件环（Event-Loop"><a href="#浏览器中的事件环（Event-Loop" class="headerlink" title="浏览器中的事件环（Event Loop)"></a><strong>浏览器中的事件环（Event Loop)</strong></h4><p>事件环的运行机制是，先会执行栈中的内容，栈中的内容执行后执行微任务，微任务清空后再执行宏任务，先取出一个宏任务，再去执行微任务，然后在取宏任务清微任务这样不停的循环。</p>
+<ul>
+<li><p>eventLoop 是由JS的宿主环境（浏览器）来实现的；</p>
+</li>
+<li><p>事件循环可以简单的描述为以下四个步骤:</p>
+<ol>
+<li>函数入栈，当Stack中执行到异步任务的时候，就将他丢给WebAPIs,接着执行同步任务,直到Stack为空；</li>
+<li>此期间WebAPIs完成这个事件，把回调函数放入队列中等待执行（微任务放到微任务队列，宏任务放到宏任务队列）</li>
+<li>执行栈为空时，Event Loop把微任务队列执行清空；</li>
+<li>微任务队列清空后，进入宏任务队列，取队列的第一项任务放入Stack(栈）中执行，执行完成后，查看微任务队列是否有任务，有的话，清空微任务队列。重复4，继续从宏任务中取任务执行，执行完成之后，继续清空微任务，如此反复循环，直至清空所有的任务。</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/342e581223d2471d9484fc48beb9f8e1~tplv-k3u1fbpfcp-zoom-1.image" alt="事件循环流程"></p>
+</li>
+<li><p>浏览器中的任务源(task):</p>
+<ul>
+<li><code>宏任务(macrotask)</code>：<br>宿主环境提供的，比如浏览器<br>ajax、setTimeout、setInterval、setTmmediate(只兼容ie)、script、requestAnimationFrame、messageChannel、UI渲染、一些浏览器api</li>
+<li><code>微任务(microtask)</code>：<br>语言本身提供的，比如promise.then<br>then、queueMicrotask(基于then)、mutationObserver(浏览器提供)、messageChannel 、mutationObersve</li>
+</ul>
+</li>
+</ul>
+<p>传送门 ☞ <a target="_blank" rel="noopener" href="https://juejin.cn/post/7001881781125251086"># 宏任务和微任务</a></p>
+<h4 id="Node-环境中的事件环（Event-Loop"><a href="#Node-环境中的事件环（Event-Loop" class="headerlink" title="Node 环境中的事件环（Event Loop)"></a><strong>Node 环境中的事件环（Event Loop)</strong></h4><p><code>Node</code>是基于V8引擎的运行在服务端的<code>JavaScript</code>运行环境，在处理高并发、I&#x2F;O密集(文件操作、网络操作、数据库操作等)场景有明显的优势。虽然用到也是V8引擎，但由于服务目的和环境不同，导致了它的API与原生JS有些区别，其Event Loop还要处理一些I&#x2F;O，比如新的网络连接等，所以Node的Event Loop(事件环机制)与浏览器的是不太一样。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e362c1770f62428fbf3faabd99d2a64c~tplv-k3u1fbpfcp-zoom-1.image" alt="2020120317343116.png"> 执行顺序如下：</p>
+<ul>
+<li><code>timers</code>: 计时器，执行setTimeout和setInterval的回调</li>
+<li><code>pending callbacks</code>: 执行延迟到下一个循环迭代的 I&#x2F;O 回调</li>
+<li><code>idle, prepare</code>: 队列的移动，仅系统内部使用</li>
+<li><code>poll轮询</code>: 检索新的 I&#x2F;O 事件;执行与 I&#x2F;O 相关的回调。事实上除了其他几个阶段处理的事情，其他几乎所有的异步都在这个阶段处理。</li>
+<li><code>check</code>: 执行<code>setImmediate</code>回调，setImmediate在这里执行</li>
+<li><code>close callbacks</code>: 执行<code>close</code>事件的<code>callback</code>，一些关闭的回调函数，如：socket.on(‘close’, …)</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/28/029JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E5%A4%A9/" data-id="clfshabof00004caaeyl0bs7i" data-title="029JS基础第三天" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-028JS基础第二天" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/27/028JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E5%A4%A9/" class="article-date">
+  <time class="dt-published" datetime="2023-03-27T13:29:40.000Z" itemprop="datePublished">2023-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/27/028JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E5%A4%A9/">028JS基础第二天</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>博客内容要调整一下了，仅记录一下当天干了什么吧。因为涉及到的面试题的答案，也是从网上找来的，不是自己总结的。本质上就是个日志。</p>
+<h3 id="var、let和const"><a href="#var、let和const" class="headerlink" title="var、let和const"></a>var、let和const</h3><p>var、let、const都是声明变量的关键词，主要区别是</p>
+<ol>
+<li><p>变量提升，var声明的变量会出现变量提升的情况，即可以在声明前使用变量；let和const声明前使用会报错；</p>
+</li>
+<li><p>暂时性死区，var不存在，let和const存在，在声明语句之前，不能获取和设置变量；</p>
+</li>
+<li><p>作用域不同，let和const作用于块级作用域，var作用于函数作用域；</p>
+</li>
+<li><p>重新赋值，const声明的是一个常量，值不能改变。let，var可以；</p>
+</li>
+<li><p>重复声明，let和const在同一作用域内不能重复声明，var不限制；</p>
+</li>
+</ol>
+<h3 id="作用域、作用域链"><a href="#作用域、作用域链" class="headerlink" title="作用域、作用域链"></a>作用域、作用域链</h3><p><strong>作用域</strong>指变量和函数能够被访问的区域，作用域可分为：</p>
+<ul>
+<li>全局作用域，在函数和大括号之外声明的变量，都在全局作用域下，可以在程序的任意位置访问；</li>
+<li>函数作用域，在函数内声明的变量，只能在函数内部访问；</li>
+<li>块级作用域，在大括号内使用<code>let</code>和<code>const</code>声明的变量，只存在于块级作用域内，在大括号外不能访问；</li>
+</ul>
+<p><strong>作用域链</strong>：在JS中使用变量时，首先JS引擎会在当前作用域中寻找该变量，如果没找到，会到其上层作用域寻找，直至变量找到或到了全局作用域。如果在全局作用域内没有找到，会隐式声明该变量（非严格模式下，返回 undefined）或直接报错。</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p><strong>闭包</strong>指一个函数和对其周围状态的引用捆绑在一起，即闭包让内层函数可以访问到外层函数的作用域。<br>闭包的使用场景：保存变量（延长变量的生命周期）；保护变量（创建私有化变量）。例子，柯里化函数</p>
+<h3 id="this对象"><a href="#this对象" class="headerlink" title="this对象"></a>this对象</h3><p>this对象是函数运行时自动生成的一个内部对象，只能在函数内使用。它始终指向调用这个函数的对象。在不同的使用场合下，this有不同的值，大致可以分为以下4种：</p>
+<ul>
+<li>默认绑定，普通函数调用，this指向<code>window</code>；</li>
+<li>隐式绑定，函数作为对象的方法被调用，this指向这个对象；</li>
+<li>new 绑定，作为构造函数调用，new 会返回一个实例对象，this指向这个实例对象，特殊情况<ul>
+<li>遇到函数返回一个对象，则this指向返回的对象<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">user</span> = <span class="string">&#x27;xxx&#x27;</span>;  </span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="title function_">fn</span>();  </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">user</span>); <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure></li>
+<li>返回一个简单类型的数据，则this还是指向实例对象<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">user</span> = <span class="string">&#x27;xxx&#x27;</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> fn;  </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">user</span>); <span class="comment">//xxx</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>显式绑定，使用<code>call</code>、<code>apply</code>、<code>bind</code>可以显式改变函数的this指向</li>
+<li>箭头函数的this，箭头函数没有自己的this指向，它的this指向上一级作用域的this</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/27/028JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E5%A4%A9/" data-id="clfr003qu0000ncaabvgx3pqe" data-title="028JS基础第二天" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-027JS基础第一天" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/26/027JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/" class="article-date">
+  <time class="dt-published" datetime="2023-03-26T15:42:25.000Z" itemprop="datePublished">2023-03-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/26/027JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/">027JS基础第一天</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>找了一个前端面试汇总，之后打印出来，直接背。看这个，<a target="_blank" rel="noopener" href="https://juejin.cn/post/7016593221815910408#heading-41">前端八股</a></p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>网上关于JS数据类型的说法不一致，我按照MDN文档<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Language_Overview#%E6%A6%82%E8%A7%88">介绍</a>和typeof的返回值为标准吧。</p>
+<p>常规就是八种，</p>
+<ul>
+<li>Number 数字</li>
+<li>String 字符串</li>
+<li>Boolean 布尔</li>
+<li>Symbol 符号</li>
+<li>Object 对象</li>
+<li>Function 函数</li>
+<li>null 空</li>
+<li>undefined 未定义<br>分两大类，基本类型和引用类型，引用类型：Object、Function，其余都是基本类型。<br>还有说是九种的，加上bigint。这也是基本类型。</li>
+<li>BigInt 大数<br>补充，Object中又细分了：Array，Date, RegExp。严格上，Function也是Object，但是一般还是把函数单独作为一类。</li>
+</ul>
+<h3 id="JS中的数据类型检测方案"><a href="#JS中的数据类型检测方案" class="headerlink" title="JS中的数据类型检测方案"></a>JS中的数据类型检测方案</h3><h4 id="1-typeof"><a href="#1-typeof" class="headerlink" title="1.typeof"></a>1.typeof</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="number">1</span>);               <span class="comment">// number</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="literal">true</span>);            <span class="comment">// boolean</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="string">&#x27;mc&#x27;</span>);            <span class="comment">// string</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="title class_">Symbol</span>())         <span class="comment">// symbol</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="number">1n</span>)               <span class="comment">// bigint</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="literal">null</span>);            <span class="comment">// object</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="literal">undefined</span>);       <span class="comment">// undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;);    <span class="comment">// function</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> []);              <span class="comment">// object</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> &#123;&#125;);              <span class="comment">// object</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="keyword">new</span> <span class="title class_">Date</span>())       <span class="comment">// object</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> /d+<span class="regexp">/)             /</span><span class="regexp">/ object</span></span><br></pre></td></tr></table></figure>
+
+<p>优点：能够快速区分基本数据类型</p>
+<p>缺点：不能将Object、Array和Null区分，都返回object</p>
+<h4 id="2-instanceof"><a href="#2-instanceof" class="headerlink" title="2.instanceof"></a>2.instanceof</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> <span class="keyword">instanceof</span> <span class="title class_">Number</span>);                    <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">true</span> <span class="keyword">instanceof</span> <span class="title class_">Boolean</span>);                <span class="comment">// false </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;str&#x27;</span> <span class="keyword">instanceof</span> <span class="title class_">String</span>);                <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1n</span> <span class="keyword">instanceof</span> <span class="title class_">BigInt</span>);                   <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Symbol</span>() <span class="keyword">instanceof</span> <span class="title class_">Symbol</span>);             <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([] <span class="keyword">instanceof</span> <span class="title class_">Array</span>);                    <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span> <span class="title class_">Date</span>() <span class="keyword">instanceof</span> <span class="title class_">Date</span>);             <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="regexp">/d+/</span> <span class="keyword">instanceof</span> <span class="title class_">RegExp</span>);                 <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125; <span class="keyword">instanceof</span> <span class="title class_">Function</span>);       <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(&#123;&#125; <span class="keyword">instanceof</span> <span class="title class_">Object</span>);                   <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>优点：能够区分Array、Object和Function，适合用于判断自定义的类实例对象</p>
+<p>缺点：Number，Boolean，String基本数据类型不能判断</p>
+<p>注，null和undefined会报错<code>TypeError</code>，<code>instanceof</code>右侧必须是个对象</p>
+<h4 id="3-Object-prototype-toString-call"><a href="#3-Object-prototype-toString-call" class="headerlink" title="3.Object.prototype.toString.call()"></a>3.Object.prototype.toString.call()</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> toString = <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="number">1</span>));               <span class="comment">//[object Number]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="literal">true</span>));            <span class="comment">//[object Boolean]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="string">&#x27;mc&#x27;</span>));            <span class="comment">//[object String]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="title class_">Symbol</span>());         <span class="comment">//[object Symbol]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="number">1n</span>));              <span class="comment">//[object BigInt]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>([]));              <span class="comment">//[object Array]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(&#123;&#125;));              <span class="comment">//[object Object]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="keyword">new</span> <span class="title class_">Date</span>()));      <span class="comment">//[object Date]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="regexp">/d+/</span>));            <span class="comment">//[object RegExp]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;));    <span class="comment">//[object Function]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="literal">undefined</span>));       <span class="comment">//[object Undefined]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="literal">null</span>));            <span class="comment">//[object Null]</span></span><br></pre></td></tr></table></figure>
+
+<p>优点：精准判断数据类型</p>
+<p>缺点：写法繁琐不容易记，推荐进行封装后使用</p>
+<p>注，这种方式深究的话，是不可靠的；可以通过定义 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag"><code>Symbol.toStringTag</code></a> 属性来更改 <code>Object.prototype.toString()</code> 的行为，从而导致意想不到的结果。但是这种判断类型方式完全够用了，有人会改这个属性？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myDate = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">myDate[<span class="title class_">Symbol</span>.<span class="property">toStringTag</span>] = <span class="string">&quot;myDate&quot;</span>;</span><br><span class="line"><span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(myDate);    <span class="comment">// &#x27;[object myDate]&#x27;</span></span><br><span class="line">myDate <span class="keyword">instanceof</span> <span class="title class_">Date</span>    <span class="comment">// true </span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString#%E7%A4%BA%E4%BE%8B">Object.prototype.toString</a></p>
+<h4 id="instanceof-的作用"><a href="#instanceof-的作用" class="headerlink" title="instanceof 的作用"></a>instanceof 的作用</h4><p>用于判断一个引用类型是否属于某构造函数；</p>
+<p>还可以在继承关系中用来判断一个实例是否属于它的父类型。</p>
+<h4 id="instanceof-和-typeof-的区别："><a href="#instanceof-和-typeof-的区别：" class="headerlink" title="instanceof 和 typeof 的区别："></a>instanceof 和 typeof 的区别：</h4><p>typeof在对值类型number、string、boolean 、null 、 undefined、 以及引用类型的function的反应是精准的；但是，对于对象{ } 、数组[ ] 、null 都会返回object</p>
+<p>为了弥补这一点，instanceof 从原型的角度，来判断某引用属于哪个构造函数，从而判定它的数据类型。</p>
+<h4 id="严格判断类型"><a href="#严格判断类型" class="headerlink" title="严格判断类型"></a>严格判断类型</h4><p>如果有需要的严格判断类型的要求，可以结合<code>typeof</code>和<code>instanceof</code>，封装一个自定义方法。参考下面代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">type</span>(<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value === <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;null&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> baseType = <span class="keyword">typeof</span> value;</span><br><span class="line">    <span class="comment">// 基本类型</span></span><br><span class="line">    <span class="keyword">if</span> (![<span class="string">&quot;object&quot;</span>, <span class="string">&quot;function&quot;</span>].<span class="title function_">includes</span>(baseType)) &#123;</span><br><span class="line">        <span class="keyword">return</span> baseType;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Symbol.toStringTag 通常指定对象类的“display name”</span></span><br><span class="line">    <span class="comment">// 它在 Object.prototype.toString() 中使用。</span></span><br><span class="line">    <span class="keyword">const</span> tag = value[<span class="title class_">Symbol</span>.<span class="property">toStringTag</span>];</span><br><span class="line">    <span class="comment">// 构造函数的名称；例如 `Array`、`GeneratorFunction`、`Number`、`String`、`Boolean` 或 `MyCustomClass`</span></span><br><span class="line">    <span class="keyword">const</span> className = value.<span class="property">constructor</span>.<span class="property">name</span>;</span><br><span class="line">    <span class="comment">// 当构造函数与 display name 不一致时，以构造函数优先</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> tag === <span class="string">&quot;string&quot;</span> &amp;&amp; tag===className) &#123;</span><br><span class="line">        <span class="keyword">return</span> tag;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果它是一个函数，其源代码以 &quot;class&quot; 关键字开头</span></span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">        baseType === <span class="string">&quot;function&quot;</span> &amp;&amp;</span><br><span class="line">        <span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(value).<span class="title function_">startsWith</span>(<span class="string">&quot;class&quot;</span>)</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;class&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 输出构造函数</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> className === <span class="string">&quot;string&quot;</span> &amp;&amp; className !== <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> className;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 在这一点上，没有合适的方法来获取值的类型，因此我们使用基本实现。 </span></span><br><span class="line">    <span class="keyword">return</span> baseType;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以避免随意通过<code>Symbol.toStringTag</code>修改类。但是就不能使用自定义类名了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">C</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">data</span>=<span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    get [<span class="title class_">Symbol</span>.<span class="property">toStringTag</span>]() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;MClass&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> cls=<span class="keyword">new</span> <span class="title function_">C</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">type</span>(cls))    <span class="comment">// C</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(cls))    <span class="comment">// [object MClass]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这九天，第一个三天，将todos项目改造成uniapp；第二个三天，看B站上uniapp的课程，算是系统学了uniapp，做了一个青年帮新闻的案例；最后，免费试用了移动云一个月的云主机，打算把新闻网站部署上线，目前还没成功。之后的总结改成周更。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/26/027JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/" data-id="clfplb8rs00004waaf0r6ejcy" data-title="027JS基础第一天" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-026-搭建网站服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -116,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/25/026-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="clfo6pafx0000wwaacnxh1mxo" data-title="#026#搭建网站服务器" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/25/026-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="clfo6pafx0000wwaacnxh1mxo" data-title="#026#搭建网站服务器" class="article-share-link">Partager</a>
       
       
       
@@ -167,7 +480,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/24/025uniapp-done/" data-id="clfmqs4tj001gtwaa3194byxz" data-title="025uniapp-done" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/24/025uniapp-done/" data-id="clfmqs4tj001gtwaa3194byxz" data-title="025uniapp-done" class="article-share-link">Partager</a>
       
       
       
@@ -217,7 +530,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/23/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/" data-id="clfmqs4ti001etwaa1j3232z5" data-title="024uniapp第三天" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/23/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/" data-id="clfmqs4ti001etwaa1j3232z5" data-title="024uniapp第三天" class="article-share-link">Partager</a>
       
       
       
@@ -309,426 +622,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="clfmqs4th0017twaaa8hc6adj" data-title="023gitee+hexo搭建个人博客" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="clfmqs4th0017twaaa8hc6adj" data-title="023gitee+hexo搭建个人博客" class="article-share-link">Partager</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-如何使用MDN文档" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/22/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8MDN%E6%96%87%E6%A1%A3/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.866Z" itemprop="datePublished">2023-03-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/22/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8MDN%E6%96%87%E6%A1%A3/">使用MDN文档</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>如何更好的使用MDN Web文档，在查阅文档的过程中，按照参考文献一路往下看，基本最后都会指向MDN网站的一个冷门文档。这篇文章就是为了记录那些有用的文档。</p>
-<table>
-<thead>
-<tr>
-<th>内容</th>
-<th>介绍</th>
-<th>链接</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Web 相关术语的定义</td>
-<td>web专业术语的定义，对面试、写博客都用帮助</td>
-<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary">https://developer.mozilla.org/zh-CN/docs/Glossary</a></td>
-</tr>
-<tr>
-<td>JavaScript 使用指南</td>
-<td>介绍如何使用 JavaScript，并且给出了语言概述</td>
-<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide</a></td>
-</tr>
-</tbody></table>
-<h1 id="Web-相关术语的定义"><a href="#Web-相关术语的定义" class="headerlink" title="Web 相关术语的定义"></a>Web 相关术语的定义</h1><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary">https://developer.mozilla.org/zh-CN/docs/Glossary</a></p>
-<h1 id="JavaScript-使用指南"><a href="#JavaScript-使用指南" class="headerlink" title="JavaScript 使用指南"></a>JavaScript 使用指南</h1><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8MDN%E6%96%87%E6%A1%A3/" data-id="clfmqs4tk001jtwaaf26z48yj" data-title="使用MDN文档" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-前端八股文" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/22/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%96%87/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.862Z" itemprop="datePublished">2023-03-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/22/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%96%87/">前端八股文</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><h2 id="JS-ES6"><a href="#JS-ES6" class="headerlink" title="JS ES6"></a>JS ES6</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>网上关于JS数据类型的说法不一致，我按照MDN文档<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Language_Overview#%E6%A6%82%E8%A7%88">介绍</a>和typeof的返回值为标准吧。</p>
-<p>常规就是八种，</p>
-<ul>
-<li>Number 数字</li>
-<li>String 字符串</li>
-<li>Boolean 布尔</li>
-<li>Symbol 符号</li>
-<li>Object 对象</li>
-<li>Function 函数</li>
-<li>null 空</li>
-<li>undefined 未定义<br>分两大类，基本类型和引用类型，引用类型：Object、Function，其余都是基本类型。<br>还有说是九种的，加上bigint。这也是基本类型。</li>
-<li>BigInt 大数<br>补充，Object中又细分了：Array，Date, RegExp。严格上，Function也是Object，但是一般还是把函数单独作为一类。</li>
-</ul>
-<h3 id="JS中的数据类型检测方案"><a href="#JS中的数据类型检测方案" class="headerlink" title="JS中的数据类型检测方案"></a>JS中的数据类型检测方案</h3><h4 id="1-typeof"><a href="#1-typeof" class="headerlink" title="1.typeof"></a>1.typeof</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="number">1</span>);               <span class="comment">// number</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="literal">true</span>);            <span class="comment">// boolean</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="string">&#x27;mc&#x27;</span>);            <span class="comment">// string</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="title class_">Symbol</span>())         <span class="comment">// symbol</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="number">1n</span>)               <span class="comment">// bigint</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="literal">null</span>);            <span class="comment">// object</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="literal">undefined</span>);       <span class="comment">// undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;);    <span class="comment">// function</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> []);              <span class="comment">// object</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> &#123;&#125;);              <span class="comment">// object</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> <span class="keyword">new</span> <span class="title class_">Date</span>())       <span class="comment">// object</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> /d+<span class="regexp">/)             /</span><span class="regexp">/ object</span></span><br></pre></td></tr></table></figure>
-
-<p>优点：能够快速区分基本数据类型</p>
-<p>缺点：不能将Object、Array和Null区分，都返回object</p>
-<h4 id="2-instanceof"><a href="#2-instanceof" class="headerlink" title="2.instanceof"></a>2.instanceof</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> <span class="keyword">instanceof</span> <span class="title class_">Number</span>);                    <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">true</span> <span class="keyword">instanceof</span> <span class="title class_">Boolean</span>);                <span class="comment">// false </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;str&#x27;</span> <span class="keyword">instanceof</span> <span class="title class_">String</span>);                <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1n</span> <span class="keyword">instanceof</span> <span class="title class_">BigInt</span>);                   <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Symbol</span>() <span class="keyword">instanceof</span> <span class="title class_">Symbol</span>);             <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([] <span class="keyword">instanceof</span> <span class="title class_">Array</span>);                    <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span> <span class="title class_">Date</span>() <span class="keyword">instanceof</span> <span class="title class_">Date</span>);             <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="regexp">/d+/</span> <span class="keyword">instanceof</span> <span class="title class_">RegExp</span>);                 <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125; <span class="keyword">instanceof</span> <span class="title class_">Function</span>);       <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(&#123;&#125; <span class="keyword">instanceof</span> <span class="title class_">Object</span>);                   <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>优点：能够区分Array、Object和Function，适合用于判断自定义的类实例对象</p>
-<p>缺点：Number，Boolean，String基本数据类型不能判断</p>
-<p>注，null和undefined会报错<code>TypeError</code>，<code>instanceof</code>右侧必须是个对象</p>
-<h4 id="3-Object-prototype-toString-call"><a href="#3-Object-prototype-toString-call" class="headerlink" title="3.Object.prototype.toString.call()"></a>3.Object.prototype.toString.call()</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> toString = <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="number">1</span>));               <span class="comment">//[object Number]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="literal">true</span>));            <span class="comment">//[object Boolean]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="string">&#x27;mc&#x27;</span>));            <span class="comment">//[object String]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="title class_">Symbol</span>());         <span class="comment">//[object Symbol]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="number">1n</span>));              <span class="comment">//[object BigInt]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>([]));              <span class="comment">//[object Array]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(&#123;&#125;));              <span class="comment">//[object Object]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="keyword">new</span> <span class="title class_">Date</span>()));      <span class="comment">//[object Date]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="regexp">/d+/</span>));            <span class="comment">//[object RegExp]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;));    <span class="comment">//[object Function]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="literal">undefined</span>));       <span class="comment">//[object Undefined]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(toString.<span class="title function_">call</span>(<span class="literal">null</span>));            <span class="comment">//[object Null]</span></span><br></pre></td></tr></table></figure>
-
-<p>优点：精准判断数据类型</p>
-<p>缺点：写法繁琐不容易记，推荐进行封装后使用</p>
-<p>注，这种方式深究的话，是不可靠的；可以通过定义 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag"><code>Symbol.toStringTag</code></a> 属性来更改 <code>Object.prototype.toString()</code> 的行为，从而导致意想不到的结果。但是这种判断类型方式完全够用了，有人会改这个属性？</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myDate = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">myDate[<span class="title class_">Symbol</span>.<span class="property">toStringTag</span>] = <span class="string">&quot;myDate&quot;</span>;</span><br><span class="line"><span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(myDate);    <span class="comment">// &#x27;[object myDate]&#x27;</span></span><br><span class="line">myDate <span class="keyword">instanceof</span> <span class="title class_">Date</span>    <span class="comment">// true </span></span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString#%E7%A4%BA%E4%BE%8B">Object.prototype.toString</a></p>
-<h4 id="instanceof-的作用"><a href="#instanceof-的作用" class="headerlink" title="instanceof 的作用"></a>instanceof 的作用</h4><p>用于判断一个引用类型是否属于某构造函数；</p>
-<p>还可以在继承关系中用来判断一个实例是否属于它的父类型。</p>
-<h4 id="instanceof-和-typeof-的区别："><a href="#instanceof-和-typeof-的区别：" class="headerlink" title="instanceof 和 typeof 的区别："></a>instanceof 和 typeof 的区别：</h4><p>typeof在对值类型number、string、boolean 、null 、 undefined、 以及引用类型的function的反应是精准的；但是，对于对象{ } 、数组[ ] 、null 都会返回object</p>
-<p>为了弥补这一点，instanceof 从原型的角度，来判断某引用属于哪个构造函数，从而判定它的数据类型。</p>
-<h4 id="严格判断类型"><a href="#严格判断类型" class="headerlink" title="严格判断类型"></a>严格判断类型</h4><p>如果有需要的严格判断类型的要求，可以结合<code>typeof</code>和<code>instanceof</code>，封装一个自定义方法。参考下面代码。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">type</span>(<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value === <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;null&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> baseType = <span class="keyword">typeof</span> value;</span><br><span class="line">    <span class="comment">// 基本类型</span></span><br><span class="line">    <span class="keyword">if</span> (![<span class="string">&quot;object&quot;</span>, <span class="string">&quot;function&quot;</span>].<span class="title function_">includes</span>(baseType)) &#123;</span><br><span class="line">        <span class="keyword">return</span> baseType;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Symbol.toStringTag 通常指定对象类的“display name”</span></span><br><span class="line">    <span class="comment">// 它在 Object.prototype.toString() 中使用。</span></span><br><span class="line">    <span class="keyword">const</span> tag = value[<span class="title class_">Symbol</span>.<span class="property">toStringTag</span>];</span><br><span class="line">    <span class="comment">// 构造函数的名称；例如 `Array`、`GeneratorFunction`、`Number`、`String`、`Boolean` 或 `MyCustomClass`</span></span><br><span class="line">    <span class="keyword">const</span> className = value.<span class="property">constructor</span>.<span class="property">name</span>;</span><br><span class="line">    <span class="comment">// 当构造函数与 display name 不一致时，以构造函数优先</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> tag === <span class="string">&quot;string&quot;</span> &amp;&amp; tag===className) &#123;</span><br><span class="line">        <span class="keyword">return</span> tag;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果它是一个函数，其源代码以 &quot;class&quot; 关键字开头</span></span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">        baseType === <span class="string">&quot;function&quot;</span> &amp;&amp;</span><br><span class="line">        <span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(value).<span class="title function_">startsWith</span>(<span class="string">&quot;class&quot;</span>)</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;class&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 输出构造函数</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> className === <span class="string">&quot;string&quot;</span> &amp;&amp; className !== <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> className;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 在这一点上，没有合适的方法来获取值的类型，因此我们使用基本实现。 </span></span><br><span class="line">    <span class="keyword">return</span> baseType;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以避免随意通过<code>Symbol.toStringTag</code>修改类。但是就不能使用自定义类名了</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">C</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">data</span>=<span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    get [<span class="title class_">Symbol</span>.<span class="property">toStringTag</span>]() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;MClass&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> cls=<span class="keyword">new</span> <span class="title function_">C</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">type</span>(cls))    <span class="comment">// C</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(cls))    <span class="comment">// [object MClass]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="var、let和const"><a href="#var、let和const" class="headerlink" title="var、let和const"></a>var、let和const</h3><p>var、let、const都是声明变量的关键词，主要区别是</p>
-<ol>
-<li><p>变量提升，var声明的变量会出现变量提升的情况，即可以在声明前使用变量；let和const声明前使用会报错；</p>
-</li>
-<li><p>暂时性死区，var不存在，let和const存在，在声明语句之前，不能获取和设置变量；</p>
-</li>
-<li><p>作用域不同，let和const作用于块级作用域，var作用于函数作用域；</p>
-</li>
-<li><p>重新赋值，const声明的是一个常量，值不能改变。let，var可以；</p>
-</li>
-<li><p>重复声明，let和const在同一作用域内不能重复声明，var不限制；</p>
-</li>
-</ol>
-<h3 id="作用域、作用域链"><a href="#作用域、作用域链" class="headerlink" title="作用域、作用域链"></a>作用域、作用域链</h3><p><strong>作用域</strong>指变量和函数能够被访问的区域，作用域可分为：</p>
-<ul>
-<li>全局作用域，在函数和大括号之外声明的变量，都在全局作用域下，可以在程序的任意位置访问；</li>
-<li>函数作用域，在函数内声明的变量，只能在函数内部访问；</li>
-<li>块级作用域，在大括号内使用<code>let</code>和<code>const</code>声明的变量，只存在于块级作用域内，在大括号外不能访问；</li>
-</ul>
-<p><strong>作用域链</strong>：在JS中使用变量时，首先JS引擎会在当前作用域中寻找该变量，如果没找到，会到其上层作用域寻找，直至变量找到或到了全局作用域。如果在全局作用域内没有找到，会隐式声明该变量（非严格模式下，返回 undefined）或直接报错。</p>
-<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p><strong>闭包</strong>指一个函数和对其周围状态的引用捆绑在一起，即闭包让内层函数可以访问到外层函数的作用域。<br>闭包的使用场景：保存变量（延长变量的生命周期）；保护变量（创建私有化变量）。例子，柯里化函数</p>
-<h3 id="this对象"><a href="#this对象" class="headerlink" title="this对象"></a>this对象</h3><p>this对象是函数运行时自动生成的一个内部对象，只能在函数内使用。它始终指向调用这个函数的对象。在不同的使用场合下，this有不同的值，大致可以分为以下4种：</p>
-<ul>
-<li>默认绑定，普通函数调用，this指向<code>window</code>；</li>
-<li>隐式绑定，函数作为对象的方法被调用，this指向这个对象；</li>
-<li>new 绑定，作为构造函数调用，new 会返回一个实例对象，this指向这个实例对象，特殊情况<ul>
-<li>遇到函数返回一个对象，则this指向返回的对象<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">user</span> = <span class="string">&#x27;xxx&#x27;</span>;  </span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="title function_">fn</span>();  </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">user</span>); <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure></li>
-<li>返回一个简单类型的数据，则this还是指向实例对象<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">user</span> = <span class="string">&#x27;xxx&#x27;</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> fn;  </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">user</span>); <span class="comment">//xxx</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>显式绑定，使用<code>call</code>、<code>apply</code>、<code>bind</code>可以显式改变函数的this指向</li>
-<li>箭头函数的this，箭头函数没有自己的this指向，它的this指向上一级作用域的this</li>
-</ul>
-<h3 id="call、apply、bind"><a href="#call、apply、bind" class="headerlink" title="call、apply、bind"></a>call、apply、bind</h3><ul>
-<li>三者都是显式改变函数中的this指向。</li>
-<li>第一个参数就是指向的对象，如果参数为空或是null、undefined，则默认指向window</li>
-<li>都可以传参，但call接收的是参数序列，apply接收数组，而且call和apply都是一次性传入，bind可以分多次传入</li>
-<li>bind是返回绑定this之后的函数，而call和apply是立即执行</li>
-</ul>
-<h4 id="实现bind"><a href="#实现bind" class="headerlink" title="实现bind"></a>实现bind</h4><p>IE8及以下不支持bind，所以可能会问这个问题</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">myBind</span>=<span class="keyword">function</span>(<span class="params">context</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="variable language_">this</span> !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;错误&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> self=<span class="variable language_">this</span>,</span><br><span class="line">    args=<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">Fn</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> self.<span class="title function_">apply</span>(<span class="variable language_">this</span> <span class="keyword">instanceof</span> <span class="title class_">Fn</span>?<span class="keyword">new</span> <span class="title function_">self</span>([].<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>)):context,args.<span class="title function_">concat</span>([].<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>)))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="原型、原型链"><a href="#原型、原型链" class="headerlink" title="原型、原型链"></a>原型、原型链</h3><p>‌ <strong>原型:</strong>  在 JS 中，每当定义一个对象（函数也是对象）时，对象中都会包含一些预定义的属性。其中每个<code>函数对象</code>都有一个<code>prototype</code> 属性，这个属性指向函数的<code>原型对象</code>。<br>原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为<strong>原型链</strong>。下面总结：</p>
-<ul>
-<li>每个 class都有显示原型 prototype</li>
-<li>每个实例都有隐式原型 <code>__proto__</code></li>
-<li>实例的 <code>__proto__</code> 指向对应 class 的 prototype</li>
-</ul>
-<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><ol>
-<li>首先创建了一个新的空对象</li>
-<li>设置原型，将对象的原型设置为函数的prototype对象。</li>
-<li>让函数的this指向这个对象，执行构造函数的代码（为这个新对象添加属性）</li>
-<li>判断函数的返回值类型，如果是值类型，返回创建的对象。如果是引用类型，就返回这个引用类型的对象。</li>
-</ol>
-<h4 id="实现new"><a href="#实现new" class="headerlink" title="实现new"></a>实现new</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">mynew</span>(<span class="params">func, ...args</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line">    obj.<span class="property">__proto__</span> = func.<span class="property"><span class="keyword">prototype</span></span></span><br><span class="line">    <span class="keyword">let</span> result = func.<span class="title function_">apply</span>(obj, args)</span><br><span class="line">    <span class="keyword">return</span> result <span class="keyword">instanceof</span> <span class="title class_">Object</span> ? result : obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="eventloop-事件循环机制"><a href="#eventloop-事件循环机制" class="headerlink" title="eventloop 事件循环机制"></a>eventloop 事件循环机制</h3><p><code>JS</code>是单线程的，为了防止一个函数执行时间过长阻塞后面的代码，所以会先将同步代码压入执行栈中，依次执行，将异步代码推入异步队列，异步队列又分为宏任务队列和微任务队列，因为宏任务队列的执行时间较长，所以微任务队列要优先于宏任务队列。微任务队列的代表就是，<code>Promise.then</code>，<code>MutationObserver</code>，宏任务的话就是<code>setImmediate setTimeout setInterval</code></p>
-<p>JS运行的环境。一般为浏览器或者Node。 在浏览器环境中，有JS 引擎线程和渲染线程，且两个线程互斥。 Node环境中，只有JS 线程。 不同环境执行机制有差异，不同任务进入不同Event Queue队列。 当主程结束，先执行准备好微任务，然后再执行准备好的宏任务，一个轮询结束。</p>
-<h4 id="浏览器中的事件环（Event-Loop"><a href="#浏览器中的事件环（Event-Loop" class="headerlink" title="浏览器中的事件环（Event Loop)"></a><strong>浏览器中的事件环（Event Loop)</strong></h4><p>事件环的运行机制是，先会执行栈中的内容，栈中的内容执行后执行微任务，微任务清空后再执行宏任务，先取出一个宏任务，再去执行微任务，然后在取宏任务清微任务这样不停的循环。</p>
-<ul>
-<li><p>eventLoop 是由JS的宿主环境（浏览器）来实现的；</p>
-</li>
-<li><p>事件循环可以简单的描述为以下四个步骤:</p>
-<ol>
-<li>函数入栈，当Stack中执行到异步任务的时候，就将他丢给WebAPIs,接着执行同步任务,直到Stack为空；</li>
-<li>此期间WebAPIs完成这个事件，把回调函数放入队列中等待执行（微任务放到微任务队列，宏任务放到宏任务队列）</li>
-<li>执行栈为空时，Event Loop把微任务队列执行清空；</li>
-<li>微任务队列清空后，进入宏任务队列，取队列的第一项任务放入Stack(栈）中执行，执行完成后，查看微任务队列是否有任务，有的话，清空微任务队列。重复4，继续从宏任务中取任务执行，执行完成之后，继续清空微任务，如此反复循环，直至清空所有的任务。</li>
-</ol>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/342e581223d2471d9484fc48beb9f8e1~tplv-k3u1fbpfcp-zoom-1.image" alt="事件循环流程"></p>
-</li>
-<li><p>浏览器中的任务源(task):</p>
-<ul>
-<li><code>宏任务(macrotask)</code>：<br>宿主环境提供的，比如浏览器<br>ajax、setTimeout、setInterval、setTmmediate(只兼容ie)、script、requestAnimationFrame、messageChannel、UI渲染、一些浏览器api</li>
-<li><code>微任务(microtask)</code>：<br>语言本身提供的，比如promise.then<br>then、queueMicrotask(基于then)、mutationObserver(浏览器提供)、messageChannel 、mutationObersve</li>
-</ul>
-</li>
-</ul>
-<p>传送门 ☞ <a target="_blank" rel="noopener" href="https://juejin.cn/post/7001881781125251086"># 宏任务和微任务</a></p>
-<h4 id="Node-环境中的事件环（Event-Loop"><a href="#Node-环境中的事件环（Event-Loop" class="headerlink" title="Node 环境中的事件环（Event Loop)"></a><strong>Node 环境中的事件环（Event Loop)</strong></h4><p><code>Node</code>是基于V8引擎的运行在服务端的<code>JavaScript</code>运行环境，在处理高并发、I&#x2F;O密集(文件操作、网络操作、数据库操作等)场景有明显的优势。虽然用到也是V8引擎，但由于服务目的和环境不同，导致了它的API与原生JS有些区别，其Event Loop还要处理一些I&#x2F;O，比如新的网络连接等，所以Node的Event Loop(事件环机制)与浏览器的是不太一样。</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e362c1770f62428fbf3faabd99d2a64c~tplv-k3u1fbpfcp-zoom-1.image" alt="2020120317343116.png"> 执行顺序如下：</p>
-<ul>
-<li><code>timers</code>: 计时器，执行setTimeout和setInterval的回调</li>
-<li><code>pending callbacks</code>: 执行延迟到下一个循环迭代的 I&#x2F;O 回调</li>
-<li><code>idle, prepare</code>: 队列的移动，仅系统内部使用</li>
-<li><code>poll轮询</code>: 检索新的 I&#x2F;O 事件;执行与 I&#x2F;O 相关的回调。事实上除了其他几个阶段处理的事情，其他几乎所有的异步都在这个阶段处理。</li>
-<li><code>check</code>: 执行<code>setImmediate</code>回调，setImmediate在这里执行</li>
-<li><code>close callbacks</code>: 执行<code>close</code>事件的<code>callback</code>，一些关闭的回调函数，如：socket.on(‘close’, …)</li>
-</ul>
-<h3 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Commitment</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="variable constant_">PENDING</span>=<span class="string">&#x27;待定&#x27;</span>; <span class="keyword">static</span> <span class="variable constant_">FULFILLED</span>=<span class="string">&#x27;成功&#x27;</span>; <span class="keyword">static</span> <span class="variable constant_">REJECTED</span>=<span class="string">&#x27;拒绝&#x27;</span>;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">func</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">status</span>=<span class="title class_">Commitment</span>.<span class="property">PENDING</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">result</span>=<span class="literal">null</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">resolveCallbacks</span>=[];</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">rejectCallbacks</span>=[];</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="title function_">func</span>(<span class="variable language_">this</span>.<span class="property">resolve</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>),<span class="variable language_">this</span>.<span class="property">reject</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="params">result</span>)&#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">PENDING</span>)&#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">status</span>=<span class="title class_">Commitment</span>.<span class="property">FULFILLED</span>;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">result</span>=result;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">resolveCallbacks</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">callback</span>=&gt;</span>&#123;</span><br><span class="line">                    <span class="title function_">callback</span>(result);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">reject</span>(<span class="params">result</span>)&#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">PENDING</span>)&#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">status</span>=<span class="title class_">Commitment</span>.<span class="property">REJECTED</span>;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">result</span>=result;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">rejectCallbacks</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">callback</span>=&gt;</span>&#123;</span><br><span class="line">                    <span class="title function_">callback</span>(result);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">then</span>(<span class="params">onFULFILLED,onREJECTED</span>)&#123;</span><br><span class="line">        onFULFILLED=<span class="keyword">typeof</span> onFULFILLED === <span class="string">&#x27;function&#x27;</span>?<span class="attr">onFULFILLED</span>:<span class="function">()=&gt;</span>&#123;&#125;;</span><br><span class="line">        onREJECTED=<span class="keyword">typeof</span> onREJECTED === <span class="string">&#x27;function&#x27;</span>?<span class="attr">onREJECTED</span>:<span class="function">()=&gt;</span>&#123;&#125;;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">PENDING</span>)&#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">resolveCallbacks</span>.<span class="title function_">push</span>(onFULFILLED);</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">rejectCallbacks</span>.<span class="title function_">push</span>(onREJECTED);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">FULFILLED</span>)&#123;</span><br><span class="line">            <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">                <span class="title function_">onFULFILLED</span>(<span class="variable language_">this</span>.<span class="property">result</span>);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">REJECTED</span>)&#123;</span><br><span class="line">            <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">                <span class="title function_">onREJECTED</span>(<span class="variable language_">this</span>.<span class="property">result</span>);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="节流防抖"><a href="#节流防抖" class="headerlink" title="节流防抖"></a>节流防抖</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 防抖函数  一个需要频繁触发的函数，在规定时间内，只让最后一次生效，前面的不生效</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fn要被节流的函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> delay规定的时间</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn, delay</span>) &#123;</span><br><span class="line">    <span class="comment">//记录上一次的延时器</span></span><br><span class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">       <span class="comment">//清除上一次的演示器</span></span><br><span class="line">        <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">        <span class="comment">//重新设置新的延时器</span></span><br><span class="line">        timer = <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">            <span class="comment">//修正this指向问题</span></span><br><span class="line">            fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>);</span><br><span class="line">        &#125;, delay); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 节流函数 一个函数执行一次后，只有大于设定的执行周期才会执行第二次。有个需要频繁触发的函数，出于优化性能的角度，在规定时间内，只让函数触发的第一次生效，后面的不生效。</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fn要被节流的函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> delay规定的时间</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn, delay</span>) &#123;</span><br><span class="line">    <span class="comment">//记录上一次函数触发的时间</span></span><br><span class="line">    <span class="keyword">var</span> lastTime = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="comment">//记录当前函数触发的时间</span></span><br><span class="line">        <span class="keyword">var</span> nowTime = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">        <span class="keyword">if</span>(nowTime - lastTime &gt; delay)&#123;</span><br><span class="line">            <span class="comment">//修正this指向问题</span></span><br><span class="line">            fn.<span class="title function_">call</span>(<span class="variable language_">this</span>);</span><br><span class="line">            <span class="comment">//同步执行结束时间</span></span><br><span class="line">            lastTime = nowTime;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="数组的扩展"><a href="#数组的扩展" class="headerlink" title="数组的扩展"></a>数组的扩展</h3><ol>
-<li><p><code>...</code>扩展运算符，可将数组变成逗号分割的参数序列，常用于函数调用</p>
-</li>
-<li><p>新增两个创建数组的方法：Array.from()将类数组对象和可遍历对象转化为真正的数组，，Array.of()类似Array构造函数的功能，但是参数个数不同不会有不同结果</p>
-</li>
-<li><p>新增的实例对象方法</p>
-<ol>
-<li><p>遍历：keys, values, entries。这也是对象的遍历方式，因为数组是个特殊的对象，所以能用</p>
-</li>
-<li><p>查找：find 返回数组中第一个满足条件的成员, findIndex 返回数组中第一个满足条件的成员的位置，includes 判断是否包含给定值</p>
-</li>
-<li><p>修改: copyWithin 在当前数组内部将指定位置的成员复制到其他位置, fill 使用给定值填充一个数组</p>
-</li>
-<li><p>转化： flat 展开嵌套的数组，返回一个新数组， flatMap 对数组的每个成员执行一个函数，然后对返回值组成的数组执行 flat 方法，只展开一层</p>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="对象的扩展"><a href="#对象的扩展" class="headerlink" title="对象的扩展"></a>对象的扩展</h3><ol>
-<li><p>属性简写，可以将变量和函数名直接写在大括号内，作为对象的属性和方法</p>
-</li>
-<li><p>属性名表达式，在中括号内写表达式，在es6中允许在用字面量定义对象时，用表达式的形式表示属性名</p>
-</li>
-<li><p><code>...</code> 对象的扩展运算符，取出参数对象的所有可遍历属性，拷贝到当前对象中，常用于复制对象</p>
-</li>
-<li><p>super 关键词，指向当前对象的原型对象</p>
-</li>
-<li><p>遍历对象的属性</p>
-<ol>
-<li><p>for…in 遍历自身和继承的的可枚举</p>
-</li>
-<li><p>keys 自身的可枚举的，不含继承的</p>
-</li>
-<li><p>getOwnPropertyNames 自身所有属性，含不可枚举的</p>
-</li>
-<li><p>getOwnPropertySymbols 自身的所有 Symbols 属性的键名</p>
-</li>
-<li><p>Reflect.ownKeys 自身所有键名（不论 symbols 还是 可枚举），不含继承的</p>
-</li>
-</ol>
-<p>遍历对象的键名，都遵守同样的属性遍历的次序规则：首先遍历数值键，按照数值升序；其次遍历字符串键，按加入时间升序；最后遍历 symbols 键，按加入时间升序</p>
-</li>
-<li><p>对象新增的方法：</p>
-<ol>
-<li><p>遍历：Object.keys, Object.values, Object.entries</p>
-</li>
-<li><p>改：Object.assign 合并对象，将源对象合并到目标对象，浅拷贝</p>
-</li>
-<li><p>转化：Object.fromEntries entries的逆操作，将键值对数组转化成对象</p>
-</li>
-<li><p>Object.is 对比方法，相对于 &#x3D;&#x3D;&#x3D; ,区别是 is 中，+0不等于-0，NaN等于NaN。&#x3D;&#x3D;&#x3D; 相反</p>
-</li>
-<li><p>Object.setPrototypeOf 设置原型，Object.getPrototypeOf 获取原型。Object.getOwnPropertyDescriptors 获取自身属性描述</p>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="数组常用方法"><a href="#数组常用方法" class="headerlink" title="数组常用方法"></a>数组常用方法</h3><ul>
-<li><p>数组基本操作有，push\unshift\concat,用于数组添加；pop\shift\slice,用于数组删除；splice用于修改数组；indexOf用于查找数组，es6中增加了find、includes；</p>
-</li>
-<li><p>用于排序的方法，有 reverse、sort</p>
-</li>
-<li><p>用于数组的转换有 join ，将数组转变为字符串，参数是字符串分割符</p>
-</li>
-<li><p>遍历相关的方法有 some、every、foreach、filter、map、 reduce</p>
-</li>
-</ul>
-<p>方法细节：</p>
-<p>push：接收多个参数，并添加到目标数组的末尾，返回数组最新长度</p>
-<p>unshift: 接收多个参数，并添加到目标数组的开头，返回数组最新长度</p>
-<p>concat: 将目标数组和参数合并到一个数组中，返回一个新数组，<strong>不改变原数组</strong></p>
-<p>pop：删除数组最后一个成员，返回删除的项</p>
-<p>shift：删除数组第一项，返回删除的项</p>
-<p>slice：获取数组的部分，并将其返回，<strong>不改变原数组</strong></p>
-<p>splice：删除数组的一部分元素，并在删除的位置上添加新的元素。splice(start,0,item),在 start 位置前添加 item ；splice(0,delCount) 删除 delCount 个数组成员，返回被删除的元素。</p>
-<p>indexOf: 返回给定元素在数组中第一次出现的位置，如果没有返回 -1，不能找 NaN </p>
-<p>find：找到第一个符合条件的数组成员，如果没有返回 undefined，参数是一个回调函数，所有成员依次执行该函数，直到找到第一个返回值为 true 的成员</p>
-<p>includes： 判断数组中是否包含给定的一个值，false和0不相等，使用零值相等算法确定是否找到元素</p>
-<p>区别：indexOf 不能找 NaN，find，includes 可以</p>
-<p>sort：对数组排序，默认按照字典顺序排序</p>
-<p>reverse：颠倒数组排序，返回改变后的数组</p>
-<p>join：已给定的分隔符，将数组成员连成字符串返回，默认用逗号。undefined、null和空位都会变换成空字符串</p>
-<p>some、every： 判断数组成员是否满足某个条件，some只要一个成员返回值为 true 则 some 返回 true；every 则需要所有成员返回 true。空数组 some 返回 false ，every 返回 true</p>
-<p>forEach，map：对所有成员执行参数函数，forEach没有返回值，map有，<strong>不改变原数组</strong></p>
-<p>filter：对所有成员执行参数函数，过滤出返回值为 true 的数组成员，返回一个新数组，<strong>不改变原数组</strong></p>
-<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><p>Model-View-ViewModel的缩写，Model表示数据模型，View表示UI组件，ViewModel表示同步view和model的对象，数据绑定到viewmodel层并且自动渲染到页面中，当视图变化时会通知viewmodel更新数据，也就是数据驱动视图。优点：</p>
-<ul>
-<li>低耦合，view可以独立于model变化，一个model可以绑定到多个view中；</li>
-<li>可复用性，可以将一些视图逻辑放在Model中，让其他视图复用这部分视图逻辑。</li>
-</ul>
-<h3 id="vue2数据双向绑定"><a href="#vue2数据双向绑定" class="headerlink" title="vue2数据双向绑定"></a>vue2数据双向绑定</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现 vue2 的数据双向绑定</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Vue</span>&#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">obj_instance</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">$data</span>=obj_instance.<span class="property">data</span>;</span><br><span class="line">        <span class="title class_">Observer</span>(<span class="variable language_">this</span>.<span class="property">$data</span>);</span><br><span class="line">        <span class="title class_">Compile</span>(obj_instance.<span class="property">el</span>, <span class="variable language_">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据劫持 - 监听实例中的数据</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Observer</span>(<span class="params">data_instance</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(!data_instance || <span class="keyword">typeof</span> data_instance !== <span class="string">&#x27;object&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">const</span> dependency=<span class="keyword">new</span> <span class="title class_">Dependency</span>();</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">keys</span>(data_instance).<span class="title function_">forEach</span>(<span class="function">(<span class="params">key</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> value=data_instance[key];</span><br><span class="line">        <span class="title class_">Observer</span>(value);</span><br><span class="line">        <span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(data_instance,key,&#123;</span><br><span class="line">            <span class="attr">enumerable</span>:<span class="literal">true</span>,</span><br><span class="line">            <span class="attr">configurable</span>:<span class="literal">true</span>,</span><br><span class="line">            <span class="title function_">get</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="comment">// 订阅者加入依赖案例的数组</span></span><br><span class="line">                <span class="title class_">Dependency</span>.<span class="property">temp</span> &amp;&amp; dependency.<span class="title function_">addSub</span>(<span class="title class_">Dependency</span>.<span class="property">temp</span>)</span><br><span class="line">                <span class="keyword">return</span> value;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="title function_">set</span>(<span class="params">newValue</span>)&#123;</span><br><span class="line">                value=newValue;</span><br><span class="line">                <span class="title class_">Observer</span>(newValue);</span><br><span class="line">                dependency.<span class="title function_">notify</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// HTML 模板解析 - 替换DOM</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Compile</span>(<span class="params">element, vm</span>)&#123;</span><br><span class="line">    vm.<span class="property">$el</span>=<span class="variable language_">document</span>.<span class="title function_">querySelector</span>(element);</span><br><span class="line">    <span class="keyword">const</span> fragment=<span class="variable language_">document</span>.<span class="title function_">createDocumentFragment</span>();</span><br><span class="line">    <span class="keyword">let</span> child;</span><br><span class="line">    <span class="keyword">while</span>(child=vm.<span class="property">$el</span>.<span class="property">firstChild</span>)&#123;</span><br><span class="line">        fragment.<span class="title function_">append</span>(child)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">fragment_compile</span>(fragment);</span><br><span class="line">    <span class="comment">// 替换 文本内容</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">fragment_compile</span>(<span class="params">node</span>)&#123;</span><br><span class="line">        <span class="keyword">const</span> pattern=<span class="regexp">/\&#123;\&#123;\s*(\S+)\s*\&#125;\&#125;/</span>;</span><br><span class="line">        <span class="keyword">if</span>(node.<span class="property">nodeType</span>===<span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">const</span> xxx=node.<span class="property">nodeValue</span></span><br><span class="line">            <span class="keyword">const</span> result_regex=pattern.<span class="title function_">exec</span>(node.<span class="property">nodeValue</span>);</span><br><span class="line">            <span class="keyword">if</span>(result_regex)&#123;</span><br><span class="line">                <span class="keyword">const</span> arr=result_regex[<span class="number">1</span>].<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">                <span class="keyword">const</span> value=arr.<span class="title function_">reduce</span>(</span><br><span class="line">                    <span class="function">(<span class="params">total,current</span>)=&gt;</span>total[current],</span><br><span class="line">                    vm.<span class="property">$data</span></span><br><span class="line">                )</span><br><span class="line">                node.<span class="property">nodeValue</span>=xxx.<span class="title function_">replace</span>(pattern,value);</span><br><span class="line">                <span class="comment">// 创建订阅者</span></span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">Watcher</span>(vm,result_regex[<span class="number">1</span>],<span class="function"><span class="params">newValue</span>=&gt;</span>&#123;</span><br><span class="line">                    node.<span class="property">nodeValue</span>=xxx.<span class="title function_">replace</span>(pattern,newValue);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(node.<span class="property">nodeType</span>===<span class="number">1</span> &amp;&amp; node.<span class="property">nodeName</span>===<span class="string">&#x27;INPUT&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">const</span> attr=<span class="title class_">Array</span>.<span class="title function_">from</span>(node.<span class="property">attributes</span>);</span><br><span class="line">            attr.<span class="title function_">forEach</span>(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(i.<span class="property">nodeName</span> === <span class="string">&#x27;v-model&#x27;</span>) &#123;</span><br><span class="line">                    <span class="keyword">const</span> value=i.<span class="property">nodeValue</span>.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>).<span class="title function_">reduce</span>(</span><br><span class="line">                        <span class="function">(<span class="params">total,current</span>)=&gt;</span>total[current],vm.<span class="property">$data</span></span><br><span class="line">                    );</span><br><span class="line">                    node.<span class="property">value</span>=value;</span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">Watcher</span>(vm, i.<span class="property">nodeValue</span>, <span class="function"><span class="params">newValue</span>=&gt;</span>&#123;</span><br><span class="line">                        node.<span class="property">value</span>=newValue;</span><br><span class="line">                    &#125;);</span><br><span class="line">                    node.<span class="title function_">addEventListener</span>(<span class="string">&#x27;input&#x27;</span>, <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">                        <span class="comment">// [&#x27;more&#x27;,&#x27;like&#x27;]</span></span><br><span class="line">                        <span class="keyword">const</span> arr1=i.<span class="property">nodeValue</span>.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">                        <span class="comment">// [&#x27;more&#x27;]</span></span><br><span class="line">                        <span class="keyword">const</span> arr2=arr1.<span class="title function_">slice</span>(<span class="number">0</span>,arr1.<span class="property">length</span>-<span class="number">1</span>);</span><br><span class="line">                        <span class="comment">// vm.$data.more</span></span><br><span class="line">                        <span class="keyword">const</span> final=arr2.<span class="title function_">reduce</span>(</span><br><span class="line">                            <span class="function">(<span class="params">total,current</span>)=&gt;</span>total[current],vm.<span class="property">$data</span></span><br><span class="line">                        )</span><br><span class="line">                        final[arr1[arr1.<span class="property">length</span>-<span class="number">1</span>]]=e.<span class="property">target</span>.<span class="property">value</span>;</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        node.<span class="property">childNodes</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">child</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">fragment_compile</span>(child)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    vm.<span class="property">$el</span>.<span class="title function_">appendChild</span>(fragment);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 依赖 - 收集和通知订阅者</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dependency</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">subscribers</span>=[];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">addSub</span>(<span class="params">sub</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">subscribers</span>.<span class="title function_">push</span>(sub)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">notify</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">subscribers</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">sub</span>=&gt;</span>sub.<span class="title function_">update</span>())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅者</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Watcher</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">vm, key, callback</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">vm</span>=vm;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">key</span>=key;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">callback</span>=callback;</span><br><span class="line">        <span class="comment">// 临时属性 - 触发 getter</span></span><br><span class="line">        <span class="title class_">Dependency</span>.<span class="property">temp</span>=<span class="variable language_">this</span>;</span><br><span class="line">        key.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>).<span class="title function_">reduce</span>(<span class="function">(<span class="params">total,current</span>)=&gt;</span>total[current],vm.<span class="property">$data</span>)</span><br><span class="line">        <span class="title class_">Dependency</span>.<span class="property">temp</span>=<span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">update</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">const</span> value=<span class="variable language_">this</span>.<span class="property">key</span>.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>).<span class="title function_">reduce</span>(</span><br><span class="line">            <span class="function">(<span class="params">total,current</span>)=&gt;</span>total[current],<span class="variable language_">this</span>.<span class="property">vm</span>.<span class="property">$data</span></span><br><span class="line">        );        </span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">callback</span>(value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="vue2生命周期"><a href="#vue2生命周期" class="headerlink" title="vue2生命周期"></a>vue2生命周期</h3><p>生命周期可以分为8个阶段，创建前后、挂载前后，更新前后，卸载前后，以及其他开启和关闭Keepalive，捕获后代组件的错误，下面是8个阶段：</p>
-<ul>
-<li>beforeCreate</li>
-<li>created: 数据监听完成，可获取data和methods</li>
-<li>beforeMount</li>
-<li>mounted ：DOM渲染完成，可以获取DOM</li>
-<li>beforeUpdate：数据更新完成，View层还未更新</li>
-<li>updated：视图层数据已经是最新的</li>
-<li>beforeDestroy：组件的数据和方法都仍有效</li>
-<li>destroyed：组件销毁</li>
-</ul>
-<h4 id="组件生命周期"><a href="#组件生命周期" class="headerlink" title="组件生命周期"></a>组件生命周期</h4><p>父子组价的生命周期的关系：父组件 beforeCreate -&gt; 父 created -&gt; 父 beforeMount -&gt; 子组件 beforeCreate -&gt; 子 created -&gt; 子 beforeMount -&gt; 子 mounted  -&gt; 父 mounted</p>
-<p>子组件更新阶段：父 beforeUpdate -&gt; 子 beforeUpdate  -&gt; 子 updated -&gt; 父 updated</p>
-<h3 id="computed和watch"><a href="#computed和watch" class="headerlink" title="computed和watch"></a>computed和watch</h3><p>computed有缓存机制，当依赖没有变化时，重新调用computed，不会重新运行，结果会直接从缓存中获取。<br>watch主要用来监听特定属性的变化，从而执行回调，进行特定操作。<br>所以当两者都可以使用的时候，建议使用computed</p>
-<h3 id="组件间通信方式"><a href="#组件间通信方式" class="headerlink" title="组件间通信方式"></a>组件间通信方式</h3><ul>
-<li>父子关系的组件数据传递选择 props  与 $emit进行传递，也可选择ref</li>
-<li>兄弟关系的组件数据传递可选择$bus，其次可以选择$parent进行传递</li>
-<li>祖先与后代组件数据传递可选择attrs与listeners或者 Provide与 Inject</li>
-<li>复杂关系的组件数据传递可以通过vuex存放共享的变量</li>
-</ul>
-<h3 id="nextTick机制"><a href="#nextTick机制" class="headerlink" title="nextTick机制"></a>nextTick机制</h3><p>在下一轮DOM更新循环之后执行延迟回调函数，数据更新后立即使用nextTick，此时DOM是更新之后的。</p>
-<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>nextTick接收两个参数，一个是回调函数，另一个是上下文。回调函数会被放在callbacks中，也就是异步操作队列。新增回调函数后又执行了timerFunc函数，执行异步。timeFunc的实现由当前运行环境决定，分别由<code>Promise.then</code>、<code>MutationObserver</code>、<code>setImmediate</code>、<code>setTimeout</code>。总结：</p>
-<ol>
-<li>把回调函数放入callbacks等待执行</li>
-<li>将执行函数放到微任务或者宏任务中</li>
-<li>事件循环到了微任务或者宏任务，执行函数依次执行callbacks中的回调</li>
-</ol>
-<h3 id="data为什么是个函数"><a href="#data为什么是个函数" class="headerlink" title="data为什么是个函数"></a>data为什么是个函数</h3><p>一个组价是有多个实例的，这些实例本质上用的都是同一个构造函数，如果data是对象的话，修改一个实例中的data会影响到其他实例的数据，为确保不冲突，data必须是个函数。</p>
-<h3 id="v-if和v-for"><a href="#v-if和v-for" class="headerlink" title="v-if和v-for"></a>v-if和v-for</h3><p>vue2中，v-for的优先级大于v-if，每次渲染都会先循环再判断，带来性能的浪费。<br>而vue3中，v-if的优先级大于v-for，if无法访问到for定义域中定义的变量别名，会抛出错误。<br>总结，v-if和v-for的优先级本身就不明显，加上会造成性能浪费，所以需要将v-if和for拆开，不能放在同一个节点上。</p>
-<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h3 id="https-的基本概念"><a href="#https-的基本概念" class="headerlink" title="https 的基本概念"></a>https 的基本概念</h3><p>https:是以安全为目标的 HTTP 通道，即 HTTP 下 加入 SSL 层进行加密。 </p>
-<p>https 协议的作用：建立一个信息安全通道，来确保数据的传输，确保网站的真实性。</p>
-<h3 id="http-和-https-的区别？"><a href="#http-和-https-的区别？" class="headerlink" title="http 和 https 的区别？"></a>http 和 https 的区别？</h3><ul>
-<li>http 是超文本传输协议，信息是明文传输，https 则是具有安全性的 ssl 加密传输协议。</li>
-<li>Https 协议需要 ca 证书，费用较高。 </li>
-<li>使用不同的链接方式，端口也不同，一般，http 协议的端口为 80，https 的端口为 443。</li>
-<li>http 的连接很简单，是无状态的。</li>
-</ul>
-<blockquote>
-<p>记忆口诀：明文传输超文本，安全等级各不同。CA证书费用高，无状连接端难同。</p>
-</blockquote>
-<h4 id="https-协议的工作原理"><a href="#https-协议的工作原理" class="headerlink" title="https 协议的工作原理"></a>https 协议的工作原理</h4><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c42bc6f45451457fa6d614fb27534516~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
-<p>客户端在使用 HTTPS 方式与 Web 服务器通信时有以下几个步骤：</p>
-<ol>
-<li>客户端使用 https url 访问服务器，则要求 web 服务器<code>建立 ssl 链接</code>。</li>
-<li>web 服务器接收到客户端的请求之后，会<code>将网站的证书（证书中包含了公钥），传输给客户端</code>。</li>
-<li>客户端和 web 服务器端开始<code>协商 SSL 链接的安全等级</code>，也就是加密等级。</li>
-<li>客户端浏览器通过双方协商一致的安全等级，<code>建立会话密钥</code>，然后通过网站的公钥来加密会话密钥，并传送给网站。</li>
-<li>web 服务器<code>通过自己的私钥解密出会话密钥</code>。</li>
-<li>web 服务器<code>通过会话密钥加密与客户端之间的通信</code>。</li>
-</ol>
-<blockquote>
-<p>记忆口诀：一连二传三协商，四建五得六使用。</p>
-</blockquote>
-<h4 id="https-协议的优缺点"><a href="#https-协议的优缺点" class="headerlink" title="https 协议的优缺点"></a>https 协议的优缺点</h4><ul>
-<li>HTTPS 协议要比 http 协议<code>安全</code>，可防止数据在传输过程中被窃取、改变，确保数据的完整性。</li>
-<li>https 握手阶段比较<code>费时</code>，会使页面加载时间延长 50%，增加 10%~20%的耗电。 </li>
-<li>https <code>缓存</code>不如 http 高效，会增加数据开销。 </li>
-<li>SSL 证书也需要钱，功能越强大的<code>证书费</code>用越高。 </li>
-<li>SSL 证书需要绑定 <code>IP</code>，不能再同一个 ip 上绑定多个域名，ipv4 资源支持不了这种消耗。</li>
-</ul>
-<h3 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h3><p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/baf3d5df95a74f47a1d779ee50c3411f~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
-<ol>
-<li>第一次握手：<code>建立连接时，客户端发送syn包（syn=j）到服务器，并进入SYN_SENT状态，等待服务器确认</code>；SYN：同步序列编号（Synchronize Sequence Numbers）。</li>
-<li>第二次握手：<code>服务器收到syn包并确认客户的SYN</code>（ack&#x3D;j+1），<code>同时也发送一个自己的SYN包</code>（syn&#x3D;k），即SYN+ACK包，此时服务器进入SYN_RECV状态；</li>
-<li>第三次握手：<code>客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1）</code>，此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">握手过程中传送的包里不包含数据，三次握手完毕后，客户端与服务器才正式开始传送数据。</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="TCP-四次挥手"><a href="#TCP-四次挥手" class="headerlink" title="TCP 四次挥手"></a>TCP 四次挥手</h3><ol>
-<li><code>客户端进程发出连接释放报文</code>，并且停止发送数据。释放数据报文首部，FIN&#x3D;1，其序列号为seq&#x3D;u（等于前面已经传送过来的数据的最后一个字节的序号加1），此时，客户端进入FIN-WAIT-1（终止等待1）状态。 TCP规定，FIN报文段即使不携带数据，也要消耗一个序号。</li>
-</ol>
-<p>2）<code>服务器收到连接释放报文，发出确认报文</code>，ACK&#x3D;1，ack&#x3D;u+1，并且带上自己的序列号seq&#x3D;v，此时，服务端就进入了CLOSE-WAIT（关闭等待）状态。TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。</p>
-<p>3）客户端收到服务器的确认请求后，此时，客户端就进入FIN-WAIT-2（终止等待2）状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最 后的数据）。</p>
-<p>4）<code>服务器将最后的数据发送完毕后，就向客户端发送连接释放报文</code>，FIN&#x3D;1，ack&#x3D;u+1，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为seq&#x3D;w，此时，服务器就进入了LAST-ACK（最后确认）状态，等待客户端的确认。</p>
-<p>5）<code>客户端收到服务器的连接释放报文后，必须发出确认</code>，ACK&#x3D;1，ack&#x3D;w+1，而自己的序列号是seq&#x3D;u+1，此时，客户端就进入了TIME-WAIT（时间等待）状态。注意此时TCP连接还没有释放，必须经过2∗∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入CLOSED状态。</p>
-<p>6）服务器只要收到了客户端发出的确认，立即进入CLOSED状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，服务器结束TCP连接的时间要比客户端早一些。</p>
-<h3 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h3><ol>
-<li><p>TCP是面向<code>连接</code>的，而UDP是面向无连接的。</p>
-</li>
-<li><p>TCP仅支持<code>单播传输</code>，UDP 提供了单播，多播，广播的功能。</p>
-</li>
-<li><p>TCP的三次握手保证了连接的<code>可靠性</code>; UDP是无连接的、不可靠的一种数据传输协议，首先不可靠性体现在无连接上，通信都不需要建立连接，对接收到的数据也不发送确认信号，发送端不知道数据是否会正确接收。</p>
-</li>
-<li><p>UDP的<code>头部开销</code>比TCP的更小，数据<code>传输速率更高</code>，<code>实时性更好</code>。</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%96%87/" data-id="clfr003qw0001ncaaf666cu5d" data-title="前端八股文" class="article-share-link">Teilen</a>
-      
-      
-      
     </footer>
   </div>
   
@@ -781,7 +680,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/022%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0uniapp/" data-id="clfmqs4tg0015twaa1jr49g5d" data-title="022系统学习uniapp" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/022%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0uniapp/" data-id="clfmqs4tg0015twaa1jr49g5d" data-title="022系统学习uniapp" class="article-share-link">Partager</a>
       
       
       
@@ -850,112 +749,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/021todos%E5%88%9D%E7%89%88/" data-id="clfmqs4tf000ztwaa3xzedduy" data-title="021todos初版" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-020uniapp前端请求" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/22/020uniapp%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.843Z" itemprop="datePublished">2023-03-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/22/020uniapp%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/">020uniapp前端请求</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
-<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
-<p>uniapp项目，前端请求方式（或 常用插件）。后端是用<code>nodejs</code>创建的服务器。</p>
-<h1 id="uni-request"><a href="#uni-request" class="headerlink" title="uni.request"></a>uni.request</h1><p>官方文档: <a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/api/request/request.html">发起请求</a></p>
-<h1 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h1><p>vue项目，第一个想到的就是<code>axios</code>，使用了<code>uniapp-axios-adapter</code>这个插件，使用方式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 业务代码中</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&quot;uniapp-axios-adapter&quot;</span>;</span><br><span class="line">axios.<span class="title function_">get</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&quot;https://example.com/api/getUserById&quot;</span>,</span><br><span class="line">  <span class="attr">params</span>: &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">1</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>结果出错，<code>get</code>没有定义，最终选择了<code>uni-request</code>。</p>
-<h1 id="todos"><a href="#todos" class="headerlink" title="todos"></a>todos</h1><p>计划：点击选择框，事项状态转为完成，需要完成的功能点：</p>
-<ol>
-<li>事件完成，图标需要换成<code>checkbox</code></li>
-<li>文字删除线</li>
-<li>输入框不可编辑</li>
-<li>更新 leftCount</li>
-</ol>
-<p>	</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/020uniapp%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/" data-id="clfmqs4tg0013twaaby962r5j" data-title="020uniapp前端请求" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-019todos" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/22/019todos/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.837Z" itemprop="datePublished">2023-03-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/22/019todos/">019todos</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
-<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
-<h1 id="todos页面"><a href="#todos页面" class="headerlink" title="todos页面"></a>todos页面</h1><p>今天的<code>todos</code>项目有大进展，终于把大致样子构造出来了，但是有个大问题，列表上的前后按钮是直接用了<code>uni-easyinput</code>的<code>prefixIcon</code>和<code>suffixIcon</code>，虽然组件上有<code>iconClick</code>事件监听前后按钮点击，但是在得知点击的是前后哪个按钮后，无法传入其他参数，也就无法改变事项的状态了。</p>
-<img src="https://gitee.com/t0o-yang/Images/raw/e60923799c94481b5a695d6b89930ffdbdd5b6f1/localhost_5173_(iPhone%20SE).png" title="" alt="todos页面" style="zoom:30%;" data-align="center">
-
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>组件好用，但是当需要调整时，也是很难改的</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/019todos/" data-id="clfmqs4th0019twaa738f7epp" data-title="019todos" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/021todos%E5%88%9D%E7%89%88/" data-id="clfmqs4tf000ztwaa3xzedduy" data-title="021todos初版" class="article-share-link">Partager</a>
       
       
       
@@ -971,7 +765,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">weiter &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Précédent</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Suivant &raquo;</a>
   </nav>
 
 </section>
@@ -980,7 +774,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a></li></ul>
     </div>
@@ -990,7 +784,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
       <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/" rel="tag">data()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
     </div>
@@ -1000,16 +794,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 13.33px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 16.67px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 16.67px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 16.67px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13.33px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
     </div>
@@ -1019,9 +813,17 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/04/06/Python%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0KNN%E7%AE%97%E6%B3%95/">python实现KNN算法</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/06/037-8%E5%A4%8D%E4%B9%A0/">037-8复习</a>
+          </li>
         
           <li>
             <a href="/2023/04/04/036%E6%AD%87%E4%B8%80%E5%A4%A9/">036歇一天</a>
@@ -1033,14 +835,6 @@
         
           <li>
             <a href="/2023/04/02/034Vue%E7%AC%AC%E5%9B%9B%E5%A4%A9/">034Vue第四天</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/02/033Vue%E7%AC%AC%E4%B8%89%E5%A4%A9/">033Vue第三天</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/31/032%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%BA%8C%E5%A4%A9/">032前端框架第二天</a>
           </li>
         
       </ul>
@@ -1057,7 +851,7 @@
     <div id="footer-info" class="inner">
       
       &copy; 2023 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+      Propulsé par <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
