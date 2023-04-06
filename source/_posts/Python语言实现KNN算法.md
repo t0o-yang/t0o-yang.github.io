@@ -3,7 +3,7 @@ title: python实现KNN算法
 top: 10
 ---
 
-# Python语言重写knn算法
+# 实现knn算法
 
 ## knn算法介绍
 
@@ -28,7 +28,7 @@ top: 10
 
 ### 算法流程图
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191015171839298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpZGFfeWFrZQ==,size_16,color_FFFFFF,t_70#pic_center)
+![流程图](../images/knn流程图.png)
 
 ### 1.训练集和测试集
 
