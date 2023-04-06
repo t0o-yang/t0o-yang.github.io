@@ -1,8 +1,9 @@
 ---
-title: 使用MDN文档
+title: 利用好文档、好资源
+top: 8
 ---
 
-如何更好的使用MDN Web文档，在查阅文档的过程中，按照参考文献一路往下看，基本最后都会指向MDN网站的一个冷门文档。这篇文章就是为了记录那些有用的文档。
+如何更好的使用文档，在查阅文档的过程中，按照参考文献一路往下看，基本最后都会指向MDN网站的一个冷门文档。这篇文章就是为了记录那些有用的文档。
 
 |内容|介绍|链接|
 |----|----|------|
@@ -16,4 +17,8 @@ https://developer.mozilla.org/zh-CN/docs/Glossary
 # JavaScript 使用指南
 
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide
+
+# ES入门-阮一峰
+
+https://es6.ruanyifeng.com/
 
