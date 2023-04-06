@@ -3,19 +3,20 @@ title: python实现KNN算法
 top: 10
 ---
 
-@[TOC](目录)
-
 # Python语言重写knn算法
 
 ## knn算法介绍
 
 **knn（k-NearestNeighbor），中译：k最近邻分类算法**。算法要完成的事情是：一组已分类数据集，一组待分数据，根据knn算法将待分数据分好类。
-明白要做什么，这个过程的分类准则就是knn算法。其==核心==就是，==由近邻数据的类别决定待分数据的类别。==
-那么判断是否为近邻又由什么决定呢？——距离，确切来说是，==欧式距离==。空间中有两个点 a(x~0~, y~0~)，b(x~1~, y~1~) ，两点之间的距离就是欧式距离。公式请自查。
+明白要做什么，这个过程的分类准则就是knn算法。其**核心**就是，**由近邻数据的类别决定待分数据的类别。**
+那么判断是否为近邻又由什么决定呢？——距离，确切来说是，**欧式距离**。空间中有两个点 a(x~0~, y~0~)，b(x~1~, y~1~) ，两点之间的距离就是欧式距离。公式请自查。
 放图说话，下图都是表示knn决策过程。
-![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9nc3MyLmJkc3RhdGljLmNvbS85Zm8zZFNhZ194STRraEdrcG9XSzFIRjZoaHkvYmFpa2UvYzA9YmFpa2U4MCw1LDUsODAsMjYvc2lnbj04ZmFiZTJjOGQ1YzhhNzg2YWEyNzQyNWMwNjYwYTI1OC8wMzA4N2JmNDBhZDE2MmQ5NTg2NzIwMmUxNWRmYTllYzhhMTNjZDczLmpwZw?x-oss-process=image/format,png =356x)![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9nc3MyLmJkc3RhdGljLmNvbS8tZm8zZFNhZ194STRraEdrcG9XSzFIRjZoaHkvYmFpa2Uvdz0yNjgvc2lnbj1mYzM3MzFlYTBhZDE2MmQ5ODVlZTY1MWEyOWRmYTk1MC9iZjA5NmI2M2Y2MjQ2YjYwZjIwY2NkNWFlYmY4MWE0YzUxMGZhMjlhLmpwZw?x-oss-process=image/format,png =356x)
 
-其也能进行回归分析，详细内容请参考==近邻算法_百度百科==，点击[这里][1]。
+![knn决策过程1](../images/knn决策过程.png)
+
+![knn决策过程2](../images/knn决策过程2.png)
+
+其也能进行回归分析，详细内容请参考**近邻算法_百度百科**，点击[这里][1]。
 
 ## 算法步骤及实现
 
@@ -23,11 +24,11 @@ top: 10
 
 ### 数据结构
 
-数据存取方式采用==操作列表==的方式，这里考虑的是熟练度。当然**推荐选择导入 Numpy ，操作效率更高**。
+数据存取方式采用**操作列表**的方式，这里考虑的是熟练度。当然**推荐选择导入 Numpy ，操作效率更高**。
 
 ### 算法流程图
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191015171839298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpZGFfeWFrZQ==,size_16,color_FFFFFF,t_70#pic_center =604x928)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20191015171839298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpZGFfeWFrZQ==,size_16,color_FFFFFF,t_70#pic_center)
 
 ### 1.训练集和测试集
 
@@ -60,7 +61,7 @@ def __init__(self, n_neighbors):
 
 ### 3.创建预先序列
 
-百科中第四步，==优先级队列==在本文名为：==预先序列== 。预先序列其实就是近邻序列，其大小等于 k ，具体说是，预先序列计算处理得到的距离的预先序列 ==distList== 。关于创建预先序列的用途，我的理解是，**当 k > 1时，即待分数据会有 k 个邻居时，在不采用预先序列的情况下，同样的，会产生一个 k 大小的近邻序列，并且在生成序列过程中第 i ( i < k ) 个数据都需要进行判断数据是否需要更新。而采用了预先序列，每次比大小的两方，一个是训练数据集，另一个就会变成 distList 中的最大值，更新最大值即可，会减少判断次数。**
+百科中第四步，**优先级队列**在本文名为：**预先序列** 。预先序列其实就是近邻序列，其大小等于 k ，具体说是，预先序列计算处理得到的距离的预先序列 **distList** 。关于创建预先序列的用途，我的理解是，**当 k > 1时，即待分数据会有 k 个邻居时，在不采用预先序列的情况下，同样的，会产生一个 k 大小的近邻序列，并且在生成序列过程中第 i ( i < k ) 个数据都需要进行判断数据是否需要更新。而采用了预先序列，每次比大小的两方，一个是训练数据集，另一个就会变成 distList 中的最大值，更新最大值即可，会减少判断次数。**
 `使用每个数据的ID(索引)建立预先序列`
 
 ```python
@@ -158,7 +159,7 @@ def score(self, y_pre, y_test):
 
 ## 完整代码
 
-算法结构是==仿照 KNeighborsClassifier==的使用过程。
+算法结构是**仿照 KNeighborsClassifier**的使用过程。
 
 ```python
 knn = KNeighborsClassifier(n_neighbors=31) #设定近邻指标
@@ -176,7 +177,8 @@ score = knn.score(X_test, y_test)
 | fit()                | get_trainData() | 获取训练集数据    |
 | predict()            | predict()       | 产生预测模型     |
 | score()              | score()         | 计算精确度      |
-| `完整knn代码`            |                 |            |
+
+`完整knn代码`
 
 ```python
 import random
