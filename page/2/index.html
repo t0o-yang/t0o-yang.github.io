@@ -59,10 +59,10 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -70,6 +70,65 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-032前端框架第二天" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/31/032%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%BA%8C%E5%A4%A9/" class="article-date">
+  <time class="dt-published" datetime="2023-03-31T15:47:40.000Z" itemprop="datePublished">2023-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/31/032%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%BA%8C%E5%A4%A9/">032前端框架第二天</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感觉一到手撕和框架的面试题就很难受，前几天的内容完全记不住。</p>
+<h3 id="vue2生命周期"><a href="#vue2生命周期" class="headerlink" title="vue2生命周期"></a>vue2生命周期</h3><p>生命周期可以分为8个阶段，创建前后、挂载前后，更新前后，卸载前后，以及其他开启和关闭Keepalive，捕获后代组件的错误，下面是8个阶段：</p>
+<ul>
+<li>beforeCreate</li>
+<li>created: 数据监听完成，可获取data和methods</li>
+<li>beforeMount</li>
+<li>mounted ：DOM渲染完成，可以获取DOM</li>
+<li>beforeUpdate：数据更新完成，View层还未更新</li>
+<li>updated：视图层数据已经是最新的</li>
+<li>beforeDestroy：组件的数据和方法都仍有效</li>
+<li>destroyed：组件销毁</li>
+</ul>
+<h4 id="组件生命周期"><a href="#组件生命周期" class="headerlink" title="组件生命周期"></a>组件生命周期</h4><p>父子组价的生命周期的关系：父组件 beforeCreate -&gt; 父 created -&gt; 父 beforeMount -&gt; 子组件 beforeCreate -&gt; 子 created -&gt; 子 beforeMount -&gt; 子 mounted  -&gt; 父 mounted</p>
+<p>子组件更新阶段：父 beforeUpdate -&gt; 子 beforeUpdate  -&gt; 子 updated -&gt; 父 updated</p>
+<h3 id="computed和watch"><a href="#computed和watch" class="headerlink" title="computed和watch"></a>computed和watch</h3><p>computed有缓存机制，当依赖没有变化时，重新调用computed，不会重新运行，结果会直接从缓存中获取。<br>watch主要用来监听特定属性的变化，从而执行回调，进行特定操作。<br>所以当两者都可以使用的时候，建议使用computed</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/31/032%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%BA%8C%E5%A4%A9/" data-id="clfwqa10e0000yoaa8n629f9c" data-title="032前端框架第二天" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-031前端框架第一天" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -107,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/30/031%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%B8%80%E5%A4%A9/" data-id="clfvaa15d00002saa5iy0061t" data-title="031前端框架第一天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/30/031%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%B8%80%E5%A4%A9/" data-id="clfvaa15d00002saa5iy0061t" data-title="031前端框架第一天" class="article-share-link">Teilen</a>
       
       
       
@@ -155,7 +214,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/29/030JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%9B%9B%E5%A4%A9/" data-id="clftur91d0000n8aa9kg48aza" data-title="030JS基础第四天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/29/030JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%9B%9B%E5%A4%A9/" data-id="clftur91d0000n8aa9kg48aza" data-title="030JS基础第四天" class="article-share-link">Teilen</a>
       
       
       
@@ -256,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/28/029JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E5%A4%A9/" data-id="clfshabof00004caaeyl0bs7i" data-title="029JS基础第三天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/28/029JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E5%A4%A9/" data-id="clfshabof00004caaeyl0bs7i" data-title="029JS基础第三天" class="article-share-link">Teilen</a>
       
       
       
@@ -334,7 +393,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/27/028JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E5%A4%A9/" data-id="clfr003qu0000ncaabvgx3pqe" data-title="028JS基础第二天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/27/028JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E5%A4%A9/" data-id="clfr003qu0000ncaabvgx3pqe" data-title="028JS基础第二天" class="article-share-link">Teilen</a>
       
       
       
@@ -420,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/26/027JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/" data-id="clfplb8rs00004waaf0r6ejcy" data-title="027JS基础第一天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/26/027JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E5%A4%A9/" data-id="clfplb8rs00004waaf0r6ejcy" data-title="027JS基础第一天" class="article-share-link">Teilen</a>
       
       
       
@@ -479,7 +538,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/25/026-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="clfo6pafx0000wwaacnxh1mxo" data-title="#026#搭建网站服务器" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/25/026-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="clfo6pafx0000wwaacnxh1mxo" data-title="#026#搭建网站服务器" class="article-share-link">Teilen</a>
       
       
       
@@ -530,7 +589,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/24/025uniapp-done/" data-id="clfmqs4tj001gtwaa3194byxz" data-title="025uniapp-done" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/24/025uniapp-done/" data-id="clfmqs4tj001gtwaa3194byxz" data-title="025uniapp-done" class="article-share-link">Teilen</a>
       
       
       
@@ -580,7 +639,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/23/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/" data-id="clfmqs4ti001etwaa1j3232z5" data-title="024uniapp第三天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/23/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/" data-id="clfmqs4ti001etwaa1j3232z5" data-title="024uniapp第三天" class="article-share-link">Teilen</a>
       
       
       
@@ -672,7 +731,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="clfmqs4th0017twaaa8hc6adj" data-title="023gitee+hexo搭建个人博客" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/22/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="clfmqs4th0017twaaa8hc6adj" data-title="023gitee+hexo搭建个人博客" class="article-share-link">Teilen</a>
       
       
       
@@ -686,67 +745,11 @@
 
 
   
-    <article id="post-022系统学习uniapp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/22/022%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0uniapp/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.857Z" itemprop="datePublished">2023-03-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/22/022%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0uniapp/">022系统学习uniapp</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
-<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
-<p>系统学习一下uniapp的使用，正好找的教程的项目都是基于vue2的，刚好学习一下vue2的语法。</p>
-<h1 id="uniapp、vue项目区别"><a href="#uniapp、vue项目区别" class="headerlink" title="uniapp、vue项目区别"></a>uniapp、vue项目区别</h1><h2 id="自定义组件"><a href="#自定义组件" class="headerlink" title="自定义组件"></a>自定义组件</h2><ol>
-<li>在uni-app工程根目录下的 components 目录，创建并存放自定义组件：</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">│─components            	符合vue组件规范的uni-app组件目录</span><br><span class="line">│  └─componentA         	符合‘components/组件名称/组件名称.vue’目录结构，easycom方式可直接使用组件</span><br><span class="line">│  		└─componentA.vue    可复用的componentA组件</span><br><span class="line">│  └─component-a.vue      可复用的component-a组件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>必须components目录下，创建同名组件的同名目录</strong></p>
-<ol start="2">
-<li>直接使用，区别于vue2的引入再注册</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 在index.<span class="property">vue</span>引入 uni-badge 组件--&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">uni-badge</span> <span class="attr">text</span>=<span class="string">&quot;1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">uni-badge</span>&gt;</span><span class="comment">&lt;!-- 3.使用组件 --&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="comment">// 这里不用import引入，也不需要在components内注册uni-badge组件。template里就可以直接用</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>以前在github上用<code>hexo</code>做了个人博客，访问：<a target="_blank" rel="noopener" href="https://t0o-yang.github.io/">个人博客</a>。还挺快的，但已经忘了怎么使用了！电脑也换了。明天用gitee重新整一个。之后博客就放在那了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/022%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0uniapp/" data-id="clfmqs4tg0015twaa1jr49g5d" data-title="022系统学习uniapp" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">weiter &raquo;</a>
   </nav>
 
 </section>
@@ -755,7 +758,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Kategorien</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a></li></ul>
     </div>
@@ -784,7 +787,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
     </div>
@@ -794,9 +797,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/04/08/040%E4%BB%BFVue3%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A-1/">040仿Vue3实现数据绑定</a>
+          </li>
         
           <li>
             <a href="/2023/04/07/039keepalive/">039keepalive</a>
@@ -812,10 +819,6 @@
         
           <li>
             <a href="/2023/04/04/036%E6%AD%87%E4%B8%80%E5%A4%A9/">036歇一天</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/03/035Vue%E7%AC%AC%E4%BA%94%E5%A4%A9/">035Vue第五天</a>
           </li>
         
       </ul>
