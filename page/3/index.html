@@ -59,10 +59,10 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -70,6 +70,98 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-023gitee-hexo搭建个人博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T15:53:14.000Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/22/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">023gitee+hexo搭建个人博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
+<p>今天uniapp的学习进度到了<code>showModal</code>，其次是在码云上重新搭了博客。介绍工具、记录一下过程。改用个人博客，也是因为这几天写的只能算日志，不算技术博客，还是放在个人网站上比较好。</p>
+<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><h3 id="静态网站工具"><a href="#静态网站工具" class="headerlink" title="静态网站工具"></a>静态网站工具</h3><p>gitee上的Page服务中提到了<code>Jekyll</code>、<code>Hugo</code>、<code>Hexo</code>三种。虽然<code>Hexo</code>的部署过程最慢（<a target="_blank" rel="noopener" href="https://gitee.com/help/articles/4136#article-header0">官方说的</a>），但是个人只用过<code>Hexo</code>，所以选择了Hexo。</p>
+<h3 id="服务提供商"><a href="#服务提供商" class="headerlink" title="服务提供商"></a>服务提供商</h3><p><code>gitee</code>和<code>github</code>两个。gitee码云，国内的服务商，访问会更稳定。但是使用gitee有个缺点，<code>hexo g -d</code>没法自动部署，每次都需要上网站更新部署，下面会提到（不知道github会不会有这种情况）。</p>
+<h1 id="gitee-hexo搭建"><a href="#gitee-hexo搭建" class="headerlink" title="gitee+hexo搭建"></a>gitee+hexo搭建</h1><p>参考：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/21193762/answer/79109280">使用hexo，如果换了电脑怎么更新博客？ - CrazyMilk的回答 - 知乎</a>，以前在github上用过Hexo搭建过博客，换设备后，想用这个网站接着写，发现github的仓库中只保留了生成的静态网页，也就是说<code>hexo</code>配置过程要重新弄，连接远程仓库，没有原文档，重新部署的话，旧的博客不就没了吗？所以这次重新使用<code>hexo</code>格外关注这个的解决方案。不想上传配置文件的，看这篇文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45631738/article/details/104716374">使用hexo+gitee搭建博客</a><br>回到文章内容，参考文章是用github的，那我就把gitee的过程写一下。</p>
+<h2 id="1-准备好远程仓库"><a href="#1-准备好远程仓库" class="headerlink" title="1.准备好远程仓库"></a>1.准备好远程仓库</h2><p>创建步骤就不细聊了，跟着页面提示走。注意两个点：</p>
+<ol>
+<li>仓库名最好是账号的初始名称（如果改过名，可打开个人主页，头像下方‘@’的一串字符就是名称），如果仍想用别的名字，就需要配置一下样式的路径，否则网页没有样式，显示效果很丑。</li>
+</ol>
+<p><img src="/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E9%85%8D%E7%BD%AE%E6%A0%B7%E5%BC%8F.png" alt="配置样式"></p>
+<ol start="2">
+<li>设置两个分支<code>master</code>和<code>hexo</code>，hexo存放网站的原始文件，包括配置等；master存放生成的静态网页。最后将<code>hexo</code>设置成默认分支。</li>
+</ol>
+<h2 id="2-准备本地仓库"><a href="#2-准备本地仓库" class="headerlink" title="2.准备本地仓库"></a>2.准备本地仓库</h2><p>克隆远程仓库</p>
+<h2 id="3-准备hexo"><a href="#3-准备hexo" class="headerlink" title="3.准备hexo"></a>3.准备hexo</h2><ol>
+<li>安装，打开<code>git bash</code>全局安装hexo：<code>npm i hexo-cli -g</code></li>
+<li>初始化，在<code>项目文件名a</code>的<strong>外一层</strong>用<code>hexo init 临时文件名b</code>初始化一个<code>hexo</code>项目。hexo init使用的文件夹<strong>必须是空</strong>，所以先在其它地方初始化，然后复制到本地仓库中。</li>
+<li>复制，把<code>临时文件名a</code>文件夹中自动生成的所有文件复制到<code>项目文件名a</code>文件夹中。生成的文件大致有以下这些。</li>
+</ol>
+<p><img src="/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6.png" alt="临时文件"></p>
+<ol start="4">
+<li>下载hexo的依赖包，回到本地仓库的目录下，执行<code>npm i</code><blockquote>
+<p>注意：之后所有操作都在<code>hexo</code>分支下。</p>
+</blockquote>
+</li>
+<li>下载<code>hexo-deployer-git</code>，hexo部署到git上的工具包，执行<code>npm i hexo-deployer-git</code>。</li>
+<li>修改分支为master，<code>repo</code>改为自己的远程仓库，<code>branch</code>等于<code>master</code>。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: git@gitee.com:t0o-yang/t0o-yang.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-部署上线"><a href="#4-部署上线" class="headerlink" title="4.部署上线"></a>4.部署上线</h2><ol>
+<li>依次执行<code>git add .</code>、<code>git commit -m &quot;...&quot;</code>、<code>git push origin hexo</code>提交网站相关的文件；</li>
+<li>执行<code>hexo g -d</code>生成网站并部署<blockquote>
+<p>访问gitee上的博客，发现并没有自动更新，只能到gitee上手动操作。不知道github有没有这种问题</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h1><p>使用<code>hexo new 文章名</code>新建文章，会自动生成md文件。或者，在本地仓库的 <code>/source/_posts</code> 目录下直接新建md文件。建议用命令生成。命令生成会根据设定的模板生成内容，如标题、时间等等，不需要自己写了。同时也能直接生成资源文件夹，存放图片等等内容。</p>
+<h2 id="启用资源文件夹"><a href="#启用资源文件夹" class="headerlink" title="启用资源文件夹"></a>启用资源文件夹</h2><p>在<code>_config.yml</code>中修改<code>post_asset_folder</code>，并添加一些配置。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true # 图像等资源访问</span><br><span class="line">marked: # 启用后，资源图片将会被自动解析为其对应文章的路径，直接用md语法</span><br><span class="line">  prependRoot: true</span><br><span class="line">  postAsset: true</span><br></pre></td></tr></table></figure>
+
+<p>在文章中直接用<code>![](图片路径)</code>就可以放置图片了。更多内容，看<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/asset-folders">官方文档</a>.</p>
+<h2 id="增加标签和分栏"><a href="#增加标签和分栏" class="headerlink" title="增加标签和分栏"></a>增加标签和分栏</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 023gitee+hexo搭建个人博客</span><br><span class="line"><span class="built_in">date</span>: 2023-03-22 23:53:14</span><br><span class="line">tags: [uniapp,hexo]</span><br><span class="line">categories: 百日博客计划</span><br><span class="line">description: 系统学习uniapp第二天，搭建个人博客</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>文章开头增加这些代码，其中，<code>tags</code>是数组，表示有多个标签；只有一个标签，直接写标签名就行了；categories表示分栏（分类），只有一个值时，表示一个分栏；如果是数组，想<code>categories: [a, b]</code>，则表示文章在<code>a</code>栏目下的<code>b</code>子栏目下，如下。</p>
+<p><img src="/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E7%88%B6%E5%AD%90%E6%A0%8F%E7%9B%AE.png" alt="父子栏目"></p>
+<p>同属多个栏目的语法，还没找到…</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/023gitee-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="clfmqs4th0017twaaa8hc6adj" data-title="023gitee+hexo搭建个人博客" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-022系统学习uniapp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -115,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/022%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0uniapp/" data-id="clfmqs4tg0015twaa1jr49g5d" data-title="022系统学习uniapp" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/022%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0uniapp/" data-id="clfmqs4tg0015twaa1jr49g5d" data-title="022系统学习uniapp" class="article-share-link">Share</a>
       
       
       
@@ -184,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/021todos%E5%88%9D%E7%89%88/" data-id="clfmqs4tf000ztwaa3xzedduy" data-title="021todos初版" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/021todos%E5%88%9D%E7%89%88/" data-id="clfmqs4tf000ztwaa3xzedduy" data-title="021todos初版" class="article-share-link">Share</a>
       
       
       
@@ -241,7 +333,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/020uniapp%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/" data-id="clfmqs4tg0013twaaby962r5j" data-title="020uniapp前端请求" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/020uniapp%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/" data-id="clfmqs4tg0013twaaby962r5j" data-title="020uniapp前端请求" class="article-share-link">Share</a>
       
       
       
@@ -289,7 +381,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/019todos/" data-id="clfmqs4th0019twaa738f7epp" data-title="019todos" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/019todos/" data-id="clfmqs4th0019twaa738f7epp" data-title="019todos" class="article-share-link">Share</a>
       
       
       
@@ -335,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/018uniapp/" data-id="clfmqs4td000rtwaa2iu24u6w" data-title="018uniapp" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/018uniapp/" data-id="clfmqs4td000rtwaa2iu24u6w" data-title="018uniapp" class="article-share-link">Share</a>
       
       
       
@@ -380,7 +472,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/017%E5%B0%8F%E7%A8%8B%E5%BA%8F/" data-id="clfmqs4te000wtwaaar0kh84p" data-title="017小程序" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/017%E5%B0%8F%E7%A8%8B%E5%BA%8F/" data-id="clfmqs4te000wtwaaar0kh84p" data-title="017小程序" class="article-share-link">Share</a>
       
       
       
@@ -431,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/016%E6%89%8B%E5%86%99Promise/" data-id="clfmqs4tf0011twaagazl0fiz" data-title="016手写Promise" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/016%E6%89%8B%E5%86%99Promise/" data-id="clfmqs4tf0011twaagazl0fiz" data-title="016手写Promise" class="article-share-link">Share</a>
       
       
       
@@ -514,7 +606,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/015%E7%9B%B8%E7%AD%89%E3%80%81%E6%8B%B7%E8%B4%9D/" data-id="clfmqs4te000ttwaagc0u961j" data-title="015相等、拷贝" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/015%E7%9B%B8%E7%AD%89%E3%80%81%E6%8B%B7%E8%B4%9D/" data-id="clfmqs4te000ttwaagc0u961j" data-title="015相等、拷贝" class="article-share-link">Share</a>
       
       
       
@@ -574,125 +666,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/014vue3%E5%93%8D%E5%BA%94%E5%BC%8F%E6%BA%90%E7%A0%81/" data-id="clfmqs4td000ptwaa11a5h76a" data-title="014vue3响应式源码" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-013前端" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/22/013%E5%89%8D%E7%AB%AF/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.809Z" itemprop="datePublished">2023-03-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/22/013%E5%89%8D%E7%AB%AF/">013前端</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
-<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
-<p>当提及<code>Vue</code>时，会说起什么呢？</p>
-<ol>
-<li>基础：指令的区别或者原理，如<code>v-show</code>、<code>v-if</code></li>
-<li>解析过程，即生命周期；</li>
-<li>它的特性的原理：如何实现响应式，这其中就包括<code>ref</code>、<code>reactive</code>；</li>
-<li>组件</li>
-<li><code>vue3</code>的区别</li>
-</ol>
-<p>今天看看如何实现响应式的，还有vue2是如何实现的。</p>
-<h1 id="vue3和vue2的区别"><a href="#vue3和vue2的区别" class="headerlink" title="vue3和vue2的区别"></a>vue3和vue2的区别</h1><h2 id="Proxy和defineProperty"><a href="#Proxy和defineProperty" class="headerlink" title="Proxy和defineProperty"></a>Proxy和defineProperty</h2><p>原文：<a target="_blank" rel="noopener" href="https://vue3js.cn/interview/vue3/proxy.html">https://vue3js.cn/interview/vue3/proxy.html</a></p>
-<h3 id="defineProperty"><a href="#defineProperty" class="headerlink" title="defineProperty"></a>defineProperty</h3><p>vue2 使用<code>defineProperty</code>生成响应式对象。下面通过代码看看如何实现的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">update</span>(<span class="params">value</span>)&#123;</span><br><span class="line">    app.<span class="property">innerText</span>=obj.<span class="property">foo</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">defineReactive</span>(<span class="params">obj, key, val</span>)&#123;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(obj, key, &#123;</span><br><span class="line">        <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`get <span class="subst">$&#123;key&#125;</span>: <span class="subst">$&#123;val&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">return</span> val;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">set</span>(<span class="params">newVal</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(newVal !== val)&#123;</span><br><span class="line">                val=newVal</span><br><span class="line">                <span class="title function_">update</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>调用<code>defineProperty</code>实现<code>obj.foo</code>的数据响应式，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj=&#123;&#125;</span><br><span class="line"><span class="title function_">defineProperty</span>(obj, <span class="string">&#x27;foo&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    obj.<span class="property">foo</span> = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">toLocaleTimeString</span>()</span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
-
-<p>1秒后，数据发生变化，<code>update</code>方法会被触发。当存在多个<code>key</code>时，需要利用遍历，给<code>obj</code>中的每个<code>key</code>设置<code>get</code>和<code>set</code>方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">observe</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">&#x27;object&#x27;</span> || obj==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">keys</span>(obj).<span class="title function_">forEach</span>(<span class="function"><span class="params">k</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">defineReactive</span>(obj, k, obj[k])</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果<code>value</code>也是个对象，那么还需要在<code>defineProperty</code>中利用递归，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// defineReactive 函数</span></span><br><span class="line"><span class="title function_">observe</span>(val)    <span class="comment">// 递归设置val</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(obj, key, &#123;</span><br><span class="line">    <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`get <span class="subst">$&#123;key&#125;</span>: <span class="subst">$&#123;val&#125;</span>`</span>)</span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">set</span>(<span class="params">newVal</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(newVal !== val)&#123;</span><br><span class="line">            val=newVal</span><br><span class="line">            <span class="title function_">update</span>()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>当赋的是一个对象时，<code>set</code>同样需要递归</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">set</span>(<span class="params">newVal</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(newVal !== val)&#123;</span><br><span class="line">        <span class="title function_">observe</span>(newVal)</span><br><span class="line">        <span class="title function_">notifyUpdate</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>基本的对象响应式完整代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">update</span>(<span class="params">value</span>)&#123;</span><br><span class="line">    app.<span class="property">innerText</span>=obj.<span class="property">foo</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">defineReactive</span>(<span class="params">obj, key, val</span>)&#123;</span><br><span class="line">    <span class="title function_">observe</span>(val)</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(obj, key, &#123;</span><br><span class="line">        <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`get <span class="subst">$&#123;key&#125;</span>: <span class="subst">$&#123;val&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">return</span> val;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">set</span>(<span class="params">newVal</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(newVal !== val)&#123;</span><br><span class="line">                <span class="title function_">observe</span>(newVal)</span><br><span class="line">                <span class="title function_">notifyUpdate</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">observe</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">&#x27;object&#x27;</span> || obj==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">keys</span>(obj).<span class="title function_">forEach</span>(<span class="function"><span class="params">k</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">defineReactive</span>(obj, k, obj[k])</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">const</span> obj=&#123;</span><br><span class="line">    <span class="attr">foo</span>: <span class="string">&#x27;foo&#x27;</span>,</span><br><span class="line">    <span class="attr">bar</span>: <span class="string">&#x27;bar&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">observe</span>(obj)</span><br></pre></td></tr></table></figure>
-
-<p>但是，其中还存在较多问题：</p>
-<ol>
-<li>无法劫持<strong>删除</strong>和<strong>添加</strong>操作</li>
-<li>对<strong>数组</strong>的监听，并不好用，对数组的api（push，pop等）无法劫持</li>
-<li>可以看到当数据是嵌套对象时，需要递归，会对性能产生影响（这个问题 vue3 似乎也存在）</li>
-</ol>
-<p>对上述1，2两个问题，<code>vue2</code>的解决方案：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组重写</span></span><br><span class="line"><span class="keyword">const</span> originalProto=<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span></span><br><span class="line"><span class="keyword">const</span> arrayProto=<span class="title class_">Object</span>.<span class="title function_">create</span>(originalProto)</span><br><span class="line">[<span class="string">&#x27;push&#x27;</span>, <span class="string">&#x27;pop&#x27;</span>, <span class="string">&#x27;shift&#x27;</span>, <span class="string">&#x27;unshift&#x27;</span>, <span class="string">&#x27;splice&#x27;</span>, <span class="string">&#x27;reverse&#x27;</span>, <span class="string">&#x27;sort&#x27;</span>].<span class="title function_">forEach</span>(<span class="function"><span class="params">method</span> =&gt;</span> &#123;</span><br><span class="line">    arrayProto[method] = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">originalProto</span>(method).<span class="title function_">apply</span>(<span class="variable language_">this</span>.<span class="property">arguments</span>);</span><br><span class="line">        dep.<span class="title function_">notice</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h3><p><code>Proxy</code>可以代理对象的默认行为，我们可以改变默认行为，实现自定义。能代理的行为有：</p>
-<ul>
-<li>get(target,propKey,receiver)：拦截对象属性的读取</li>
-<li>set(target,propKey,value,receiver)：拦截对象属性的设置</li>
-<li>has(target,propKey)：拦截propKey in proxy的操作，返回一个布尔值</li>
-<li>deleteProperty(target,propKey)：拦截delete proxy[propKey]的操作，返回一个布尔值</li>
-<li>ownKeys(target)：拦截Object.keys(proxy)、for…in等循环，返回一个数组</li>
-<li>getOwnPropertyDescriptor(target, propKey)：拦截Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象</li>
-<li>defineProperty(target, propKey, propDesc)：拦截Object.defineProperty(proxy, propKey, propDesc)，返回一个布尔值</li>
-<li>其他：<code>preventExtensions(target)</code>、<code>getPrototypeOf(target)</code>、<code>isExtensible(target)</code>、<code>setPrototypeOf(target, proto)</code>、<code>apply(target, object, args)</code>、<code>construct(target, args)</code></li>
-</ul>
-<p><code>Reflect</code>对象，用于调用对象原先的默认行为，上面提到的所有内容。</p>
-<p><strong>补充</strong><br>通过<code>Proxy.revocable(target, handler);</code>可以创建一个可撤销的代理对象。调用<code>revoke()</code>方法即可撤销。</p>
-<p>使用<code>Proxy</code>实现一个响应式方法<code>reactive</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">reactive</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">&#x27;object&#x27;</span> &amp;&amp; obj != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> obj</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Proxy相当于在对象外层加拦截</span></span><br><span class="line">    <span class="keyword">const</span> observed = <span class="keyword">new</span> <span class="title class_">Proxy</span>(obj, &#123;</span><br><span class="line">        <span class="title function_">get</span>(<span class="params">target, key, receiver</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> res = <span class="title class_">Reflect</span>.<span class="title function_">get</span>(target, key, receiver)</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`获取<span class="subst">$&#123;key&#125;</span>:<span class="subst">$&#123;res&#125;</span>`</span>)</span><br><span class="line">            <span class="comment">// 如果是嵌套对象，使用递归</span></span><br><span class="line">            <span class="keyword">return</span> <span class="title function_">isObject</span>(res) ? <span class="title function_">reactive</span>(res) : res</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">set</span>(<span class="params">target, key, value, receiver</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> res = <span class="title class_">Reflect</span>.<span class="title function_">set</span>(target, key, value, receiver)</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`设置<span class="subst">$&#123;key&#125;</span>:<span class="subst">$&#123;value&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">deleteProperty</span>(<span class="params">target, key</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> res = <span class="title class_">Reflect</span>.<span class="title function_">deleteProperty</span>(target, key)</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`删除<span class="subst">$&#123;key&#125;</span>:<span class="subst">$&#123;res&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> observed</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>和<code>defineProperty</code>不同，<code>Proxy</code>直接劫持对象，所以不需要通过遍历劫持对象属性了。</p>
-<h2 id="挂载时发生了什么"><a href="#挂载时发生了什么" class="headerlink" title="挂载时发生了什么"></a>挂载时发生了什么</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// App.vue</span></span><br><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="comment">// 从一个单文件组件中导入根组件</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>)</span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-createApp"><a href="#1-createApp" class="headerlink" title="1. createApp"></a>1. createApp</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> createApp = (<span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="title function_">ensureRenderer</span>().<span class="title function_">createApp</span>(...args)</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-ensureRenderer"><a href="#2-ensureRenderer" class="headerlink" title="2. ensureRenderer"></a>2. ensureRenderer</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">ensureRenderer</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> renderer || (renderer = <span class="title function_">createRenderer</span>(rendererOptions))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-createRenderer"><a href="#3-createRenderer" class="headerlink" title="3. createRenderer"></a>3. createRenderer</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> createRenderer&lt;</span><br><span class="line">  <span class="title class_">HostNode</span> = <span class="title class_">RendererNode</span>,</span><br><span class="line">  <span class="title class_">HostElement</span> = <span class="title class_">RendererElement</span></span><br><span class="line">&gt;(<span class="attr">options</span>: <span class="title class_">RendererOptions</span>&lt;<span class="title class_">HostNode</span>, <span class="title class_">HostElement</span>&gt;) &#123;</span><br><span class="line">  <span class="keyword">return</span> baseCreateRenderer&lt;<span class="title class_">HostNode</span>, <span class="title class_">HostElement</span>&gt;(options)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-baseCreateRenderer"><a href="#4-baseCreateRenderer" class="headerlink" title="4. baseCreateRenderer"></a>4. baseCreateRenderer</h3><p>这个函数中，实现了<code>vnode</code>、<code>diff</code>、<code>patch</code>，很大很重要，目前只关注其返回值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">baseCreateRenderer</span>(<span class="params"></span></span><br><span class="line"><span class="params">  options: RendererOptions,</span></span><br><span class="line"><span class="params">  createHydrationFns?: <span class="keyword">typeof</span> createHydrationFunctions</span></span><br><span class="line"><span class="params"></span>): any &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="attr">insert</span>: hostInsert,</span><br><span class="line">    <span class="attr">remove</span>: hostRemove,</span><br><span class="line">    <span class="attr">patchProp</span>: hostPatchProp,</span><br><span class="line">    <span class="attr">createElement</span>: hostCreateElement,</span><br><span class="line">    <span class="attr">createText</span>: hostCreateText,</span><br><span class="line">    <span class="attr">createComment</span>: hostCreateComment,</span><br><span class="line">    <span class="attr">setText</span>: hostSetText,</span><br><span class="line">    <span class="attr">setElementText</span>: hostSetElementText,</span><br><span class="line">    <span class="attr">parentNode</span>: hostParentNode,</span><br><span class="line">    <span class="attr">nextSibling</span>: hostNextSibling,</span><br><span class="line">    <span class="attr">setScopeId</span>: hostSetScopeId = <span class="variable constant_">NOOP</span>,</span><br><span class="line">    <span class="attr">cloneNode</span>: hostCloneNode,</span><br><span class="line">    <span class="attr">insertStaticContent</span>: hostInsertStaticContent</span><br><span class="line">  &#125; = options</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ....此处省略两千行，我们先不管</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    render,</span><br><span class="line">    hydrate,</span><br><span class="line">    <span class="attr">createApp</span>: <span class="title function_">createAppAPI</span>(render, hydrate)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-createAppAPI"><a href="#5-createAppAPI" class="headerlink" title="5. createAppAPI"></a>5. createAppAPI</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> createAppAPI&lt;<span class="title class_">HostElement</span>&gt;(</span><br><span class="line">  <span class="attr">render</span>: <span class="title class_">RootRenderFunction</span>,</span><br><span class="line">  hydrate?: <span class="title class_">RootHydrateFunction</span></span><br><span class="line">): <span class="title class_">CreateAppFunction</span>&lt;<span class="title class_">HostElement</span>&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">createApp</span>(<span class="params">rootComponent, rootProps = <span class="literal">null</span></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (rootProps != <span class="literal">null</span> &amp;&amp; !<span class="title function_">isObject</span>(rootProps)) &#123;</span><br><span class="line">      __DEV__ &amp;&amp; <span class="title function_">warn</span>(<span class="string">`root props passed to app.mount() must be an object.`</span>)</span><br><span class="line">      rootProps = <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建默认APP配置</span></span><br><span class="line">    <span class="keyword">const</span> context = <span class="title function_">createAppContext</span>()</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="attr">app</span>: <span class="title class_">App</span> = &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment">// 都是一些眼熟的方法</span></span><br><span class="line">        <span class="title function_">use</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="title function_">mixin</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="title function_">component</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="title function_">directive</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line"></span><br><span class="line">        <span class="comment">// mount 我们拎出来讲</span></span><br><span class="line">        <span class="title function_">mount</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="title function_">unmount</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> app</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-createAppContext"><a href="#6-createAppContext" class="headerlink" title="6. createAppContext"></a>6. createAppContext</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">createAppContext</span>(<span class="params"></span>): <span class="title class_">AppContext</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">config</span>: &#123;</span><br><span class="line">      <span class="attr">isNativeTag</span>: <span class="variable constant_">NO</span>,</span><br><span class="line">      <span class="attr">devtools</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">performance</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">globalProperties</span>: &#123;&#125;,</span><br><span class="line">      <span class="attr">optionMergeStrategies</span>: &#123;&#125;,</span><br><span class="line">      <span class="attr">isCustomElement</span>: <span class="variable constant_">NO</span>,</span><br><span class="line">      <span class="attr">errorHandler</span>: <span class="literal">undefined</span>,</span><br><span class="line">      <span class="attr">warnHandler</span>: <span class="literal">undefined</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">mixins</span>: [],</span><br><span class="line">    <span class="attr">components</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">directives</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">provides</span>: <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="literal">null</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>OK，结束了，虽然有很多东西没看到：如何实现响应式的、如何构建VNode的，之后再看吧！</p>
-<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>今天去了我这的市图书馆，环境还不错哈。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/013%E5%89%8D%E7%AB%AF/" data-id="clfmqs4tb000ktwaah1t083tc" data-title="013前端" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/014vue3%E5%93%8D%E5%BA%94%E5%BC%8F%E6%BA%90%E7%A0%81/" data-id="clfmqs4td000ptwaa11a5h76a" data-title="014vue3响应式源码" class="article-share-link">Share</a>
       
       
       
@@ -708,7 +682,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; zurück</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">weiter &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -717,7 +691,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a></li></ul>
     </div>
@@ -729,7 +703,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/" rel="tag">data()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keep-alive/" rel="tag">keep-alive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" rel="tag">数据绑定</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/" rel="tag">data()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keep-alive/" rel="tag">keep-alive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" rel="tag">数据绑定</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
     </div>
   </div>
 
@@ -739,14 +713,14 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 13.33px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 16.67px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 13.33px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 16.67px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13.33px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
     </div>
@@ -756,9 +730,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/04/09/041DNS%E6%9C%8D%E5%8A%A1/">041DNS服务</a>
+          </li>
         
           <li>
             <a href="/2023/04/08/040%E4%BB%BFVue3%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A-1/">040仿Vue3实现数据绑定</a>
@@ -774,10 +752,6 @@
         
           <li>
             <a href="/2023/04/06/037-8%E5%A4%8D%E4%B9%A0/">037-8复习</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/04/036%E6%AD%87%E4%B8%80%E5%A4%A9/">036歇一天</a>
           </li>
         
       </ul>
