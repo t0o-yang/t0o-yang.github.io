@@ -59,10 +59,10 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -166,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/06/Python%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0KNN%E7%AE%97%E6%B3%95/" data-id="clg4u0zfm0003ogaaakst6cvx" data-title="python实现KNN算法" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/06/Python%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0KNN%E7%AE%97%E6%B3%95/" data-id="clg4u0zfm0003ogaaakst6cvx" data-title="python实现KNN算法" class="article-share-link">Teilen</a>
       
       
       
@@ -471,6 +471,12 @@
 <h3 id="data为什么是个函数"><a href="#data为什么是个函数" class="headerlink" title="data为什么是个函数"></a>data为什么是个函数</h3><p>一个组件是有多个实例的，这些实例本质上用的都是同一个构造函数，如果data是对象的话，修改一个实例中的data会影响到其他实例的数据，为确保不冲突，data必须是个函数。</p>
 <h3 id="v-if和v-for"><a href="#v-if和v-for" class="headerlink" title="v-if和v-for"></a>v-if和v-for</h3><p>vue2中，v-for的优先级大于v-if，每次渲染都会先循环再判断，带来性能的浪费。<br>而vue3中，v-if的优先级大于v-for，if无法访问到for定义域中定义的变量别名，会抛出错误。<br>总结，v-if和v-for的优先级本身就不明显，加上会造成性能浪费，所以需要将v-if和for拆开，不能放在同一个节点上。</p>
 <h3 id="keep-alive的实现"><a href="#keep-alive的实现" class="headerlink" title="keep-alive的实现"></a>keep-alive的实现</h3><p>作用：实现组件缓存，保持这些组件的状态，以避免反复渲染导致的性能问题。 需要缓存组件 频繁切换，不需要重复渲染<br>场景：tabs标签页 后台导航，vue性能优化<br>原理：Vue.js内部将DOM节点抽象成了一个个的VNode节点，keep-alive组件的缓存也是基于VNode节点的而不是直接存储DOM结构。它将满足条件（pruneCache与pruneCache）的组件在cache对象中缓存起来，在需要重新渲染的时候再将vnode节点从cache对象中取出并渲染。</p>
+<h3 id="插槽slot"><a href="#插槽slot" class="headerlink" title="插槽slot"></a>插槽slot</h3><p>网页结构占位符，分为<code>默认插槽</code>、<code>具名插槽</code>、<code>作用域插槽</code>：</p>
+<ul>
+<li>默认插槽</li>
+<li>具名插槽，<code>slot</code>上加上<code>name</code>属性，标注插槽名。父组件使用时通过<code>&lt;template v-slot:default&gt;默认插槽&lt;/template&gt;</code>的方式，将具体内容加到子组件的指定位置上。<code>v-slot:</code>可简写成<code>#</code></li>
+<li>作用域插槽<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--子组件 Child.vue--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&quot;footer&quot;</span> <span class="attr">testProps</span>=<span class="string">&quot;子组件的值&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h3</span>&gt;</span>没传footer插槽<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--父组件 Parent.vue--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">child</span>&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!-- 把v-slot的值指定为作⽤域上下⽂对象 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>=<span class="string">&quot;slotProps&quot;</span>&gt;</span></span><br><span class="line">      来⾃⼦组件数据：&#123;&#123;slotProps.testProps&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> #<span class="attr">default</span>=<span class="string">&quot;slotProps&quot;</span>&gt;</span></span><br><span class="line">      来⾃⼦组件数据：&#123;&#123;slotProps.testProps&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
 <h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h3 id="https-的基本概念"><a href="#https-的基本概念" class="headerlink" title="https 的基本概念"></a>https 的基本概念</h3><p>https:是以安全为目标的 HTTP 通道，即 HTTP 下 加入 SSL 层进行加密。 </p>
 <p>https 协议的作用：建立一个信息安全通道，来确保数据的传输，确保网站的真实性。</p>
 <h3 id="http-和-https-的区别？"><a href="#http-和-https-的区别？" class="headerlink" title="http 和 https 的区别？"></a>http 和 https 的区别？</h3><ul>
@@ -555,7 +561,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%96%87/" data-id="clfr003qw0001ncaaf666cu5d" data-title="前端八股文" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/22/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%96%87/" data-id="clfr003qw0001ncaaf666cu5d" data-title="前端八股文" class="article-share-link">Teilen</a>
       
       
       
@@ -616,10 +622,61 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8MDN%E6%96%87%E6%A1%A3/" data-id="clfmqs4tk001jtwaaf26z48yj" data-title="利用好文档、好资源" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/22/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8MDN%E6%96%87%E6%A1%A3/" data-id="clfmqs4tk001jtwaaf26z48yj" data-title="利用好文档、好资源" class="article-share-link">Teilen</a>
       
       
       
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-042slot" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/10/042slot/" class="article-date">
+  <time class="dt-published" datetime="2023-04-10T15:55:28.000Z" itemprop="datePublished">2023-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/10/042slot/">042slot</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>坚持不下去了，有种被赶着走的感觉。没有复习。今天两场面试，岗位都一样。</p>
+<h3 id="插槽slot"><a href="#插槽slot" class="headerlink" title="插槽slot"></a>插槽slot</h3><p>网页结构占位符，分为<code>默认插槽</code>、<code>具名插槽</code>、<code>作用域插槽</code>：</p>
+<ul>
+<li>默认插槽</li>
+<li>具名插槽，<code>slot</code>上加上<code>name</code>属性，标注插槽名。父组件使用时通过<code>&lt;template v-slot:default&gt;默认插槽&lt;/template&gt;</code>的方式，将具体内容加到子组件的指定位置上。<code>v-slot:</code>可简写成<code>#</code></li>
+<li>作用域插槽<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--子组件 Child.vue--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&quot;footer&quot;</span> <span class="attr">testProps</span>=<span class="string">&quot;子组件的值&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h3</span>&gt;</span>没传footer插槽<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--父组件 Parent.vue--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">child</span>&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!-- 把v-slot的值指定为作⽤域上下⽂对象 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>=<span class="string">&quot;slotProps&quot;</span>&gt;</span></span><br><span class="line">      来⾃⼦组件数据：&#123;&#123;slotProps.testProps&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> #<span class="attr">default</span>=<span class="string">&quot;slotProps&quot;</span>&gt;</span></span><br><span class="line">      来⾃⼦组件数据：&#123;&#123;slotProps.testProps&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/10/042slot/" data-id="clgb1377b0000zsaa5jdlgw3w" data-title="042slot" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/slot/" rel="tag">slot</a></li></ul>
+
     </footer>
   </div>
   
@@ -680,7 +737,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/09/041DNS%E6%9C%8D%E5%8A%A1/" data-id="clg9iwl2c000084aa99762avm" data-title="041DNS服务" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/09/041DNS%E6%9C%8D%E5%8A%A1/" data-id="clg9iwl2c000084aa99762avm" data-title="041DNS服务" class="article-share-link">Teilen</a>
       
       
       
@@ -743,7 +800,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/08/040%E4%BB%BFVue3%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A-1/" data-id="clg852orn0000q8aaf0jjd84m" data-title="040仿Vue3实现数据绑定" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/08/040%E4%BB%BFVue3%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A-1/" data-id="clg852orn0000q8aaf0jjd84m" data-title="040仿Vue3实现数据绑定" class="article-share-link">Teilen</a>
       
       
       
@@ -788,7 +845,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/07/039keepalive/" data-id="clg6on2dz00002waa97vi6kpu" data-title="039keepalive" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/07/039keepalive/" data-id="clg6on2dz00002waa97vi6kpu" data-title="039keepalive" class="article-share-link">Teilen</a>
       
       
       
@@ -845,7 +902,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/06/037-8%E5%A4%8D%E4%B9%A0/" data-id="clg4u0zfh0000ogaa64463qee" data-title="037-8复习" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/06/037-8%E5%A4%8D%E4%B9%A0/" data-id="clg4u0zfh0000ogaa64463qee" data-title="037-8复习" class="article-share-link">Teilen</a>
       
       
       
@@ -947,7 +1004,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/04/036%E6%AD%87%E4%B8%80%E5%A4%A9/" data-id="clg2f76jy00000saab4mkgmyw" data-title="036歇一天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/04/036%E6%AD%87%E4%B8%80%E5%A4%A9/" data-id="clg2f76jy00000saab4mkgmyw" data-title="036歇一天" class="article-share-link">Teilen</a>
       
       
       
@@ -997,7 +1054,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/03/035Vue%E7%AC%AC%E4%BA%94%E5%A4%A9/" data-id="clg0v3oxy00008saacbci36zr" data-title="035Vue第五天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/03/035Vue%E7%AC%AC%E4%BA%94%E5%A4%A9/" data-id="clg0v3oxy00008saacbci36zr" data-title="035Vue第五天" class="article-share-link">Teilen</a>
       
       
       
@@ -1011,57 +1068,11 @@
 
 
   
-    <article id="post-034Vue第四天" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/02/034Vue%E7%AC%AC%E5%9B%9B%E5%A4%A9/" class="article-date">
-  <time class="dt-published" datetime="2023-04-02T14:28:55.000Z" itemprop="datePublished">2023-04-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/02/034Vue%E7%AC%AC%E5%9B%9B%E5%A4%A9/">034Vue第四天</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天主要写<code>VideoTV</code>项目的代码，遇到一个问题，最新的数据没有渲染到模板中。Vue面试题看一题吧。</p>
-<h3 id="data为什么是个函数"><a href="#data为什么是个函数" class="headerlink" title="data为什么是个函数"></a>data为什么是个函数</h3><p>一个组价是有多个实例的，这些实例本质上用的都是同一个构造函数，如果data是对象的话，修改一个实例中的data会影响到其他实例的数据，为确保不冲突，data必须是个函数。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/02/034Vue%E7%AC%AC%E5%9B%9B%E5%A4%A9/" data-id="clfzjnmpj0000lcaaealb5xbi" data-title="034Vue第四天" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data/" rel="tag">data()</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">weiter &raquo;</a>
   </nav>
 
 </section>
@@ -1070,7 +1081,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Kategorien</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a></li></ul>
     </div>
@@ -1082,7 +1093,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/" rel="tag">data()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keep-alive/" rel="tag">keep-alive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" rel="tag">数据绑定</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/" rel="tag">data()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keep-alive/" rel="tag">keep-alive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot/" rel="tag">slot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" rel="tag">数据绑定</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
     </div>
   </div>
 
@@ -1092,14 +1103,14 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 13.33px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 16.67px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13.33px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 13.33px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/slot/" style="font-size: 10px;">slot</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 16.67px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13.33px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
     </div>
@@ -1109,9 +1120,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/04/10/042slot/">042slot</a>
+          </li>
         
           <li>
             <a href="/2023/04/09/041DNS%E6%9C%8D%E5%8A%A1/">041DNS服务</a>
@@ -1127,10 +1142,6 @@
         
           <li>
             <a href="/2023/04/06/Python%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0KNN%E7%AE%97%E6%B3%95/">python实现KNN算法</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/06/037-8%E5%A4%8D%E4%B9%A0/">037-8复习</a>
           </li>
         
       </ul>

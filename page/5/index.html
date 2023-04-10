@@ -59,10 +59,10 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -70,6 +70,134 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-004刷题和背面经" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/004%E5%88%B7%E9%A2%98%E5%92%8C%E8%83%8C%E9%9D%A2%E7%BB%8F/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.768Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/22/004%E5%88%B7%E9%A2%98%E5%92%8C%E8%83%8C%E9%9D%A2%E7%BB%8F/">004刷题和背面经</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
+<p>今天没背八股文，刷练习题，还做了德科的机试，三道题都没有完全通过所有用例，都是暴力解答，但是感觉思路没问题，估计是有些情况没考虑到。</p>
+<h1 id="华为机试练习题"><a href="#华为机试练习题" class="headerlink" title="华为机试练习题"></a>华为机试练习题</h1><h2 id="HJ18-IP地址和掩码并进行分类统计"><a href="#HJ18-IP地址和掩码并进行分类统计" class="headerlink" title="HJ18 IP地址和掩码并进行分类统计"></a>HJ18 IP地址和掩码并进行分类统计</h2><p>请解析IP地址和对应的掩码，进行分类识别。要求按照A&#x2F;B&#x2F;C&#x2F;D&#x2F;E类地址归类，不合法的地址和掩码单独归类。</p>
+<p>所有的IP地址划分为 A,B,C,D,E五类</p>
+<p>A类地址从1.0.0.0到126.255.255.255;</p>
+<p>B类地址从128.0.0.0到191.255.255.255;</p>
+<p>C类地址从192.0.0.0到223.255.255.255;</p>
+<p>D类地址从224.0.0.0到239.255.255.255；</p>
+<p>E类地址从240.0.0.0到255.255.255.255</p>
+<p>私网IP范围是：</p>
+<p>从10.0.0.0到10.255.255.255</p>
+<p>从172.16.0.0到172.31.255.255</p>
+<p>从192.168.0.0到192.168.255.255</p>
+<p>子网掩码为二进制下前面是连续的1，然后全是0。（例如：255.255.255.32就是一个非法的掩码）</p>
+<p>（注意二进制下全是1或者全是0均为非法子网掩码）</p>
+<p>注意：</p>
+<ol>
+<li><p>类似于【0.<em>.</em>.<em>】和【127.</em>.*.*】的IP地址不属于上述输入的任意一类，也不属于不合法ip地址，计数时请忽略</p>
+</li>
+<li><p>私有IP地址和A,B,C,D,E类地址是不冲突的</p>
+</li>
+</ol>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>IP合法性判断用多条件暴力判断（代码会看起来有些长），卡到我的是<strong>掩码判断</strong>：首先如何判断前面全是1和后面全是0的组合，其次还要注意，要求的是整体的二进制，前面是1后面是0，最后就是如何转进制，还得注意<strong>首部补零</strong>（一般第一个想法就是转进制判断，网上也有用正则暴力判断的，不推荐）。掩码判断是学习别人代码的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(num+<span class="number">256</span>).<span class="title function_">toString</span>(<span class="number">2</span>).<span class="title function_">substring</span>(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>很巧妙，256的二进制是<code>100000000</code> 后八位是零，转为二进制，源数据加在后面八位上，再用<code>substring</code> 从第一位置取子串。整体代码如下，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rl = <span class="built_in">require</span>(<span class="string">&quot;readline&quot;</span>).<span class="title function_">createInterface</span>(&#123; <span class="attr">input</span>: process.<span class="property">stdin</span> &#125;);</span><br><span class="line"><span class="keyword">var</span> iter = rl[<span class="title class_">Symbol</span>.<span class="property">asyncIterator</span>]();</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readline</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; (<span class="keyword">await</span> iter.<span class="title function_">next</span>()).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// Write your code here</span></span><br><span class="line">    <span class="keyword">let</span> res=[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">    <span class="keyword">while</span>(line = <span class="keyword">await</span> <span class="title function_">readline</span>())&#123;</span><br><span class="line">        <span class="comment">// 不纳入计数的</span></span><br><span class="line">        <span class="keyword">if</span>(line[<span class="number">0</span>]===<span class="string">&#x27;0&#x27;</span>|| line.<span class="title function_">slice</span>(<span class="number">0</span>,<span class="number">3</span>)===<span class="string">&#x27;127&#x27;</span>) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">let</span> count=<span class="title function_">check</span>(line)</span><br><span class="line">        <span class="title class_">Object</span>.<span class="title function_">keys</span>(count).<span class="title function_">forEach</span>(<span class="function"><span class="params">i</span>=&gt;</span>res[i]++)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">check</span>(<span class="params">tokens</span>)&#123;</span><br><span class="line">    tokens = line.<span class="title function_">split</span>(<span class="string">&#x27;~&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> a = tokens[<span class="number">0</span>];  <span class="comment">// ip</span></span><br><span class="line">    <span class="keyword">let</span> b = tokens[<span class="number">1</span>];  <span class="comment">// 掩码</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> arr=a.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span>(arr.<span class="property">length</span>!=<span class="number">4</span> || !arr[<span class="number">0</span>] || arr[<span class="number">0</span>]&lt;<span class="number">0</span>) <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(arr[<span class="number">0</span>]&lt;<span class="number">127</span>)&#123;</span><br><span class="line">        <span class="comment">// A类</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i]!=<span class="string">&#x27;&#x27;</span> &amp;&amp; arr[i]&lt;<span class="number">256</span> &amp;&amp; arr[i]&gt;=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> isTrueMask=<span class="title function_">checkSub</span>(b);</span><br><span class="line">        <span class="keyword">if</span>(isTrueMask)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[<span class="number">0</span>]==<span class="number">10</span>)&#123;</span><br><span class="line">                <span class="comment">// 私有</span></span><br><span class="line">                <span class="keyword">return</span> &#123;<span class="number">0</span>:<span class="number">1</span>, <span class="number">6</span>:<span class="number">1</span>&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">0</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[<span class="number">0</span>]&lt;<span class="number">192</span>)&#123;</span><br><span class="line">        <span class="comment">// B类</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i]!=<span class="string">&#x27;&#x27;</span> &amp;&amp; arr[i]&lt;<span class="number">256</span> &amp;&amp; arr[i]&gt;=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> isTrueMask=<span class="title function_">checkSub</span>(b);</span><br><span class="line">        <span class="keyword">if</span>(isTrueMask)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[<span class="number">0</span>]==<span class="number">172</span> &amp;&amp; arr[<span class="number">1</span>]&gt;<span class="number">15</span> &amp;&amp; arr[<span class="number">1</span>]&lt;<span class="number">32</span>)&#123;</span><br><span class="line">                <span class="comment">// 私有</span></span><br><span class="line">                <span class="keyword">return</span> &#123;<span class="number">1</span>:<span class="number">1</span>, <span class="number">6</span>:<span class="number">1</span>&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">1</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[<span class="number">0</span>]&lt;<span class="number">224</span>)&#123;</span><br><span class="line">        <span class="comment">// C类</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i]!=<span class="string">&#x27;&#x27;</span> &amp;&amp; arr[i]&lt;<span class="number">256</span> &amp;&amp; arr[i]&gt;=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> isTrueMask=<span class="title function_">checkSub</span>(b);</span><br><span class="line">        <span class="keyword">if</span>(isTrueMask)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[<span class="number">0</span>]==<span class="number">192</span> &amp;&amp; arr[<span class="number">1</span>]==<span class="number">168</span>)&#123;</span><br><span class="line">                <span class="comment">// 私有</span></span><br><span class="line">                <span class="keyword">return</span> &#123;<span class="number">2</span>:<span class="number">1</span>, <span class="number">6</span>:<span class="number">1</span>&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">2</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[<span class="number">0</span>]&lt;<span class="number">240</span>)&#123;</span><br><span class="line">        <span class="comment">// D类</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i]!=<span class="string">&#x27;&#x27;</span> &amp;&amp; arr[i]&lt;<span class="number">256</span> &amp;&amp; arr[i]&gt;=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> isTrueMask=<span class="title function_">checkSub</span>(b);</span><br><span class="line">        <span class="keyword">if</span>(isTrueMask) <span class="keyword">return</span> &#123;<span class="number">3</span>:<span class="number">1</span>&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[<span class="number">0</span>]&lt;<span class="number">256</span>)&#123;</span><br><span class="line">        <span class="comment">// E类</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i]!=<span class="string">&#x27;&#x27;</span> &amp;&amp; arr[i]&lt;<span class="number">256</span> &amp;&amp; arr[i]&gt;=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> isTrueMask=<span class="title function_">checkSub</span>(b);</span><br><span class="line">        <span class="keyword">if</span>(isTrueMask) <span class="keyword">return</span> &#123;<span class="number">4</span>:<span class="number">1</span>&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="number">5</span>:<span class="number">1</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkSub</span>(<span class="params">str</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> arr=str.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span>(arr.<span class="property">length</span>!=<span class="number">4</span> || !arr[<span class="number">0</span>] || arr[<span class="number">0</span>]&lt;<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">let</span> mask=<span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)&#123;</span><br><span class="line">        mask+=<span class="title function_">toBinary</span>(<span class="built_in">parseInt</span>(arr[i]))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(mask.<span class="title function_">indexOf</span>(<span class="string">&#x27;01&#x27;</span>)!=-<span class="number">1</span> || mask.<span class="title function_">indexOf</span>(<span class="string">&#x27;10&#x27;</span>)==-<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">toBinary</span>(<span class="params">num</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> (num+<span class="number">256</span>).<span class="title function_">toString</span>(<span class="number">2</span>).<span class="title function_">substring</span>(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="正式机试"><a href="#正式机试" class="headerlink" title="正式机试"></a>正式机试</h1><h2 id="填补合并不连续区间"><a href="#填补合并不连续区间" class="headerlink" title="填补合并不连续区间"></a>填补合并不连续区间</h2><p>给了一个由多组区间<code>[a1,b1], [a2,b2], ...[an,bn]</code>组成的数据和一个连接器<code>[x1, x2, ...xm]</code>，现在要求是用连接器中的值将区间之间的间隙填补上，使得这组区间尽可能合并起来。输出合并后，区间的个数。一个间隙只能用一个连接器组成的填补。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line"><span class="comment">// 区间</span></span><br><span class="line">[<span class="number">1</span>,<span class="number">10</span>],[<span class="number">15</span>,<span class="number">20</span>],[<span class="number">18</span>,<span class="number">30</span>],[<span class="number">33</span>,<span class="number">40</span>]</span><br><span class="line"><span class="comment">// 连接器</span></span><br><span class="line">[<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">输出：</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><code>[1,10]</code>和<code>[15, 20]</code>之间不连续，用<code>5</code>将其填充，就能合并成<code>[1，20]</code>的区间，同理<code>[18,30]</code>和<code>[33, 40]</code>之间就可以用<code>3</code>填充。<code>[15,20]</code>和<code>[18, 30]</code>之间有重叠，能直接合并成一个区间，最终结果等于<code>1</code>。</p>
+<h2 id="字符串A冗余覆盖B"><a href="#字符串A冗余覆盖B" class="headerlink" title="字符串A冗余覆盖B"></a>字符串A冗余覆盖B</h2><p>现有两个字符串<code>s1</code>，<code>s2</code>和一个正整数<code>k</code>，要求在s2中找到满足如下条件的子串：</p>
+<ol>
+<li><p>子串长度等于s1.length+k;</p>
+</li>
+<li><p>子串中包含了s1中出现的所有字母；</p>
+</li>
+<li><p>子串中的字母出现的次数不少于s1对应字母出现的次数；</p>
+</li>
+</ol>
+<p>字符串中的字母都是小写的。</p>
+<h2 id="异常打卡"><a href="#异常打卡" class="headerlink" title="异常打卡"></a>异常打卡</h2><p>异常考勤信息（死去的回忆在攻击我！！！），一组考勤信息有工号，时间，距离，打卡设备，注册设备，出现以下情况的就是异常：</p>
+<ol>
+<li><p>打卡设备和注册设备不同；</p>
+</li>
+<li><p>或者，同一人的前后两次打卡记录的时间少于60分钟并且距离大于5km</p>
+</li>
+</ol>
+<p>输出异常打卡信息，如果是第二种情况，前后两条打卡记录都算异常，都要输出。输出顺序按照输入顺序。</p>
+<p>这题只通过了百分之十几的用例，不知道哪里不对。</p>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>给自己制定了一个计划，<strong>三天小总结，9天大总结</strong>。今天是第四篇文章了，小总结前3天的内容。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><table>
+<thead>
+<tr>
+<th>标题</th>
+<th>概述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>#001#突击服务器和网络通识</td>
+<td>准备一个软件实施的面试，特地找了<strong>服务器</strong>、<strong>网络</strong>、<strong>操作系统</strong>的题</td>
+</tr>
+<tr>
+<td>#002#投简历和刷题</td>
+<td>软件实施不招了，北京德科约了近期机试，去刷题了，也看了一些<strong>vue</strong>面试题</td>
+</tr>
+<tr>
+<td>#003#刷题和华为机试练习</td>
+<td>刷牛客编程题，本来是打算当天晚上机试，HR没法链接，发的是练习题库（WTF，很贴心），推到了第二天</td>
+</tr>
+</tbody></table>
+<p>总的来说：</p>
+<ol>
+<li><p>八股文常背常新；</p>
+</li>
+<li><p>前端岗位现在对跨端方面的要求较多，桌面端（electorn）和移动端（h5 hybrid, 小程序，react native）还有后端（nodeJS），要求知识面广，再者钻研的方向刚好和岗位匹配（好难！！！）。当然大多数还是纯Web开发岗位，但是要求编写组件能力，要对框架有很深的理解（源码级理解起步，可见对编码能力要求很高，对浏览器的理解也要充分）；</p>
+</li>
+<li><p>MDN文档也是常看常新，API上写的有些例子挺巧妙的，对一些API的使用更熟悉，感谢阮一峰老师写的ES6入门，官网文档真不适合学习。</p>
+</li>
+</ol>
+<p>（想用xmind画思维导图的，之后再用吧）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">前端八股--&gt; A(计网)</span><br><span class="line">A--&gt;TCP连接</span><br><span class="line">A--&gt;HTTP状态码</span><br><span class="line">前端八股--&gt; B(操作系统)</span><br><span class="line">B--&gt;进程和线程</span><br><span class="line">B--&gt;死锁</span><br><span class="line">前端八股--&gt; c(服务器)</span><br><span class="line">c--&gt;docker</span><br><span class="line">c--&gt;nginx</span><br><span class="line">前端八股--&gt;d(Vue框架)</span><br><span class="line">d--&gt;...</span><br></pre></td></tr></table></figure>
+
+<h2 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h2><p>这三天刷的题目全是对字符串、数组的操作（不过，实际工作80%这些够用了）；<code>?:</code>；<code>||</code>；<code>&amp;&amp;</code>；类型的隐式转化（加法，判断条件单纯是个变量，这里有大坑，能理解为什么<code>typescript</code> 热度越来越高）；数组的空位、undefined和null对遍历的影响；类型转化和逻辑判断的结合。这里就不重复写代码了，针对遇到的问题，总结一下，这一篇写不完。明天总结一下上面提到的问题，刚好八股文里也有提到。计网、操作系统、服务器、Vue框架的复习总结不写了，一天干不了这么多的活，计划做一个简答的思维导图记忆。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/004%E5%88%B7%E9%A2%98%E5%92%8C%E8%83%8C%E9%9D%A2%E7%BB%8F/" data-id="clfmqs4t60007twaa40xn7fve" data-title="004刷题和背面经" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-003刷题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -141,7 +269,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/003%E5%88%B7%E9%A2%98/" data-id="clfmqs4t40004twaa6zuy12mp" data-title="003刷题" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/22/003%E5%88%B7%E9%A2%98/" data-id="clfmqs4t40004twaa6zuy12mp" data-title="003刷题" class="article-share-link">Teilen</a>
       
       
       
@@ -287,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/002%E6%8A%95%E7%AE%80%E5%8E%86%E5%92%8C%E5%88%B7%E9%A2%98/" data-id="clfmqs4sy0000twaa703x80ho" data-title="002投简历和刷题" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/22/002%E6%8A%95%E7%AE%80%E5%8E%86%E5%92%8C%E5%88%B7%E9%A2%98/" data-id="clfmqs4sy0000twaa703x80ho" data-title="002投简历和刷题" class="article-share-link">Teilen</a>
       
       
       
@@ -478,7 +606,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/001%E5%AE%9E%E6%96%BD%E5%A4%8D%E4%B9%A0/" data-id="clfmqs4t20001twaadgwigcfu" data-title="001实施复习" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/22/001%E5%AE%9E%E6%96%BD%E5%A4%8D%E4%B9%A0/" data-id="clfmqs4t20001twaadgwigcfu" data-title="001实施复习" class="article-share-link">Teilen</a>
       
       
       
@@ -529,7 +657,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/hello-world/" data-id="clfmqs4ti001ctwaaf71o6tq4" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/22/hello-world/" data-id="clfmqs4ti001ctwaaf71o6tq4" data-title="Hello World" class="article-share-link">Teilen</a>
       
       
       
@@ -545,7 +673,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
 </section>
@@ -554,7 +682,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Kategorien</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a></li></ul>
     </div>
@@ -566,7 +694,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/" rel="tag">data()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keep-alive/" rel="tag">keep-alive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" rel="tag">数据绑定</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/" rel="tag">data()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keep-alive/" rel="tag">keep-alive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot/" rel="tag">slot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" rel="tag">数据绑定</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
     </div>
   </div>
 
@@ -576,14 +704,14 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 13.33px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 16.67px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13.33px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 13.33px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/slot/" style="font-size: 10px;">slot</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 16.67px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13.33px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
     </div>
@@ -593,9 +721,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/04/10/042slot/">042slot</a>
+          </li>
         
           <li>
             <a href="/2023/04/09/041DNS%E6%9C%8D%E5%8A%A1/">041DNS服务</a>
@@ -611,10 +743,6 @@
         
           <li>
             <a href="/2023/04/06/Python%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0KNN%E7%AE%97%E6%B3%95/">python实现KNN算法</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/06/037-8%E5%A4%8D%E4%B9%A0/">037-8复习</a>
           </li>
         
       </ul>

@@ -4,14 +4,20 @@
   <meta charset="utf-8">
   
   
-  <title>Tag: 前端 | Hexo</title>
+  <title>042slot | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/tags/%E5%89%8D%E7%AB%AF/index.html">
+  <meta name="description" content="slot插槽的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="042slot">
+<meta property="og:url" content="http://example.com/2023/04/10/042slot/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="slot插槽的使用">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-04-10T15:55:28.000Z">
+<meta property="article:modified_time" content="2023-04-10T16:08:25.376Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="slot">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -69,39 +75,65 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/03/22/008ES6/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.788Z" itemprop="datePublished">3月 22</time>
+        <section id="main"><article id="post-042slot" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/10/042slot/" class="article-date">
+  <time class="dt-published" datetime="2023-04-10T15:55:28.000Z" itemprop="datePublished">2023-04-10</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/22/008ES6/">008ES6</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      042slot
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>坚持不下去了，有种被赶着走的感觉。没有复习。今天两场面试，岗位都一样。</p>
+<h3 id="插槽slot"><a href="#插槽slot" class="headerlink" title="插槽slot"></a>插槽slot</h3><p>网页结构占位符，分为<code>默认插槽</code>、<code>具名插槽</code>、<code>作用域插槽</code>：</p>
+<ul>
+<li>默认插槽</li>
+<li>具名插槽，<code>slot</code>上加上<code>name</code>属性，标注插槽名。父组件使用时通过<code>&lt;template v-slot:default&gt;默认插槽&lt;/template&gt;</code>的方式，将具体内容加到子组件的指定位置上。<code>v-slot:</code>可简写成<code>#</code></li>
+<li>作用域插槽<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--子组件 Child.vue--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&quot;footer&quot;</span> <span class="attr">testProps</span>=<span class="string">&quot;子组件的值&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h3</span>&gt;</span>没传footer插槽<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--父组件 Parent.vue--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">child</span>&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!-- 把v-slot的值指定为作⽤域上下⽂对象 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>=<span class="string">&quot;slotProps&quot;</span>&gt;</span></span><br><span class="line">      来⾃⼦组件数据：&#123;&#123;slotProps.testProps&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> #<span class="attr">default</span>=<span class="string">&quot;slotProps&quot;</span>&gt;</span></span><br><span class="line">      来⾃⼦组件数据：&#123;&#123;slotProps.testProps&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/10/042slot/" data-id="clgb1377b0000zsaa5jdlgw3w" data-title="042slot" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/slot/" rel="tag">slot</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/04/09/041DNS%E6%9C%8D%E5%8A%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">041DNS服务</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
