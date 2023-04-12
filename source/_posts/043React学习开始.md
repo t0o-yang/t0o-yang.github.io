@@ -1,3 +1,11 @@
+---
+title: 043React学习1
+tags: ["React"]
+categories: 百日博客计划
+date: 2023-04-11 00:00:00
+description: react基础
+---
+
 # 前言
 
 没复习，React 学习开始，以下是一些问题，带着问题学习
@@ -42,6 +50,7 @@
 ### 什么是组件
 
 静态结构和代码逻辑的组合，通过引入，可以在其他页面中快速使用
+React 中组件分为类组件和函数组件
 
 ### state 和 props 的区别
 
@@ -51,3 +60,12 @@ props 用于组件间的通信，即数据传入。所有的 props 都是只读�
 ### react 组件生命周期
 
 创建前后；挂载前后；更新前后；销毁前后
+
+1. Mounting： 创建虚拟 DOM，渲染 UI；
+2. Updating： 更新虚拟 DOM，重新渲染 UI；
+3. Unmounting: 删除虚拟 DOM，移除 UI
+
+**类组件**中的生命周期钩子：
+componentDidMount
+componentDidUpdate
+componentWillUnmount
