@@ -57,12 +57,12 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-hírfolyam"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Keresés"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Keresés"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -70,6 +70,123 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-008ES6" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/008ES6/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.788Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/22/008ES6/">008ES6</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
+<p>不用想乱七八糟的，写就完事儿了。</p>
+<h1 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h1><ol>
+<li>Set和Map；原文链接：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://es6.ruanyifeng.com/#docs/set-map </span><br><span class="line">https://vue3js.cn/interview/es6/set_map.html</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set：由一组不重复的元素构成的数据，类似于数组，成为<strong>集合</strong></p>
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><ol>
+<li><strong>创建</strong>，构造函数<code>new Set()</code></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s=<span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) <span class="comment">// Set(3) &#123;1, 2, 3&#125;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><strong>查询和读取</strong><ol>
+<li><code>has()</code>：返回布尔值</li>
+<li>遍历操作，<code>keys</code>, <code>values</code>, <code>entries</code>（Set的键和值相同）, <code>forEach</code></li>
+<li><code>size属性</code>，集合长度</li>
+</ol>
+</li>
+<li><strong>更新</strong>，<code>add</code>，添加成功后或失败，都返回结构本身</li>
+<li><strong>删除</strong>，<code>delete</code>：返回布尔值 <code>clear</code>: 清空集合，没有返回值</li>
+</ol>
+<p>注意：Set并没有获取指定位置值的方法，可以转化为数组后访问</p>
+<h3 id="数组和字符串的去重"><a href="#数组和字符串的去重" class="headerlink" title="数组和字符串的去重"></a>数组和字符串的去重</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">3</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> unique = [...<span class="keyword">new</span> <span class="title class_">Set</span>(arr)]; <span class="comment">// [3, 5, 2]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">&quot;352255&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> unique = [...<span class="keyword">new</span> <span class="title class_">Set</span>(str)].<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>); <span class="comment">// &quot;352&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="实现并集、交集和差集"><a href="#实现并集、交集和差集" class="headerlink" title="实现并集、交集和差集"></a>实现并集、交集和差集</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 并集</span></span><br><span class="line"><span class="keyword">let</span> union = <span class="keyword">new</span> <span class="title class_">Set</span>([...a, ...b]);</span><br><span class="line"><span class="comment">// Set &#123;1, 2, 3, 4&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 交集</span></span><br><span class="line"><span class="keyword">let</span> intersect = <span class="keyword">new</span> <span class="title class_">Set</span>([...a].<span class="title function_">filter</span>(<span class="function"><span class="params">x</span> =&gt;</span> b.<span class="title function_">has</span>(x)));</span><br><span class="line"><span class="comment">// Set &#123;2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// （a 相对于 b 的）差集</span></span><br><span class="line"><span class="keyword">let</span> difference = <span class="keyword">new</span> <span class="title class_">Set</span>([...a].<span class="title function_">filter</span>(<span class="function"><span class="params">x</span> =&gt;</span> !b.<span class="title function_">has</span>(x)));</span><br><span class="line"><span class="comment">// Set &#123;1&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h2><ol>
+<li>数据区别：只能是引用类型、具有 Iterable接口的对象；</li>
+<li>没有遍历操作的API，没有size属性，没有<code>clear</code></li>
+</ol>
+<p>只能用，<code>has</code>，<code>delete</code>，<code>add</code></p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>由键值对构成的结构，称为<strong>字典</strong>，与JS中的对象不同的是，Map的键和值可以是任意类型的数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> element = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myDiv&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// element 被自动转化为 [object HTMLDivElement]</span></span><br><span class="line">data[element] = <span class="string">&#x27;metadata&#x27;</span>;</span><br><span class="line">data[<span class="string">&#x27;[object HTMLDivElement]&#x27;</span>] <span class="comment">// &quot;metadata&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="常用操作-1"><a href="#常用操作-1" class="headerlink" title="常用操作"></a>常用操作</h3><ol>
+<li><strong>创建</strong>，构造函数<code>new Map()</code></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;张三&#x27;</span>],</span><br><span class="line">  [<span class="string">&#x27;title&#x27;</span>, <span class="string">&#x27;Author&#x27;</span>]</span><br><span class="line">]); <span class="comment">// Map(2) &#123;&#x27;name&#x27; =&gt; &#x27;张三&#x27;, &#x27;title&#x27; =&gt; &#x27;Author&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>实际上，任何具有Iterator接口，且每个成员都是双元素数据都可以作为参数，Set和Map也可以</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> set = <span class="keyword">new</span> <span class="title class_">Set</span>([</span><br><span class="line">  [<span class="string">&#x27;foo&#x27;</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="string">&#x27;bar&#x27;</span>, <span class="number">2</span>]</span><br><span class="line">]);</span><br><span class="line"><span class="keyword">const</span> m1 = <span class="keyword">new</span> <span class="title class_">Map</span>(set);</span><br><span class="line">m1.<span class="title function_">get</span>(<span class="string">&#x27;foo&#x27;</span>) <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> m2 = <span class="keyword">new</span> <span class="title class_">Map</span>([[<span class="string">&#x27;baz&#x27;</span>, <span class="number">3</span>]]);</span><br><span class="line"><span class="keyword">const</span> m3 = <span class="keyword">new</span> <span class="title class_">Map</span>(m2);</span><br><span class="line">m3.<span class="title function_">get</span>(<span class="string">&#x27;baz&#x27;</span>) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p><strong>查询和读取</strong></p>
+<ol>
+<li><code>has</code>，判断键是否在字典中，返回布尔值</li>
+<li><code>get()</code>：返回给定键对应的值，如果没有，返回undefined；</li>
+<li>遍历操作，<code>keys</code>, <code>values</code>, <code>entries</code>, <code>forEach</code></li>
+</ol>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// let [key, value] of map.entries() 的简写</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> map) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key, value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><code>size属性</code>，数据长度</li>
+</ol>
+</li>
+<li><p><strong>更新</strong>，<code>set</code>，添加或更新键值对，返回字典</p>
+</li>
+<li><p><strong>删除</strong>，<code>delete</code>：返回布尔值 <code>clear</code>: 清空集合，没有返回值</p>
+</li>
+</ol>
+<h2 id="WeakMap"><a href="#WeakMap" class="headerlink" title="WeakMap"></a>WeakMap</h2><h3 id="与Map区别"><a href="#与Map区别" class="headerlink" title="与Map区别"></a>与Map区别</h3><ol>
+<li>只接受对象作为键名；</li>
+<li>键名所指向的对象，不计入垃圾回收机制</li>
+</ol>
+<p>设计目的在于，当键名引用的源数据对象不再使用时，垃圾回收机制就会释放该对象所占用的内存，不用手动删除WeakMap中的引用，不用担心忘记释放导致内存溢出。</p>
+<p>举个例子，在网页的 DOM 元素上添加数据，就可以使用WeakMap结构。当该 DOM 元素被清除，其所对应的WeakMap记录就会自动被移除。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wm = <span class="keyword">new</span> <span class="title class_">WeakMap</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> element = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;example&#x27;</span>);</span><br><span class="line"></span><br><span class="line">wm.<span class="title function_">set</span>(element, <span class="string">&#x27;some information&#x27;</span>);</span><br><span class="line">wm.<span class="title function_">get</span>(element) <span class="comment">// &quot;some information&quot;</span></span><br></pre></td></tr></table></figure>
+<p>注意：WeakMap 弱引用的只是键名，而不是键值。键值依然是正常引用</p>
+<p>下面代码中，键值obj会在WeakMap产生新的引用，当你修改obj不会影响到内部（可以理解值是深拷贝吧）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wm = <span class="keyword">new</span> <span class="title class_">WeakMap</span>();</span><br><span class="line"><span class="keyword">let</span> key = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">foo</span>: <span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">wm.<span class="title function_">set</span>(key, obj);</span><br><span class="line">obj = <span class="literal">null</span>;</span><br><span class="line">wm.<span class="title function_">get</span>(key)</span><br><span class="line"><span class="comment">// Object &#123;foo: 1&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="操作区别"><a href="#操作区别" class="headerlink" title="操作区别"></a>操作区别</h3><ol>
+<li>没有遍历和size属性</li>
+<li>不能清空，不支持<code>clear</code></li>
+</ol>
+<p>因此只能用：<code>get</code>，<code>set</code>，<code>has</code>，<code>delete</code></p>
+<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>日剧 重启人生 还真好看呢，推荐</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/008ES6/" data-id="clfmqs4t8000dtwaa6wph9bwi" data-title="008ES6" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-007实现Modal" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -142,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/007%E5%AE%9E%E7%8E%B0Modal/" data-id="clfmqs4t8000btwaa5ppd2iwd" data-title="007实现Modal" class="article-share-link">Megosztás</a>
+      <a data-url="http://example.com/2023/03/22/007%E5%AE%9E%E7%8E%B0Modal/" data-id="clfmqs4t8000btwaa5ppd2iwd" data-title="007实现Modal" class="article-share-link">Teilen</a>
       
       
       
@@ -215,7 +332,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/006%E5%A4%A7%E5%AE%9E%E8%AF%9D/" data-id="clfmqs4t50005twaa455o0drf" data-title="006大实话" class="article-share-link">Megosztás</a>
+      <a data-url="http://example.com/2023/03/22/006%E5%A4%A7%E5%AE%9E%E8%AF%9D/" data-id="clfmqs4t50005twaa455o0drf" data-title="006大实话" class="article-share-link">Teilen</a>
       
       
       
@@ -314,7 +431,7 @@ console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/005%E5%B0%8F%E6%80%BB%E7%BB%93/" data-id="clfmqs4t40003twaaefqaf4gf" data-title="005小总结" class="article-share-link">Megosztás</a>
+      <a data-url="http://example.com/2023/03/22/005%E5%B0%8F%E6%80%BB%E7%BB%93/" data-id="clfmqs4t40003twaaefqaf4gf" data-title="005小总结" class="article-share-link">Teilen</a>
       
       
       
@@ -442,7 +559,7 @@ console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/004%E5%88%B7%E9%A2%98%E5%92%8C%E8%83%8C%E9%9D%A2%E7%BB%8F/" data-id="clfmqs4t60007twaa40xn7fve" data-title="004刷题和背面经" class="article-share-link">Megosztás</a>
+      <a data-url="http://example.com/2023/03/22/004%E5%88%B7%E9%A2%98%E5%92%8C%E8%83%8C%E9%9D%A2%E7%BB%8F/" data-id="clfmqs4t60007twaa40xn7fve" data-title="004刷题和背面经" class="article-share-link">Teilen</a>
       
       
       
@@ -524,7 +641,7 @@ console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/003%E5%88%B7%E9%A2%98/" data-id="clfmqs4t40004twaa6zuy12mp" data-title="003刷题" class="article-share-link">Megosztás</a>
+      <a data-url="http://example.com/2023/03/22/003%E5%88%B7%E9%A2%98/" data-id="clfmqs4t40004twaa6zuy12mp" data-title="003刷题" class="article-share-link">Teilen</a>
       
       
       
@@ -670,7 +787,7 @@ console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/002%E6%8A%95%E7%AE%80%E5%8E%86%E5%92%8C%E5%88%B7%E9%A2%98/" data-id="clfmqs4sy0000twaa703x80ho" data-title="002投简历和刷题" class="article-share-link">Megosztás</a>
+      <a data-url="http://example.com/2023/03/22/002%E6%8A%95%E7%AE%80%E5%8E%86%E5%92%8C%E5%88%B7%E9%A2%98/" data-id="clfmqs4sy0000twaa703x80ho" data-title="002投简历和刷题" class="article-share-link">Teilen</a>
       
       
       
@@ -861,7 +978,7 @@ console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/001%E5%AE%9E%E6%96%BD%E5%A4%8D%E4%B9%A0/" data-id="clfmqs4t20001twaadgwigcfu" data-title="001实施复习" class="article-share-link">Megosztás</a>
+      <a data-url="http://example.com/2023/03/22/001%E5%AE%9E%E6%96%BD%E5%A4%8D%E4%B9%A0/" data-id="clfmqs4t20001twaadgwigcfu" data-title="001实施复习" class="article-share-link">Teilen</a>
       
       
       
@@ -912,7 +1029,7 @@ console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/hello-world/" data-id="clfmqs4ti001ctwaaf71o6tq4" data-title="Hello World" class="article-share-link">Megosztás</a>
+      <a data-url="http://example.com/2023/03/22/hello-world/" data-id="clfmqs4ti001ctwaaf71o6tq4" data-title="Hello World" class="article-share-link">Teilen</a>
       
       
       
@@ -928,7 +1045,7 @@ console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Előző</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
 </section>
@@ -937,9 +1054,9 @@ console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategóriák</h3>
+    <h3 class="widget-title">Kategorien</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a></li></ul></li></ul>
     </div>
   </div>
 
@@ -947,9 +1064,9 @@ console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Címkék</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/" rel="tag">data()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keep-alive/" rel="tag">keep-alive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot/" rel="tag">slot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" rel="tag">数据绑定</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/" rel="tag">data()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keep-alive/" rel="tag">keep-alive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot/" rel="tag">slot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" rel="tag">数据绑定</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
     </div>
   </div>
 
@@ -957,16 +1074,16 @@ console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Címkefelhő</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 13.33px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/React/" style="font-size: 16.67px;">React</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/slot/" style="font-size: 10px;">slot</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 16.67px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13.33px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a>
+      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 12.5px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/React/" style="font-size: 17.5px;">React</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/slot/" style="font-size: 10px;">slot</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 15px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">项目</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archív</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
     </div>
@@ -976,9 +1093,13 @@ console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Legfrissebb bejegyzések</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/04/14/046React%E5%AE%9E%E6%88%98/">046React实战</a>
+          </li>
         
           <li>
             <a href="/2023/04/13/045React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B3/">045React学习开始3</a>
@@ -994,10 +1115,6 @@ console.log(stringValue.padStart(9, &quot;.&quot;)); // &quot;......foo&quot;
         
           <li>
             <a href="/2023/04/10/042slot/">042slot</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/09/041DNS%E6%9C%8D%E5%8A%A1/">041DNS服务</a>
           </li>
         
       </ul>
