@@ -1,7 +1,9 @@
 ---
 title: 047React实战2
 tags: ["React", "项目"]
-categories: 百日博客计划
+categories:
+  - 百日博客计划
+  - 仿携程网站
 date: 2023-04-15 17:10:39
 description: 明天回答这些问题
 ---
