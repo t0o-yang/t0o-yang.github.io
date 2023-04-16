@@ -59,10 +59,10 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -70,6 +70,72 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-041DNS服务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/09/041DNS%E6%9C%8D%E5%8A%A1/" class="article-date">
+  <time class="dt-published" datetime="2023-04-09T14:48:18.000Z" itemprop="datePublished">2023-04-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/09/041DNS%E6%9C%8D%E5%8A%A1/">041DNS服务</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="DNS服务"><a href="#DNS服务" class="headerlink" title="DNS服务"></a>DNS服务</h3><p>DNS：域名系统，将域名与对应的IP进行转换的服务系统；</p>
+<p>解析域名的过程如下：</p>
+<ol>
+<li><p>首先搜索浏览器的 DNS 缓存，缓存中维护一张域名与 IP 地址的对应表</p>
+</li>
+<li><p>若没有命中，则继续搜索操作系统的 DNS 缓存</p>
+</li>
+<li><p>若仍然没有命中，则操作系统将域名发送至本地域名服务器，本地域名服务器采用递归查询自己的 DNS 缓存，查找成功则返回结果</p>
+</li>
+<li><p>若本地域名服务器的 DNS 缓存没有命中，则本地域名服务器向上级域名服务器进行迭代查询</p>
+<ol>
+<li>首先本地域名服务器向根域名服务器发起请求，根域名服务器返回顶级域名服务器的地址给本地服务器</li>
+<li>本地域名服务器拿到这个顶级域名服务器的地址后，就向其发起请求，获取权限域名服务器的地址</li>
+<li>本地域名服务器根据权限域名服务器的地址向其发起请求，最终得到该域名对应的 IP 地址</li>
+<li>本地域名服务器将得到的 IP 地址返回给操作系统，同时自己将 IP 地址缓存起来</li>
+</ol>
+</li>
+<li><p>操作系统将 IP 地址返回给浏览器，同时自己也将 IP 地址缓存起</p>
+</li>
+<li><p>至此，浏览器就得到了域名对应的 IP 地址，并将 IP 地址缓存起</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/09/041DNS%E6%9C%8D%E5%8A%A1/" data-id="clg9iwl2c000084aa99762avm" data-title="041DNS服务" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DNS/" rel="tag">DNS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-040仿Vue3实现数据绑定" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -120,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/08/040%E4%BB%BFVue3%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" data-id="clgf98scn0000asaab1bn1dmm" data-title="040仿Vue3实现数据绑定" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/08/040%E4%BB%BFVue3%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" data-id="clgf98scn0000asaab1bn1dmm" data-title="040仿Vue3实现数据绑定" class="article-share-link">Teilen</a>
       
       
       
@@ -165,7 +231,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/07/039keepalive/" data-id="clg6on2dz00002waa97vi6kpu" data-title="039keepalive" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/07/039keepalive/" data-id="clg6on2dz00002waa97vi6kpu" data-title="039keepalive" class="article-share-link">Teilen</a>
       
       
       
@@ -222,7 +288,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/06/037-8%E5%A4%8D%E4%B9%A0/" data-id="clg4u0zfh0000ogaa64463qee" data-title="037-8复习" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/06/037-8%E5%A4%8D%E4%B9%A0/" data-id="clg4u0zfh0000ogaa64463qee" data-title="037-8复习" class="article-share-link">Teilen</a>
       
       
       
@@ -324,7 +390,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/04/036%E6%AD%87%E4%B8%80%E5%A4%A9/" data-id="clg2f76jy00000saab4mkgmyw" data-title="036歇一天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/04/036%E6%AD%87%E4%B8%80%E5%A4%A9/" data-id="clg2f76jy00000saab4mkgmyw" data-title="036歇一天" class="article-share-link">Teilen</a>
       
       
       
@@ -374,7 +440,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/03/035Vue%E7%AC%AC%E4%BA%94%E5%A4%A9/" data-id="clg0v3oxy00008saacbci36zr" data-title="035Vue第五天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/03/035Vue%E7%AC%AC%E4%BA%94%E5%A4%A9/" data-id="clg0v3oxy00008saacbci36zr" data-title="035Vue第五天" class="article-share-link">Teilen</a>
       
       
       
@@ -420,7 +486,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/02/034Vue%E7%AC%AC%E5%9B%9B%E5%A4%A9/" data-id="clfzjnmpj0000lcaaealb5xbi" data-title="034Vue第四天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/02/034Vue%E7%AC%AC%E5%9B%9B%E5%A4%A9/" data-id="clfzjnmpj0000lcaaealb5xbi" data-title="034Vue第四天" class="article-share-link">Teilen</a>
       
       
       
@@ -478,7 +544,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/02/033Vue%E7%AC%AC%E4%B8%89%E5%A4%A9/" data-id="clfy6prkq00009gaaa2vre6p1" data-title="033Vue第三天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/02/033Vue%E7%AC%AC%E4%B8%89%E5%A4%A9/" data-id="clfy6prkq00009gaaa2vre6p1" data-title="033Vue第三天" class="article-share-link">Teilen</a>
       
       
       
@@ -537,7 +603,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/31/032%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%BA%8C%E5%A4%A9/" data-id="clfwqa10e0000yoaa8n629f9c" data-title="032前端框架第二天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/31/032%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%BA%8C%E5%A4%A9/" data-id="clfwqa10e0000yoaa8n629f9c" data-title="032前端框架第二天" class="article-share-link">Teilen</a>
       
       
       
@@ -587,7 +653,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/30/031%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%B8%80%E5%A4%A9/" data-id="clfvaa15d00002saa5iy0061t" data-title="031前端框架第一天" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/30/031%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%B8%80%E5%A4%A9/" data-id="clfvaa15d00002saa5iy0061t" data-title="031前端框架第一天" class="article-share-link">Teilen</a>
       
       
       
@@ -601,59 +667,11 @@
 
 
   
-    <article id="post-030JS基础第四天" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/29/030JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%9B%9B%E5%A4%A9/" class="article-date">
-  <time class="dt-published" datetime="2023-03-29T15:17:30.000Z" itemprop="datePublished">2023-03-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/29/030JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%9B%9B%E5%A4%A9/">030JS基础第四天</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>要早起些，把总结时间也提前。</p>
-<h3 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Commitment</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="variable constant_">PENDING</span>=<span class="string">&#x27;待定&#x27;</span>; <span class="keyword">static</span> <span class="variable constant_">FULFILLED</span>=<span class="string">&#x27;成功&#x27;</span>; <span class="keyword">static</span> <span class="variable constant_">REJECTED</span>=<span class="string">&#x27;拒绝&#x27;</span>;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">func</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">status</span>=<span class="title class_">Commitment</span>.<span class="property">PENDING</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">result</span>=<span class="literal">null</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">resolveCallbacks</span>=[];</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">rejectCallbacks</span>=[];</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="title function_">func</span>(<span class="variable language_">this</span>.<span class="property">resolve</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>),<span class="variable language_">this</span>.<span class="property">reject</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="params">result</span>)&#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">PENDING</span>)&#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">status</span>=<span class="title class_">Commitment</span>.<span class="property">FULFILLED</span>;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">result</span>=result;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">resolveCallbacks</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">callback</span>=&gt;</span>&#123;</span><br><span class="line">                    <span class="title function_">callback</span>(result);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">reject</span>(<span class="params">result</span>)&#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">PENDING</span>)&#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">status</span>=<span class="title class_">Commitment</span>.<span class="property">REJECTED</span>;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">result</span>=result;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">rejectCallbacks</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">callback</span>=&gt;</span>&#123;</span><br><span class="line">                    <span class="title function_">callback</span>(result);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">then</span>(<span class="params">onFULFILLED,onREJECTED</span>)&#123;</span><br><span class="line">        onFULFILLED=<span class="keyword">typeof</span> onFULFILLED === <span class="string">&#x27;function&#x27;</span>?<span class="attr">onFULFILLED</span>:<span class="function">()=&gt;</span>&#123;&#125;;</span><br><span class="line">        onREJECTED=<span class="keyword">typeof</span> onREJECTED === <span class="string">&#x27;function&#x27;</span>?<span class="attr">onREJECTED</span>:<span class="function">()=&gt;</span>&#123;&#125;;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">PENDING</span>)&#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">resolveCallbacks</span>.<span class="title function_">push</span>(onFULFILLED);</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">rejectCallbacks</span>.<span class="title function_">push</span>(onREJECTED);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">FULFILLED</span>)&#123;</span><br><span class="line">            <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">                <span class="title function_">onFULFILLED</span>(<span class="variable language_">this</span>.<span class="property">result</span>);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">status</span>===<span class="title class_">Commitment</span>.<span class="property">REJECTED</span>)&#123;</span><br><span class="line">            <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">                <span class="title function_">onREJECTED</span>(<span class="variable language_">this</span>.<span class="property">result</span>);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="节流防抖"><a href="#节流防抖" class="headerlink" title="节流防抖"></a>节流防抖</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 防抖函数  一个需要频繁触发的函数，在规定时间内，只让最后一次生效，前面的不生效</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fn要被节流的函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> delay规定的时间</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn, delay</span>) &#123;</span><br><span class="line">    <span class="comment">//记录上一次的延时器</span></span><br><span class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">       <span class="comment">//清除上一次的演示器</span></span><br><span class="line">        <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">        <span class="comment">//重新设置新的延时器</span></span><br><span class="line">        timer = <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">            <span class="comment">//修正this指向问题</span></span><br><span class="line">            fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>);</span><br><span class="line">        &#125;, delay); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 节流函数 一个函数执行一次后，只有大于设定的执行周期才会执行第二次。有个需要频繁触发的函数，出于优化性能的角度，在规定时间内，只让函数触发的第一次生效，后面的不生效。</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fn要被节流的函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> delay规定的时间</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn, delay</span>) &#123;</span><br><span class="line">    <span class="comment">//记录上一次函数触发的时间</span></span><br><span class="line">    <span class="keyword">var</span> lastTime = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="comment">//记录当前函数触发的时间</span></span><br><span class="line">        <span class="keyword">var</span> nowTime = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">        <span class="keyword">if</span>(nowTime - lastTime &gt; delay)&#123;</span><br><span class="line">            <span class="comment">//修正this指向问题</span></span><br><span class="line">            fn.<span class="title function_">call</span>(<span class="variable language_">this</span>);</span><br><span class="line">            <span class="comment">//同步执行结束时间</span></span><br><span class="line">            lastTime = nowTime;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/29/030JS%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%9B%9B%E5%A4%A9/" data-id="clftur91d0000n8aa9kg48aza" data-title="030JS基础第四天" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">weiter &raquo;</a>
   </nav>
 
 </section>
@@ -662,7 +680,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Kategorien</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a></li></ul></li></ul>
     </div>
@@ -684,14 +702,14 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 12.5px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/React/" style="font-size: 17.5px;">React</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/slot/" style="font-size: 10px;">slot</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 15px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 12.5px;">项目</a>
+      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 12.5px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/React/" style="font-size: 17.5px;">React</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/slot/" style="font-size: 10px;">slot</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 15px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 15px;">项目</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
     </div>
@@ -701,9 +719,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/04/16/048React%E5%AE%9E%E6%88%983/">048React实战3</a>
+          </li>
         
           <li>
             <a href="/2023/04/15/047React%E5%AE%9E%E6%88%982/">047React实战2</a>
@@ -719,10 +741,6 @@
         
           <li>
             <a href="/2023/04/12/044React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B2/">044React学习2</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/11/043React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B/">043React学习1</a>
           </li>
         
       </ul>
