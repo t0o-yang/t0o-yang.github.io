@@ -4,19 +4,20 @@
   <meta charset="utf-8">
   
   
-  <title>044React学习2 | Hexo</title>
+  <title>049React实战4 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="react基础">
+  <meta name="description" content="学习react开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="044React学习2">
-<meta property="og:url" content="http://example.com/2023/04/12/044React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B2/index.html">
+<meta property="og:title" content="049React实战4">
+<meta property="og:url" content="http://example.com/2023/04/18/049React%E5%AE%9E%E6%88%984/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="react基础">
+<meta property="og:description" content="学习react开发">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-04-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-04-13T10:57:30.599Z">
+<meta property="article:published_time" content="2023-04-18T01:36:21.000Z">
+<meta property="article:modified_time" content="2023-04-18T02:40:03.048Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="React">
+<meta property="article:tag" content="项目">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -74,14 +75,14 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-044React学习开始2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-049React实战4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/04/12/044React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B2/" class="article-date">
-  <time class="dt-published" datetime="2023-04-11T16:00:00.000Z" itemprop="datePublished">2023-04-12</time>
+    <a href="/2023/04/18/049React%E5%AE%9E%E6%88%984/" class="article-date">
+  <time class="dt-published" datetime="2023-04-18T01:36:21.000Z" itemprop="datePublished">2023-04-18</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>►<a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a>
   </div>
 
   </div>
@@ -92,7 +93,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      044React学习2
+      049React实战4
     </h1>
   
 
@@ -100,22 +101,18 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>学习函数式组件，Hook 的内容</p>
-<h3 id="什么是-Hooks？"><a href="#什么是-Hooks？" class="headerlink" title="什么是 Hooks？"></a>什么是 Hooks？</h3><p>在函数式组件中，为组件引入特定操作<br>常用的有，useState, useEffect</p>
-<h4 id="自定义hooks"><a href="#自定义hooks" class="headerlink" title="自定义hooks"></a>自定义hooks</h4><h3 id="什么是纯函数"><a href="#什么是纯函数" class="headerlink" title="什么是纯函数"></a>什么是纯函数</h3><p>给函数传入相同的参数，这个函数永远会返回相同的结果</p>
-<h3 id="什么是副作用"><a href="#什么是副作用" class="headerlink" title="什么是副作用"></a>什么是副作用</h3><p>副作用 side effect。函数中处理了与返回值无关的事情。在函数式组件中通过<code>useEffect </code>实现异步更新</p>
-<h3 id="有状态和无状态组件的区别"><a href="#有状态和无状态组件的区别" class="headerlink" title="有状态和无状态组件的区别"></a>有状态和无状态组件的区别</h3><p>无状态组件没有 state，数据来源外部注入的 props。没有生命周期，没有副作用，无法在组件内访问 API，进行数据异步更新</p>
-<h3 id="如何跨组件传递数据"><a href="#如何跨组件传递数据" class="headerlink" title="如何跨组件传递数据"></a>如何跨组件传递数据</h3><p>使用 props<br>react的上下文 context，在需要的组件中引入并使用appContext.Consumer标签<br>hooks中的 useContext</p>
-<h3 id="HOC-是什么意思"><a href="#HOC-是什么意思" class="headerlink" title="HOC 是什么意思"></a>HOC 是什么意思</h3><p>高阶组件，在组件外套一层组件。参数为组件，返回是个新组件的函数。<br>命名规范：以with为前缀</p>
+        <h3 id="react-thunk"><a href="#react-thunk" class="headerlink" title="react-thunk"></a>react-thunk</h3><p>处理异步请求的中间件，管理 axios</p>
+<h3 id="两次请求"><a href="#两次请求" class="headerlink" title="两次请求"></a>两次请求</h3><p>React.StrictMode 的确会造成两次组件渲染，不过这个只会在开发阶段发生，打包之后，在生产环境中不会发送两次请求</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">React.StrictMode</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&quot;&#123;store&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">React.StrictMode</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/12/044React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B2/" data-id="clgdw3l9n0000ccaa7uxpf39j" data-title="044React学习2" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/04/18/049React%E5%AE%9E%E6%88%984/" data-id="clglnqohp000034aaav6b1e2y" data-title="049React实战4" class="article-share-link">Teilen</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
 
     </footer>
   </div>
@@ -123,19 +120,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2023/04/13/045React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          045React学习开始3
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/04/11/043React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/04/16/048React%E5%AE%9E%E6%88%983/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">043React学习1</div>
+      <div class="article-nav-title">048React实战3</div>
     </a>
   
 </nav>

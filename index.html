@@ -645,6 +645,53 @@
 
 
   
+    <article id="post-049React实战4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/18/049React%E5%AE%9E%E6%88%984/" class="article-date">
+  <time class="dt-published" datetime="2023-04-18T01:36:21.000Z" itemprop="datePublished">2023-04-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>►<a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/18/049React%E5%AE%9E%E6%88%984/">049React实战4</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="react-thunk"><a href="#react-thunk" class="headerlink" title="react-thunk"></a>react-thunk</h3><p>处理异步请求的中间件，管理 axios</p>
+<h3 id="两次请求"><a href="#两次请求" class="headerlink" title="两次请求"></a>两次请求</h3><p>React.StrictMode 的确会造成两次组件渲染，不过这个只会在开发阶段发生，打包之后，在生产环境中不会发送两次请求</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">React.StrictMode</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&quot;&#123;store&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">React.StrictMode</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/18/049React%E5%AE%9E%E6%88%984/" data-id="clglnqohp000034aaav6b1e2y" data-title="049React实战4" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-048React实战3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/04/16/048React%E5%AE%9E%E6%88%983/" class="article-date">
@@ -964,57 +1011,6 @@
 
 
   
-    <article id="post-042slot" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/10/042slot/" class="article-date">
-  <time class="dt-published" datetime="2023-04-10T15:55:28.000Z" itemprop="datePublished">2023-04-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/10/042slot/">042slot</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>坚持不下去了，有种被赶着走的感觉。没有复习。今天两场面试，岗位都一样。</p>
-<h3 id="插槽slot"><a href="#插槽slot" class="headerlink" title="插槽slot"></a>插槽slot</h3><p>网页结构占位符，分为<code>默认插槽</code>、<code>具名插槽</code>、<code>作用域插槽</code>：</p>
-<ul>
-<li>默认插槽</li>
-<li>具名插槽，<code>slot</code>上加上<code>name</code>属性，标注插槽名。父组件使用时通过<code>&lt;template v-slot:default&gt;默认插槽&lt;/template&gt;</code>的方式，将具体内容加到子组件的指定位置上。<code>v-slot:</code>可简写成<code>#</code></li>
-<li>作用域插槽<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--子组件 Child.vue--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&quot;footer&quot;</span> <span class="attr">testProps</span>=<span class="string">&quot;子组件的值&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h3</span>&gt;</span>没传footer插槽<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--父组件 Parent.vue--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">child</span>&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!-- 把v-slot的值指定为作⽤域上下⽂对象 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>=<span class="string">&quot;slotProps&quot;</span>&gt;</span></span><br><span class="line">      来⾃⼦组件数据：&#123;&#123;slotProps.testProps&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> #<span class="attr">default</span>=<span class="string">&quot;slotProps&quot;</span>&gt;</span></span><br><span class="line">      来⾃⼦组件数据：&#123;&#123;slotProps.testProps&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/10/042slot/" data-id="clgb1377b0000zsaa5jdlgw3w" data-title="042slot" class="article-share-link">Teilen</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/slot/" rel="tag">slot</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1050,7 +1046,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 12.5px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/React/" style="font-size: 17.5px;">React</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/slot/" style="font-size: 10px;">slot</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 15px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 15px;">项目</a>
+      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 12.5px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/slot/" style="font-size: 10px;">slot</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 15px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 17.5px;">项目</a>
     </div>
   </div>
 
@@ -1072,6 +1068,10 @@
       <ul>
         
           <li>
+            <a href="/2023/04/18/049React%E5%AE%9E%E6%88%984/">049React实战4</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/16/048React%E5%AE%9E%E6%88%983/">048React实战3</a>
           </li>
         
@@ -1085,10 +1085,6 @@
         
           <li>
             <a href="/2023/04/13/045React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B3/">045React学习开始3</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/12/044React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B2/">044React学习2</a>
           </li>
         
       </ul>
