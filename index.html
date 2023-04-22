@@ -57,12 +57,12 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Buscar"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -166,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/06/Python%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0KNN%E7%AE%97%E6%B3%95/" data-id="clg4u0zfm0003ogaaakst6cvx" data-title="python实现KNN算法" class="article-share-link">Compartir</a>
+      <a data-url="http://example.com/2023/04/06/Python%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0KNN%E7%AE%97%E6%B3%95/" data-id="clg4u0zfm0003ogaaakst6cvx" data-title="python实现KNN算法" class="article-share-link">Share</a>
       
       
       
@@ -344,7 +344,34 @@
 <h3 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Commitment</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="variable constant_">PENDING</span> = <span class="string">&quot;待定&quot;</span>;</span><br><span class="line">  <span class="keyword">static</span> <span class="variable constant_">FULFILLED</span> = <span class="string">&quot;成功&quot;</span>;</span><br><span class="line">  <span class="keyword">static</span> <span class="variable constant_">REJECTED</span> = <span class="string">&quot;拒绝&quot;</span>;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">func</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">status</span> = <span class="title class_">Commitment</span>.<span class="property">PENDING</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">result</span> = <span class="literal">null</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">resolveCallbacks</span> = [];</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">rejectCallbacks</span> = [];</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="title function_">func</span>(<span class="variable language_">this</span>.<span class="property">resolve</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>), <span class="variable language_">this</span>.<span class="property">reject</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>));</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">resolve</span>(<span class="params">result</span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="title class_">Commitment</span>.<span class="property">PENDING</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">status</span> = <span class="title class_">Commitment</span>.<span class="property">FULFILLED</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">result</span> = result;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">resolveCallbacks</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">callback</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="title function_">callback</span>(result);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">reject</span>(<span class="params">result</span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="title class_">Commitment</span>.<span class="property">PENDING</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">status</span> = <span class="title class_">Commitment</span>.<span class="property">REJECTED</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">result</span> = result;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">rejectCallbacks</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">callback</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="title function_">callback</span>(result);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">then</span>(<span class="params">onFULFILLED, onREJECTED</span>) &#123;</span><br><span class="line">    onFULFILLED = <span class="keyword">typeof</span> onFULFILLED === <span class="string">&quot;function&quot;</span> ? onFULFILLED : <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line">    onREJECTED = <span class="keyword">typeof</span> onREJECTED === <span class="string">&quot;function&quot;</span> ? onREJECTED : <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="title class_">Commitment</span>.<span class="property">PENDING</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">resolveCallbacks</span>.<span class="title function_">push</span>(onFULFILLED);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">rejectCallbacks</span>.<span class="title function_">push</span>(onREJECTED);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="title class_">Commitment</span>.<span class="property">FULFILLED</span>) &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">onFULFILLED</span>(<span class="variable language_">this</span>.<span class="property">result</span>);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="title class_">Commitment</span>.<span class="property">REJECTED</span>) &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">onREJECTED</span>(<span class="variable language_">this</span>.<span class="property">result</span>);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="节流防抖"><a href="#节流防抖" class="headerlink" title="节流防抖"></a>节流防抖</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 防抖函数  一个需要频繁触发的函数，在规定时间内，只让最后一次生效，前面的不生效</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fn要被节流的函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> delay规定的时间</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn, delay</span>) &#123;</span><br><span class="line">  <span class="comment">//记录上一次的延时器</span></span><br><span class="line">  <span class="keyword">var</span> timer = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//清除上一次的演示器</span></span><br><span class="line">    <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">    <span class="comment">//重新设置新的延时器</span></span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">//修正this指向问题</span></span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>);</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 节流函数 一个函数执行一次后，只有大于设定的执行周期才会执行第二次。有个需要频繁触发的函数，出于优化性能的角度，在规定时间内，只让函数触发的第一次生效，后面的不生效。</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fn要被节流的函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> delay规定的时间</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn, delay</span>) &#123;</span><br><span class="line">  <span class="comment">//记录上一次函数触发的时间</span></span><br><span class="line">  <span class="keyword">var</span> lastTime = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//记录当前函数触发的时间</span></span><br><span class="line">    <span class="keyword">var</span> nowTime = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">    <span class="keyword">if</span> (nowTime - lastTime &gt; delay) &#123;</span><br><span class="line">      <span class="comment">//修正this指向问题</span></span><br><span class="line">      fn.<span class="title function_">call</span>(<span class="variable language_">this</span>);</span><br><span class="line">      <span class="comment">//同步执行结束时间</span></span><br><span class="line">      lastTime = nowTime;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="数组常用方法"><a href="#数组常用方法" class="headerlink" title="数组常用方法"></a>数组常用方法</h3><ul>
+<li><p>数组基本操作有，push\unshift\concat,用于数组添加；pop\shift\slice,用于数组删除；splice 用于修改数组；indexOf 用于查找数组，es6 中增加了 find、includes；</p>
+</li>
+<li><p>用于排序的方法，有 reverse、sort</p>
+</li>
+<li><p>用于数组的转换有 join ，将数组转变为字符串，参数是字符串分割符</p>
+</li>
+<li><p>遍历相关的方法有 some、every、foreach、filter、map、 reduce</p>
+</li>
+</ul>
+<p>方法细节：</p>
+<p>push：接收多个参数，并添加到目标数组的末尾，返回数组最新长度</p>
+<p>unshift: 接收多个参数，并添加到目标数组的开头，返回数组最新长度</p>
+<p>concat: 将目标数组和参数合并到一个数组中，返回一个新数组，<strong>不改变原数组</strong></p>
+<p>pop：删除数组最后一个成员，返回删除的项</p>
+<p>shift：删除数组第一项，返回删除的项</p>
+<p>slice：获取数组的部分，并将其返回，<strong>不改变原数组</strong></p>
+<p>splice：删除数组的一部分元素，并在删除的位置上添加新的元素。splice(start,0,item),在 start 位置前添加 item ；splice(0,delCount) 删除 delCount 个数组成员，返回被删除的元素。</p>
+<p>indexOf: 返回给定元素在数组中第一次出现的位置，如果没有返回 -1，不能找 NaN</p>
+<p>find：找到第一个符合条件的数组成员，如果没有返回 undefined，参数是一个回调函数，所有成员依次执行该函数，直到找到第一个返回值为 true 的成员</p>
+<p>includes： 判断数组中是否包含给定的一个值，false 和 0 不相等，使用零值相等算法确定是否找到元素</p>
+<p>区别：indexOf 不能找 NaN，find，includes 可以</p>
+<p>sort：对数组排序，默认按照字典顺序排序</p>
+<p>reverse：颠倒数组排序，返回改变后的数组</p>
+<p>join：已给定的分隔符，将数组成员连成字符串返回，默认用逗号。undefined、null 和空位都会变换成空字符串</p>
+<p>some、every： 判断数组成员是否满足某个条件，some 只要一个成员返回值为 true 则 some 返回 true；every 则需要所有成员返回 true。空数组 some 返回 false ，every 返回 true</p>
+<p>forEach，map：对所有成员执行参数函数，forEach 没有返回值，map 有，<strong>不改变原数组</strong></p>
+<p>filter：对所有成员执行参数函数，过滤出返回值为 true 的数组成员，返回一个新数组，<strong>不改变原数组</strong></p>
 <h3 id="数组的扩展"><a href="#数组的扩展" class="headerlink" title="数组的扩展"></a>数组的扩展</h3><ol>
 <li><p><code>...</code>扩展运算符，可将数组变成逗号分割的参数序列，常用于函数调用</p>
 </li>
@@ -402,34 +429,42 @@
 </ol>
 </li>
 </ol>
-<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="数组常用方法"><a href="#数组常用方法" class="headerlink" title="数组常用方法"></a>数组常用方法</h3><ul>
-<li><p>数组基本操作有，push\unshift\concat,用于数组添加；pop\shift\slice,用于数组删除；splice 用于修改数组；indexOf 用于查找数组，es6 中增加了 find、includes；</p>
+<h3 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h3><p>一种”编程范式”（programming paradigm），一种编写程序的方法论。它倡导利用简单的执行单元使计算结果不断渐进，最终完成复杂的任务。函数式编程旨在尽可能的提高代码的无状态性和不变性。简单来讲，就是要把过程逻辑写成函数，定义好输入参数，只关心它的输出结果。<br>编程范式主要有三种：命令式编程、声明式编程，以及函数式编程。</p>
+<ul>
+<li><p>与命令式的区别：它关注执行结果，命令式更强调执行过程。</p>
 </li>
-<li><p>用于排序的方法，有 reverse、sort</p>
+<li><p>与声明式的区别：它并不需要进一步抽象封装成类（声明式编程，我理解就是多了类）。</p>
 </li>
-<li><p>用于数组的转换有 join ，将数组转变为字符串，参数是字符串分割符</p>
+<li><p>优点：</p>
+<ul>
+<li>更简单的复用，不用考虑内部变化和外部影响</li>
+<li>更好的管理状态，提倡无状态，或者说更少的状态，能更大程度的减少未知情况，减少意外错误。</li>
+<li>代码可组合</li>
+</ul>
 </li>
-<li><p>遍历相关的方法有 some、every、foreach、filter、map、 reduce</p>
+<li><p>缺点：</p>
+<ul>
+<li>性能开销，对方法的过度包装，从而产生上下文切换的性能开销。</li>
+<li>资源占用，为了实现对象状态的不可变，往往会创建新的对象。</li>
+<li>递归陷阱：在函数式编程中，为了实现迭代，通常会采用递归操作，会造成性能开销。为了优化，我们往往需要写成<strong>尾递归</strong>形式。</li>
+</ul>
 </li>
 </ul>
-<p>方法细节：</p>
-<p>push：接收多个参数，并添加到目标数组的末尾，返回数组最新长度</p>
-<p>unshift: 接收多个参数，并添加到目标数组的开头，返回数组最新长度</p>
-<p>concat: 将目标数组和参数合并到一个数组中，返回一个新数组，<strong>不改变原数组</strong></p>
-<p>pop：删除数组最后一个成员，返回删除的项</p>
-<p>shift：删除数组第一项，返回删除的项</p>
-<p>slice：获取数组的部分，并将其返回，<strong>不改变原数组</strong></p>
-<p>splice：删除数组的一部分元素，并在删除的位置上添加新的元素。splice(start,0,item),在 start 位置前添加 item ；splice(0,delCount) 删除 delCount 个数组成员，返回被删除的元素。</p>
-<p>indexOf: 返回给定元素在数组中第一次出现的位置，如果没有返回 -1，不能找 NaN</p>
-<p>find：找到第一个符合条件的数组成员，如果没有返回 undefined，参数是一个回调函数，所有成员依次执行该函数，直到找到第一个返回值为 true 的成员</p>
-<p>includes： 判断数组中是否包含给定的一个值，false 和 0 不相等，使用零值相等算法确定是否找到元素</p>
-<p>区别：indexOf 不能找 NaN，find，includes 可以</p>
-<p>sort：对数组排序，默认按照字典顺序排序</p>
-<p>reverse：颠倒数组排序，返回改变后的数组</p>
-<p>join：已给定的分隔符，将数组成员连成字符串返回，默认用逗号。undefined、null 和空位都会变换成空字符串</p>
-<p>some、every： 判断数组成员是否满足某个条件，some 只要一个成员返回值为 true 则 some 返回 true；every 则需要所有成员返回 true。空数组 some 返回 false ，every 返回 true</p>
-<p>forEach，map：对所有成员执行参数函数，forEach 没有返回值，map 有，<strong>不改变原数组</strong></p>
-<p>filter：对所有成员执行参数函数，过滤出返回值为 true 的数组成员，返回一个新数组，<strong>不改变原数组</strong></p>
+<h4 id="纯函数"><a href="#纯函数" class="headerlink" title="纯函数"></a>纯函数</h4><p>给定的输入参数，会返回相同的结果，并且所有的数据是不可变的。纯函数&#x3D;无状态+数据不可变。</p>
+<h4 id="副作用"><a href="#副作用" class="headerlink" title="副作用"></a>副作用</h4><p>执行了与返回值无关的事件，如修改了全局变量，修改了传入的参数，发送请求（useEffect）等等。即数据不可变。</p>
+<h4 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h4><p>日常前端开发三种都会使用，以命令式为主，当需要提高代码的复用性，减少重复的时候，会将一些代码抽离成函数。声明式编程会少一些，因为前端对类的使用会少一些。近些前端框架都开始强调函数式编程，大势所趋。</p>
+<h3 id="类组件和函数组件的区别"><a href="#类组件和函数组件的区别" class="headerlink" title="类组件和函数组件的区别"></a>类组件和函数组件的区别</h3><p><strong>编写方式</strong><br>类组件需要继承<code>Component</code>对象，并需要用<code>render</code>函数包装返回的JSX对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数组件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Welcome</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 类组件</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Welcome</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;this.props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>状态管理</strong><br>类组件中，使用<code>this.state</code>设置初始状态，通过<code>this.setState()</code>重新覆盖状态；<br>函数组件中，通过React的<code>useState</code>，获取状态和对应setter。如通过<code>const [count, setCount] = React.useState(0);</code>可设置count状态。</p>
+<p><strong>生命周期</strong><br>函数组件通过 useEffect Hook 对应着类组件的 componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数。<br><code>useEffect(fn[,list])</code>接收两个参数，fn回调函数，list是个数组，参数的不同情况对应不同的周期函数：</p>
+<ul>
+<li>为空时，相当于<code>componentDidMount</code>，<code>componentDidUpdate</code>，每次渲染都会触发；</li>
+<li>为空数组<code>[]</code>时，用于模拟 <code>componentDidMount</code> 挂载完成</li>
+<li>不为空时，数组中的任意一个状态发生变化，都会触发程序，相当于<code>componentDidUpdate</code></li>
+<li>当<code>fn</code>中返回一个函数A时，当组件卸载时，会触发，用于模拟 <code>componentWillUnmount</code></li>
+</ul>
+<p><strong>调用方式</strong><br>React内部使用类组件时，首先需要创建一个组件实例，再调用render获取组件内容。而函数组件直接执行函数即可。</p>
 <h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><p>Model-View-ViewModel 的缩写，Model 表示数据模型，View 表示 UI 组件，ViewModel 表示同步 view 和 model 的对象，数据绑定到 viewmodel 层并且自动渲染到页面中，当视图变化时会通知 viewmodel 更新数据，也就是数据驱动视图。优点：</p>
 <ul>
 <li>低耦合，view 可以独立于 model 变化，一个 model 可以绑定到多个 view 中；</li>
@@ -572,7 +607,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%96%87/" data-id="clfr003qw0001ncaaf666cu5d" data-title="前端八股文" class="article-share-link">Compartir</a>
+      <a data-url="http://example.com/2023/03/22/%E5%89%8D%E7%AB%AF%E5%85%AB%E8%82%A1%E6%96%87/" data-id="clfr003qw0001ncaaf666cu5d" data-title="前端八股文" class="article-share-link">Share</a>
       
       
       
@@ -633,7 +668,86 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8MDN%E6%96%87%E6%A1%A3/" data-id="clfmqs4tk001jtwaaf26z48yj" data-title="利用好文档、好资源" class="article-share-link">Compartir</a>
+      <a data-url="http://example.com/2023/03/22/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8MDN%E6%96%87%E6%A1%A3/" data-id="clfmqs4tk001jtwaaf26z48yj" data-title="利用好文档、好资源" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-053-54React题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/22/053-54React%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2023-04-22T09:05:17.000Z" itemprop="datePublished">2023-04-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>►<a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/22/053-54React%E9%A2%98/">053-54React题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>昨天没写。写到类组件和函数组件的对比。</p>
+<h3 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h3><p>一种”编程范式”（programming paradigm），一种编写程序的方法论。它倡导利用简单的执行单元使计算结果不断渐进，最终完成复杂的任务。函数式编程旨在尽可能的提高代码的无状态性和不变性。简单来讲，就是要把过程逻辑写成函数，定义好输入参数，只关心它的输出结果。<br>编程范式主要有三种：命令式编程、声明式编程，以及函数式编程。</p>
+<ul>
+<li><p>与命令式的区别：它关注执行结果，命令式更强调执行过程。</p>
+</li>
+<li><p>与声明式的区别：它并不需要进一步抽象封装成类（声明式编程，我理解就是多了类）。</p>
+</li>
+<li><p>优点：</p>
+<ul>
+<li>更简单的复用，不用考虑内部变化和外部影响</li>
+<li>更好的管理状态，提倡无状态，或者说更少的状态，能更大程度的减少未知情况，减少意外错误。</li>
+<li>代码可组合</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>性能开销，对方法的过度包装，从而产生上下文切换的性能开销。</li>
+<li>资源占用，为了实现对象状态的不可变，往往会创建新的对象。</li>
+<li>递归陷阱：在函数式编程中，为了实现迭代，通常会采用递归操作，会造成性能开销。为了优化，我们往往需要写成<strong>尾递归</strong>形式。</li>
+</ul>
+</li>
+</ul>
+<h4 id="纯函数"><a href="#纯函数" class="headerlink" title="纯函数"></a>纯函数</h4><p>给定的输入参数，会返回相同的结果，并且所有的数据是不可变的。纯函数&#x3D;无状态+数据不可变。</p>
+<h4 id="副作用"><a href="#副作用" class="headerlink" title="副作用"></a>副作用</h4><p>执行了与返回值无关的事件，如修改了全局变量，修改了传入的参数，发送请求（useEffect）等等。即数据不可变。</p>
+<h4 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h4><p>日常前端开发三种都会使用，以命令式为主，当需要提高代码的复用性，减少重复的时候，会将一些代码抽离成函数。声明式编程会少一些，因为前端对类的使用会少一些。近些前端框架都开始强调函数式编程，大势所趋。</p>
+<h3 id="类组件和函数组件的区别"><a href="#类组件和函数组件的区别" class="headerlink" title="类组件和函数组件的区别"></a>类组件和函数组件的区别</h3><p><strong>编写方式</strong><br>类组件需要继承<code>Component</code>对象，并需要用<code>render</code>函数包装返回的JSX对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数组件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Welcome</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 类组件</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Welcome</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;this.props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>状态管理</strong><br>类组件中，使用<code>this.state</code>设置初始状态，通过<code>this.setState()</code>重新覆盖状态；<br>函数组件中，通过React的<code>useState</code>，获取状态和对应setter。如通过<code>const [count, setCount] = React.useState(0);</code>可设置count状态。</p>
+<p><strong>生命周期</strong><br>函数组件通过 useEffect Hook 对应着类组件的 componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数。<br><code>useEffect(fn[,list])</code>接收两个参数，fn回调函数，list是个数组，参数的不同情况对应不同的周期函数：</p>
+<ul>
+<li>为空时，相当于<code>componentDidMount</code>，<code>componentDidUpdate</code>，每次渲染都会触发；</li>
+<li>为空数组<code>[]</code>时，用于模拟 <code>componentDidMount</code> 挂载完成</li>
+<li>不为空时，数组中的任意一个状态发生变化，都会触发程序，相当于<code>componentDidUpdate</code></li>
+<li>当<code>fn</code>中返回一个函数A时，当组件卸载时，会触发，用于模拟 <code>componentWillUnmount</code></li>
+</ul>
+<p><strong>调用方式</strong><br>React内部使用类组件时，首先需要创建一个组件实例，再调用render获取组件内容。而函数组件直接执行函数即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/22/053-54React%E9%A2%98/" data-id="clgs48fqd0000dkaa34z1fy5n" data-title="053-54React题" class="article-share-link">Share</a>
       
       
       
@@ -676,7 +790,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/20/052React%E5%AE%9E%E6%88%987/" data-id="clgp7imc30003zwaaadiiazug" data-title="052React实战7" class="article-share-link">Compartir</a>
+      <a data-url="http://example.com/2023/04/20/052React%E5%AE%9E%E6%88%987/" data-id="clgp7imc30003zwaaadiiazug" data-title="052React实战7" class="article-share-link">Share</a>
       
       
       
@@ -721,7 +835,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/19/051React%E5%AE%9E%E6%88%986/" data-id="clgp7imc10001zwaa3noj9cpu" data-title="051React实战6" class="article-share-link">Compartir</a>
+      <a data-url="http://example.com/2023/04/19/051React%E5%AE%9E%E6%88%986/" data-id="clgp7imc10001zwaa3noj9cpu" data-title="051React实战6" class="article-share-link">Share</a>
       
       
       
@@ -766,7 +880,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/18/050React%E5%AE%9E%E6%88%985/" data-id="clgp7imbz0000zwaa68us1bu1" data-title="050React实战5" class="article-share-link">Compartir</a>
+      <a data-url="http://example.com/2023/04/18/050React%E5%AE%9E%E6%88%985/" data-id="clgp7imbz0000zwaa68us1bu1" data-title="050React实战5" class="article-share-link">Share</a>
       
       
       
@@ -813,7 +927,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/18/049React%E5%AE%9E%E6%88%984/" data-id="clglnqohp000034aaav6b1e2y" data-title="049React实战4" class="article-share-link">Compartir</a>
+      <a data-url="http://example.com/2023/04/18/049React%E5%AE%9E%E6%88%984/" data-id="clglnqohp000034aaav6b1e2y" data-title="049React实战4" class="article-share-link">Share</a>
       
       
       
@@ -864,7 +978,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/16/048React%E5%AE%9E%E6%88%983/" data-id="clgjhsst90000rwaaea3ohpi1" data-title="048React实战3" class="article-share-link">Compartir</a>
+      <a data-url="http://example.com/2023/04/16/048React%E5%AE%9E%E6%88%983/" data-id="clgjhsst90000rwaaea3ohpi1" data-title="048React实战3" class="article-share-link">Share</a>
       
       
       
@@ -912,53 +1026,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/15/047React%E5%AE%9E%E6%88%982/" data-id="clgi447o60000s8aad9r89dpq" data-title="047React实战2" class="article-share-link">Compartir</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-046React实战" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/14/046React%E5%AE%9E%E6%88%98/" class="article-date">
-  <time class="dt-published" datetime="2023-04-14T12:10:56.000Z" itemprop="datePublished">2023-04-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>►<a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/14/046React%E5%AE%9E%E6%88%98/">046React实战</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这段时间学习 React 的内容，完成了一个小项目<code>robot-gallery</code>，现在做仿携程的旅游电商网站</p>
-<h1 id="react-travel-项目"><a href="#react-travel-项目" class="headerlink" title="react-travel 项目"></a>react-travel 项目</h1><p>进度：完成首页。之后通过<code>react-router</code>使用路由，完成页面切换。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/14/046React%E5%AE%9E%E6%88%98/" data-id="clggigthz0000mcaa24okcx6q" data-title="046React实战" class="article-share-link">Compartir</a>
+      <a data-url="http://example.com/2023/04/15/047React%E5%AE%9E%E6%88%982/" data-id="clgi447o60000s8aad9r89dpq" data-title="047React实战2" class="article-share-link">Share</a>
       
       
       
@@ -976,7 +1044,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Siguiente &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -985,7 +1053,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categorías</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a></li></ul></li></ul>
     </div>
@@ -1005,7 +1073,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nube de Tags</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
       <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 12.5px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 17.5px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/slot/" style="font-size: 10px;">slot</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 15px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 17.5px;">项目</a>
     </div>
@@ -1014,7 +1082,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archivos</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
     </div>
@@ -1024,9 +1092,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Posts recientes</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/04/22/053-54React%E9%A2%98/">053-54React题</a>
+          </li>
         
           <li>
             <a href="/2023/04/20/052React%E5%AE%9E%E6%88%987/">052React实战7</a>
@@ -1044,10 +1116,6 @@
             <a href="/2023/04/18/049React%E5%AE%9E%E6%88%984/">049React实战4</a>
           </li>
         
-          <li>
-            <a href="/2023/04/16/048React%E5%AE%9E%E6%88%983/">048React实战3</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1062,7 +1130,7 @@
     <div id="footer-info" class="inner">
       
       &copy; 2023 John Doe<br>
-      Construido por <a href="https://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
