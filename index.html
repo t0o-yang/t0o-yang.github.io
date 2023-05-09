@@ -204,7 +204,40 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><h2 id="JS-ES6"><a href="#JS-ES6" class="headerlink" title="JS ES6"></a>JS ES6</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>网上关于 JS 数据类型的说法不一致，我按照 MDN 文档<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Language_Overview#%E6%A6%82%E8%A7%88">介绍</a>和 typeof 的返回值为标准吧。</p>
+        <h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><h2 id="HTML-CSS"><a href="#HTML-CSS" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h2><h3 id="HTML语义化"><a href="#HTML语义化" class="headerlink" title="HTML语义化"></a>HTML语义化</h3><p>让人更容易读懂，代码可读性；<br>让搜索引擎更容易读懂，SEO；<br>tod，常见的语义化标签</p>
+<h3 id="块状元素-amp-内联元素"><a href="#块状元素-amp-内联元素" class="headerlink" title="块状元素 &amp; 内联元素"></a>块状元素 &amp; 内联元素</h3><p>块级元素 display&#x3D;block&#x2F;table，有 div,h,table,ul,ol,p;<br>内联元素 display&#x3D;inline&#x2F;line&#x3D;block，有 span,img,input,button,a;</p>
+<h3 id="CSS-布局"><a href="#CSS-布局" class="headerlink" title="CSS 布局"></a>CSS 布局</h3><h4 id="盒模型计算"><a href="#盒模型计算" class="headerlink" title="盒模型计算"></a>盒模型计算</h4><p>offsetWidth&#x3D;内容宽度+padding+border</p>
+<h4 id="margin纵向重叠（边距塌陷）"><a href="#margin纵向重叠（边距塌陷）" class="headerlink" title="margin纵向重叠（边距塌陷）"></a>margin纵向重叠（边距塌陷）</h4><p>空元素margin值会忽略，两值取大者</p>
+<h4 id="margin负值问题"><a href="#margin负值问题" class="headerlink" title="margin负值问题"></a>margin负值问题</h4><p>margin-top,left 负值，元素上移，左移<br>margin-right 负值，右侧元素左移，自身不受影响<br>margin-bottom 负值，下方元素上移，自身不受影响</p>
+<h4 id="BFC的理解和应用"><a href="#BFC的理解和应用" class="headerlink" title="BFC的理解和应用"></a>BFC的理解和应用</h4><p>block format context 块级格式化上下文</p>
+<ul>
+<li><p>一块独立的渲染区域，内部元素的渲染不会影响边界之外的元素</p>
+</li>
+<li><p>形成条件：</p>
+<ul>
+<li>float不是none；</li>
+<li>position是absolute或fixed；</li>
+<li>overflow不是visible；</li>
+<li>display是flex, inline-block等；</li>
+</ul>
+</li>
+<li><p>常见应用</p>
+<ul>
+<li>清除浮动</li>
+</ul>
+</li>
+</ul>
+<h4 id="float应用-圣杯布局和双飞翼布局"><a href="#float应用-圣杯布局和双飞翼布局" class="headerlink" title="float应用-圣杯布局和双飞翼布局"></a>float应用-圣杯布局和双飞翼布局</h4><p>圣杯布局、双飞翼布局是PC端的布局方案</p>
+<p>技术总结：</p>
+<ul>
+<li>使用float布局</li>
+<li>两侧使用margin负值，以便和中间内容横向重叠</li>
+<li>通过padding或margin为两侧留白</li>
+</ul>
+<p>圣杯布局实现细节：通过padding留白，左侧再设置 position：relative、right 移动位置；<br>双飞翼布局实现细节：中间栏需要再嵌套一层 div</p>
+<h4 id="手写clearfix"><a href="#手写clearfix" class="headerlink" title="手写clearfix"></a>手写clearfix</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>:<span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="attribute">display</span>:table;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JS-ES6"><a href="#JS-ES6" class="headerlink" title="JS ES6"></a>JS ES6</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>网上关于 JS 数据类型的说法不一致，我按照 MDN 文档<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Language_Overview#%E6%A6%82%E8%A7%88">介绍</a>和 typeof 的返回值为标准吧。</p>
 <p>常规就是八种，</p>
 <ul>
 <li>Number 数字</li>
@@ -482,7 +515,7 @@
 <h3 id="computed-和-watch"><a href="#computed-和-watch" class="headerlink" title="computed 和 watch"></a>computed 和 watch</h3><p>computed 有缓存机制，当依赖没有变化时，重新调用 computed，不会重新运行，结果会直接从缓存中获取。<br>watch 主要用来监听特定属性的变化，从而执行回调，进行特定操作。<br>所以当两者都可以使用的时候，建议使用 computed</p>
 <h3 id="组件间通信方式"><a href="#组件间通信方式" class="headerlink" title="组件间通信方式"></a>组件间通信方式</h3><ul>
 <li>父子关系的组件数据传递选择 props 与 $emit 进行传递，也可选择 ref</li>
-<li>兄弟关系的组件数据传递可选择$bus，其次可以选择$parent 进行传递</li>
+<li>兄弟关系的组件数据传递可选择<code>$bus</code>，其次可以选择$parent 进行传递</li>
 <li>祖先与后代组件数据传递可选择 attrs 与 listeners 或者 Provide 与 Inject</li>
 <li>复杂关系的组件数据传递可以通过 vuex 存放共享的变量</li>
 </ul>
@@ -693,6 +726,210 @@
       
       
       
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-060CSS面试总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/28/060CSS%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2023-04-28T13:42:12.000Z" itemprop="datePublished">2023-04-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/28/060CSS%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">060CSS面试总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="HTML和CSS"><a href="#HTML和CSS" class="headerlink" title="HTML和CSS"></a>HTML和CSS</h2><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><h4 id="HTML语义化"><a href="#HTML语义化" class="headerlink" title="HTML语义化"></a>HTML语义化</h4><ul>
+<li>采用语义化标签，能提高代码可读性和可维护性；</li>
+<li>让搜索引擎更容易读懂，完成SEO优化</li>
+</ul>
+<h4 id="块状元素-amp-内联元素"><a href="#块状元素-amp-内联元素" class="headerlink" title="块状元素&amp;内联元素"></a>块状元素&amp;内联元素</h4><ul>
+<li>块状元素指display&#x3D;block或table的元素，元素独占一行，如div,h,ul,ol,table,p等</li>
+<li>内联元素指display&#x3D;inline或inline-block,元素会紧接着排列，直至网页边界换行，如span，img,a,input,button</li>
+</ul>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><h4 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h4><p>CSS盒子由content、border、padding、margin组成。</p>
+<ul>
+<li>标准盒子模型，width属性只是内容宽度，不包含内边距和边框。模型总宽&#x3D;width+padding+border+margin；</li>
+<li>IE 怪异盒子模型，width属性&#x3D;内容宽度+padding+border。模型总宽&#x3D;width+margin;</li>
+</ul>
+<p>CSS中通过box-sizing设置盒子的模型，值各含义：</p>
+<ul>
+<li>content-box，标准盒子，默认值</li>
+<li>border-box，IE怪异盒子</li>
+<li>inherit，从父元素继承</li>
+</ul>
+<h4 id="margin纵向重叠"><a href="#margin纵向重叠" class="headerlink" title="margin纵向重叠"></a>margin纵向重叠</h4><p>两点：<br>相邻元素的margin-top，bottom会发生重叠；<br>空白内容的元素也会重叠；<br>解决方案：</p>
+<ul>
+<li>设置外层的padding代替margin</li>
+<li>使元素不为空，如设置透明边框</li>
+<li>触发BFC，如overflow:hidden、设置position</li>
+</ul>
+<h4 id="margin负值的各种情况"><a href="#margin负值的各种情况" class="headerlink" title="margin负值的各种情况"></a>margin负值的各种情况</h4><p>margin-top,left 负值，元素上移，左移<br>margin-right 负值，右侧元素左移，自身不受影响<br>margin-bottom 负值，下方元素上移，自身不受影响</p>
+<h4 id="BFC的理解和应用"><a href="#BFC的理解和应用" class="headerlink" title="BFC的理解和应用"></a>BFC的理解和应用</h4><p>block format context 块级格式化上下文</p>
+<ul>
+<li><p>一块独立的渲染区域，内部元素的渲染不会影响边界之外的元素</p>
+</li>
+<li><p>形成条件：</p>
+<ul>
+<li>float不是none；</li>
+<li>position是absolute或fixed；</li>
+<li>overflow不是visible；</li>
+<li>display是flex, inline-block等；</li>
+</ul>
+</li>
+<li><p>常见应用</p>
+<ul>
+<li>清除浮动</li>
+</ul>
+</li>
+</ul>
+<h4 id="float应用-圣杯布局和双飞翼布局"><a href="#float应用-圣杯布局和双飞翼布局" class="headerlink" title="float应用-圣杯布局和双飞翼布局"></a>float应用-圣杯布局和双飞翼布局</h4><p>圣杯布局、双飞翼布局是PC端的布局方案</p>
+<p>技术总结：</p>
+<ul>
+<li>使用float布局</li>
+<li>两侧使用margin负值，以便和中间内容横向重叠</li>
+<li>通过padding或margin为两侧留白</li>
+</ul>
+<p>圣杯布局实现细节：通过padding留白，左侧再设置 position：relative、right 移动位置；<br>双飞翼布局实现细节：中间栏需要再嵌套一层 div</p>
+<h4 id="手写clearfix"><a href="#手写clearfix" class="headerlink" title="手写clearfix"></a>手写clearfix</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>:<span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="attribute">display</span>:table;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/28/060CSS%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" data-id="clhg6z38i0003wsaa467odsyw" data-title="060CSS面试总结" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-058-59学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/27/058-59%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2023-04-27T03:14:56.000Z" itemprop="datePublished">2023-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/27/058-59%E5%AD%A6%E4%B9%A0/">058学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="盒模型计算"><a href="#盒模型计算" class="headerlink" title="盒模型计算"></a>盒模型计算</h4><p>offsetWidth&#x3D;内容宽度+padding+border</p>
+<h4 id="margin纵向重叠（边距塌陷）"><a href="#margin纵向重叠（边距塌陷）" class="headerlink" title="margin纵向重叠（边距塌陷）"></a>margin纵向重叠（边距塌陷）</h4><p>空元素margin值会忽略，两值取大者</p>
+<h4 id="margin负值问题"><a href="#margin负值问题" class="headerlink" title="margin负值问题"></a>margin负值问题</h4><p>margin-top,left 负值，元素上移，左移<br>margin-right 负值，右侧元素左移，自身不受影响<br>margin-bottom 负值，下方元素上移，自身不受影响</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/27/058-59%E5%AD%A6%E4%B9%A0/" data-id="clhg6z38f0001wsaags28dwwp" data-title="058学习" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-057React学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/25/057React%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2023-04-25T02:15:03.000Z" itemprop="datePublished">2023-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/25/057React%E5%AD%A6%E4%B9%A0/">057React学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>todo: 明天写吧！！！</p>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p>创建阶段：</p>
+<ol>
+<li>constructor<br>方法内部通过super获取父组件的props，通常在这里初始化state、挂载方法</li>
+<li>getDerivedStateFromProps(newProps,prevState)<br><strong>接收参数</strong>：newProps，即将更新的props；prevState，上一个状态的state<br><strong>返回值</strong>：newState 新的state对象 | null，表示不需要更新<br>组件创建和更新阶段，不论是props变化还是state变化，也会调用。可以比较props、state，防止无用state更新</li>
+<li>render</li>
+</ol>
+<p>返回JSX对象，用于渲染DOM结构<br>4. componentDidMount</p>
+<p>组件挂载到真实DOM后执行。多用于执行数据获取，事件监听等操作。</p>
+<p>更新阶段：</p>
+<ol>
+<li>getDerivedStateFromProps</li>
+<li>shouldComponentUpdate</li>
+</ol>
+<p>基于当前props和state确定组件是否需要更新<br>3. render<br>4. getSnapshotBeforeUpdate(prevProps, prevState)<br>返回的一个<code>Snapshot</code>值，作为componentDidUpdate第三个参数传入<br>执行之时DOM元素还没有被更新，目的在于获取组件更新前的一些信息，比如组件的滚动位置之类的，在组件更新后可以根据这些信息恢复一些UI视觉上的<br>5. componentDidUpdate<br>组件更新后触发，可以根据前后的props和state的变化做相应的操作，如获取数据，修改DOM样式等</p>
+<p>销毁阶段：<br>componentUnmounted<br>组件卸载前，清理一些注册是监听事件，或者取消订阅的网络请求等</p>
+<h3 id="Fiber-x2F-ˈfaɪbər-x2F-这块不理解"><a href="#Fiber-x2F-ˈfaɪbər-x2F-这块不理解" class="headerlink" title="Fiber &#x2F;ˈfaɪbər&#x2F; 这块不理解"></a>Fiber &#x2F;ˈfaɪbər&#x2F; 这块不理解</h3><p><strong>背景（解决什么问题）</strong><br>JS引擎和页面渲染引擎的两个线程是互斥的。如果JS线程长时间占用主线程，那么页面渲染就不能不等待，页面长期不更新，会导致页面响应性变差，用户可能会感觉卡顿。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/25/057React%E5%AD%A6%E4%B9%A0/" data-id="clhg6z38b0000wsaa1dt0ejys" data-title="057React学习" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
     </footer>
   </div>
   
@@ -936,148 +1173,11 @@
 
 
   
-    <article id="post-051React实战6" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/19/051React%E5%AE%9E%E6%88%986/" class="article-date">
-  <time class="dt-published" datetime="2023-04-19T12:14:52.000Z" itemprop="datePublished">2023-04-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>►<a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/19/051React%E5%AE%9E%E6%88%986/">051React实战6</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="进度"><a href="#进度" class="headerlink" title="进度"></a>进度</h1><p>完成用户登录模块</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/19/051React%E5%AE%9E%E6%88%986/" data-id="clgp7imc10001zwaa3noj9cpu" data-title="051React实战6" class="article-share-link">Teilen</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-050React实战5" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/18/050React%E5%AE%9E%E6%88%985/" class="article-date">
-  <time class="dt-published" datetime="2023-04-18T02:53:57.000Z" itemprop="datePublished">2023-04-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>►<a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/18/050React%E5%AE%9E%E6%88%985/">050React实战5</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是redux-toolkit"><a href="#什么是redux-toolkit" class="headerlink" title="什么是redux-toolkit"></a>什么是redux-toolkit</h3><p>redux更高效的版本</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/18/050React%E5%AE%9E%E6%88%985/" data-id="clgp7imbz0000zwaa68us1bu1" data-title="050React实战5" class="article-share-link">Teilen</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-049React实战4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/18/049React%E5%AE%9E%E6%88%984/" class="article-date">
-  <time class="dt-published" datetime="2023-04-18T01:36:21.000Z" itemprop="datePublished">2023-04-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>►<a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/18/049React%E5%AE%9E%E6%88%984/">049React实战4</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="react-thunk"><a href="#react-thunk" class="headerlink" title="react-thunk"></a>react-thunk</h3><p>处理异步请求的中间件，管理 axios</p>
-<h3 id="两次请求"><a href="#两次请求" class="headerlink" title="两次请求"></a>两次请求</h3><p>React.StrictMode 的确会造成两次组件渲染，不过这个只会在开发阶段发生，打包之后，在生产环境中不会发送两次请求</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">React.StrictMode</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&quot;&#123;store&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">React.StrictMode</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/18/049React%E5%AE%9E%E6%88%984/" data-id="clglnqohp000034aaav6b1e2y" data-title="049React实战4" class="article-share-link">Teilen</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">weiter &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">weiter &raquo;</a>
   </nav>
 
 </section>
@@ -1098,7 +1198,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/" rel="tag">data()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keep-alive/" rel="tag">keep-alive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot/" rel="tag">slot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" rel="tag">数据绑定</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/" rel="tag">data()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keep-alive/" rel="tag">keep-alive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot/" rel="tag">slot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" rel="tag">数据绑定</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
     </div>
   </div>
 
@@ -1108,7 +1208,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 12.5px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 17.5px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/slot/" style="font-size: 10px;">slot</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 15px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 17.5px;">项目</a>
+      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS/" style="font-size: 12.5px;">JS</a> <a href="/tags/MVVM/" style="font-size: 10px;">MVVM</a> <a href="/tags/Object-defineProperty/" style="font-size: 10px;">Object.defineProperty</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 17.5px;">Vue</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/computed/" style="font-size: 10px;">computed</a> <a href="/tags/data/" style="font-size: 10px;">data()</a> <a href="/tags/eventloop/" style="font-size: 10px;">eventloop</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/keep-alive/" style="font-size: 10px;">keep-alive</a> <a href="/tags/new/" style="font-size: 10px;">new</a> <a href="/tags/nextTick/" style="font-size: 10px;">nextTick</a> <a href="/tags/promise/" style="font-size: 10px;">promise</a> <a href="/tags/slot/" style="font-size: 10px;">slot</a> <a href="/tags/this%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">this对象</a> <a href="/tags/uniapp/" style="font-size: 15px;">uniapp</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" style="font-size: 10px;">作用域</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">原型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 10px;">数据类型</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" style="font-size: 10px;">数据绑定</a> <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" style="font-size: 10px;">生命周期</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">网络</a> <a href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" style="font-size: 10px;">节流防抖</a> <a href="/tags/%E9%97%AD%E5%8C%85/" style="font-size: 10px;">闭包</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 17.5px;">项目</a>
     </div>
   </div>
 
@@ -1130,23 +1230,23 @@
       <ul>
         
           <li>
+            <a href="/2023/04/28/060CSS%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">060CSS面试总结</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/27/058-59%E5%AD%A6%E4%B9%A0/">058学习</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/25/057React%E5%AD%A6%E4%B9%A0/">057React学习</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/24/056React%E4%B8%ADsetState%E6%9C%BA%E5%88%B6/">056React中setState机制</a>
           </li>
         
           <li>
             <a href="/2023/04/23/055React%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">055React组件通信</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/22/053-54React%E9%A2%98/">053-54React题</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/20/052React%E5%AE%9E%E6%88%987/">052React实战7</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/19/051React%E5%AE%9E%E6%88%986/">051React实战6</a>
           </li>
         
       </ul>
