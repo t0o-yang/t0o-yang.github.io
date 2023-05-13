@@ -57,12 +57,12 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Feed RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Cerca"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Cerca"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -70,6 +70,226 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-021todos初版" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/021todos%E5%88%9D%E7%89%88/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.849Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/22/021todos%E5%88%9D%E7%89%88/">021todos初版</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
+<h1 id="todos"><a href="#todos" class="headerlink" title="todos"></a>todos</h1><p>项目初版基本好了，代码中保留了<code>axios</code>的代码，之后找找如何正确在<code>uniapp</code>中使用<code>axios</code>。</p>
+<p>使用组件的一个难点就是很难操作其生成的dom对象。</p>
+<p>有两个需求，没实现：</p>
+<ol>
+<li>当事项完成时，<code>uni-easyinput</code>生成的<code>input</code>能加上删除线，即<code>text-decoration:line-through;</code><br> 方案是操作dom，但是只限于h5平台，微信小程序中，无法使用DOM，然后尝试用uniapp内置的获取节点方法<code>uni.createSelectorQuery()</code>，但取不到对应的input（h5下，是通过给组件绑定id，但是微信下，根本没有id属性）； <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取dom，添加删除线</span></span><br><span class="line"><span class="keyword">const</span> input=<span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#todo-&#x27;</span>+todo.<span class="property">_id</span>).<span class="title function_">querySelector</span>(<span class="string">&quot;input.uni-input-input&quot;</span>)</span><br><span class="line"><span class="keyword">if</span>(input.<span class="title function_">getAttribute</span>(<span class="string">&#x27;style&#x27;</span>)==<span class="literal">null</span>) &#123;</span><br><span class="line">    input.<span class="title function_">setAttribute</span>(<span class="string">&#x27;style&#x27;</span>,<span class="string">&#x27;text-decoration:line-through;&#x27;</span>)</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    input.<span class="title function_">removeAttribute</span>(<span class="string">&#x27;style&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>数据初始化后，根据事项完成状态，添加删除线<br> 方案是操作dom, 在mounted中，获取生成的dom对象。结果发现没有获取到。</li>
+<li>使用<code>axios</code>发送请求<br> 实际中也有需要将vue项目改造成uniapp项目，除了改组件，JS代码都是希望仅可能复用的，找了第三方插件，如<code>uniapp-axios-adapter</code>，没实现。说一下使用过程，大家看看哪里不对：<ol>
+<li><p>安装<code>npm i axios@0.27.2</code>， <code>npm i uniapp-axios-adapter</code></p>
+</li>
+<li><p><code>main.js</code>中配置全局API，按照原先vue项目的使用习惯</p>
+<ol>
+<li>配置  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js        </span></span><br><span class="line"><span class="keyword">import</span> request <span class="keyword">from</span> <span class="string">&quot;/common/http.js&quot;</span>;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">...<span class="title class_">App</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.$mount()</span><br><span class="line"><span class="comment">// axios 全局引用</span></span><br><span class="line">app.<span class="property">config</span>.<span class="property">globalProperties</span>.<span class="property">$axios</span> = request;</span><br></pre></td></tr></table></figure>
+  <code>http.js</code>文件  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// /common/http.js</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&quot;uniapp-axios-adapter&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> request = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line"><span class="attr">baseURL</span>: <span class="string">&quot;http://127.0.0.1:3000&quot;</span>,</span><br><span class="line"><span class="attr">timeout</span>: <span class="number">10000</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">request.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="function">(<span class="params">config</span>) =&gt;</span> &#123;</span><br><span class="line"><span class="comment">//带上token</span></span><br><span class="line"><span class="comment">// config.headers[&quot;Authorization&quot;] = &quot;token&quot;;</span></span><br><span class="line"><span class="keyword">return</span> config;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">request.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line"><span class="comment">// 统一处理响应,返回Promise以便链式调用</span></span><br><span class="line"><span class="keyword">if</span> (response.<span class="property">status</span> === <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; data &#125; = response;</span><br><span class="line">    <span class="keyword">if</span> (data &amp;&amp; data.<span class="property">code</span> === <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(data);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(response);</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> request;</span><br></pre></td></tr></table></figure></li>
+<li>使用，直接调post或者按照文档方式都结果失败了 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接调</span></span><br><span class="line">axios.<span class="title function_">post</span>(<span class="string">&#x27;/task-modify&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="variable language_">this</span>.<span class="property">todos</span>[index].<span class="property">_id</span>,</span><br><span class="line">    <span class="attr">title</span>: editText</span><br><span class="line">&#125;).<span class="title function_">then</span>()</span><br><span class="line"><span class="comment">// 文档案例的方式</span></span><br><span class="line"><span class="variable language_">this</span>.$axios(&#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&quot;/task-del&quot;</span>,</span><br><span class="line">    <span class="attr">params</span>: &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="variable language_">this</span>.<span class="property">todos</span>[delIndex].<span class="property">_id</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).<span class="title function_">then</span>()</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>采取了直接使用的方式</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 官方文档的使用案例</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&quot;uniapp-axios-adapter&quot;</span>;</span><br><span class="line">axios.<span class="title function_">get</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&quot;https://example.com/api/getUserById&quot;</span>,</span><br><span class="line">    <span class="attr">params</span>: &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="number">1</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p> 报错是，get is not defined，这就很疑惑了！</p>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>三天，学习<code>uniapp</code>，使用其组件，简单实现一个todos项目</p>
+<p><img src="https://gitee.com/t0o-yang/Images/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230320223136.jpg" alt="todos真机演示"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/021todos%E5%88%9D%E7%89%88/" data-id="clfmqs4tf000ztwaa3xzedduy" data-title="021todos初版" class="article-share-link">Condividi</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-020uniapp前端请求" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/020uniapp%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.843Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/22/020uniapp%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/">020uniapp前端请求</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
+<p>uniapp项目，前端请求方式（或 常用插件）。后端是用<code>nodejs</code>创建的服务器。</p>
+<h1 id="uni-request"><a href="#uni-request" class="headerlink" title="uni.request"></a>uni.request</h1><p>官方文档: <a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/api/request/request.html">发起请求</a></p>
+<h1 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h1><p>vue项目，第一个想到的就是<code>axios</code>，使用了<code>uniapp-axios-adapter</code>这个插件，使用方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 业务代码中</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&quot;uniapp-axios-adapter&quot;</span>;</span><br><span class="line">axios.<span class="title function_">get</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&quot;https://example.com/api/getUserById&quot;</span>,</span><br><span class="line">  <span class="attr">params</span>: &#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="number">1</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>结果出错，<code>get</code>没有定义，最终选择了<code>uni-request</code>。</p>
+<h1 id="todos"><a href="#todos" class="headerlink" title="todos"></a>todos</h1><p>计划：点击选择框，事项状态转为完成，需要完成的功能点：</p>
+<ol>
+<li>事件完成，图标需要换成<code>checkbox</code></li>
+<li>文字删除线</li>
+<li>输入框不可编辑</li>
+<li>更新 leftCount</li>
+</ol>
+<p>	</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/020uniapp%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82/" data-id="clfmqs4tg0013twaaby962r5j" data-title="020uniapp前端请求" class="article-share-link">Condividi</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-019todos" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/019todos/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.837Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/22/019todos/">019todos</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
+<h1 id="todos页面"><a href="#todos页面" class="headerlink" title="todos页面"></a>todos页面</h1><p>今天的<code>todos</code>项目有大进展，终于把大致样子构造出来了，但是有个大问题，列表上的前后按钮是直接用了<code>uni-easyinput</code>的<code>prefixIcon</code>和<code>suffixIcon</code>，虽然组件上有<code>iconClick</code>事件监听前后按钮点击，但是在得知点击的是前后哪个按钮后，无法传入其他参数，也就无法改变事项的状态了。</p>
+<img src="https://gitee.com/t0o-yang/Images/raw/e60923799c94481b5a695d6b89930ffdbdd5b6f1/localhost_5173_(iPhone%20SE).png" title="" alt="todos页面" style="zoom:30%;" data-align="center">
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>组件好用，但是当需要调整时，也是很难改的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/019todos/" data-id="clfmqs4th0019twaa738f7epp" data-title="019todos" class="article-share-link">Condividi</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-018uniapp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/22/018uniapp/" class="article-date">
+  <time class="dt-published" datetime="2023-03-22T13:42:24.833Z" itemprop="datePublished">2023-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/22/018uniapp/">018uniapp</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
+<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
+<p>看了黄子华的电影，还是觉得你最好，好看。今天没干什么，uniapp开发，不能达到想要的效果，难受。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>隐式转换、vue响应式系统、相等和全等、浅拷贝和深拷贝、Promise、小程序</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/22/018uniapp/" data-id="clfmqs4td000rtwaa2iu24u6w" data-title="018uniapp" class="article-share-link">Condividi</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-017小程序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -104,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/017%E5%B0%8F%E7%A8%8B%E5%BA%8F/" data-id="clfmqs4te000wtwaaar0kh84p" data-title="017小程序" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/017%E5%B0%8F%E7%A8%8B%E5%BA%8F/" data-id="clfmqs4te000wtwaaar0kh84p" data-title="017小程序" class="article-share-link">Condividi</a>
       
       
       
@@ -155,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/016%E6%89%8B%E5%86%99Promise/" data-id="clfmqs4tf0011twaagazl0fiz" data-title="016手写Promise" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/016%E6%89%8B%E5%86%99Promise/" data-id="clfmqs4tf0011twaagazl0fiz" data-title="016手写Promise" class="article-share-link">Condividi</a>
       
       
       
@@ -238,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/015%E7%9B%B8%E7%AD%89%E3%80%81%E6%8B%B7%E8%B4%9D/" data-id="clfmqs4te000ttwaagc0u961j" data-title="015相等、拷贝" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/015%E7%9B%B8%E7%AD%89%E3%80%81%E6%8B%B7%E8%B4%9D/" data-id="clfmqs4te000ttwaagc0u961j" data-title="015相等、拷贝" class="article-share-link">Condividi</a>
       
       
       
@@ -298,380 +518,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/014vue3%E5%93%8D%E5%BA%94%E5%BC%8F%E6%BA%90%E7%A0%81/" data-id="clfmqs4td000ptwaa11a5h76a" data-title="014vue3响应式源码" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-013前端" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/22/013%E5%89%8D%E7%AB%AF/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.809Z" itemprop="datePublished">2023-03-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/22/013%E5%89%8D%E7%AB%AF/">013前端</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
-<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
-<p>当提及<code>Vue</code>时，会说起什么呢？</p>
-<ol>
-<li>基础：指令的区别或者原理，如<code>v-show</code>、<code>v-if</code></li>
-<li>解析过程，即生命周期；</li>
-<li>它的特性的原理：如何实现响应式，这其中就包括<code>ref</code>、<code>reactive</code>；</li>
-<li>组件</li>
-<li><code>vue3</code>的区别</li>
-</ol>
-<p>今天看看如何实现响应式的，还有vue2是如何实现的。</p>
-<h1 id="vue3和vue2的区别"><a href="#vue3和vue2的区别" class="headerlink" title="vue3和vue2的区别"></a>vue3和vue2的区别</h1><h2 id="Proxy和defineProperty"><a href="#Proxy和defineProperty" class="headerlink" title="Proxy和defineProperty"></a>Proxy和defineProperty</h2><p>原文：<a target="_blank" rel="noopener" href="https://vue3js.cn/interview/vue3/proxy.html">https://vue3js.cn/interview/vue3/proxy.html</a></p>
-<h3 id="defineProperty"><a href="#defineProperty" class="headerlink" title="defineProperty"></a>defineProperty</h3><p>vue2 使用<code>defineProperty</code>生成响应式对象。下面通过代码看看如何实现的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">update</span>(<span class="params">value</span>)&#123;</span><br><span class="line">    app.<span class="property">innerText</span>=obj.<span class="property">foo</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">defineReactive</span>(<span class="params">obj, key, val</span>)&#123;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(obj, key, &#123;</span><br><span class="line">        <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`get <span class="subst">$&#123;key&#125;</span>: <span class="subst">$&#123;val&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">return</span> val;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">set</span>(<span class="params">newVal</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(newVal !== val)&#123;</span><br><span class="line">                val=newVal</span><br><span class="line">                <span class="title function_">update</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>调用<code>defineProperty</code>实现<code>obj.foo</code>的数据响应式，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj=&#123;&#125;</span><br><span class="line"><span class="title function_">defineProperty</span>(obj, <span class="string">&#x27;foo&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    obj.<span class="property">foo</span> = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">toLocaleTimeString</span>()</span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
-
-<p>1秒后，数据发生变化，<code>update</code>方法会被触发。当存在多个<code>key</code>时，需要利用遍历，给<code>obj</code>中的每个<code>key</code>设置<code>get</code>和<code>set</code>方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">observe</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">&#x27;object&#x27;</span> || obj==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">keys</span>(obj).<span class="title function_">forEach</span>(<span class="function"><span class="params">k</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">defineReactive</span>(obj, k, obj[k])</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果<code>value</code>也是个对象，那么还需要在<code>defineProperty</code>中利用递归，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// defineReactive 函数</span></span><br><span class="line"><span class="title function_">observe</span>(val)    <span class="comment">// 递归设置val</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(obj, key, &#123;</span><br><span class="line">    <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`get <span class="subst">$&#123;key&#125;</span>: <span class="subst">$&#123;val&#125;</span>`</span>)</span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">set</span>(<span class="params">newVal</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(newVal !== val)&#123;</span><br><span class="line">            val=newVal</span><br><span class="line">            <span class="title function_">update</span>()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>当赋的是一个对象时，<code>set</code>同样需要递归</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">set</span>(<span class="params">newVal</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(newVal !== val)&#123;</span><br><span class="line">        <span class="title function_">observe</span>(newVal)</span><br><span class="line">        <span class="title function_">notifyUpdate</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>基本的对象响应式完整代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">update</span>(<span class="params">value</span>)&#123;</span><br><span class="line">    app.<span class="property">innerText</span>=obj.<span class="property">foo</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">defineReactive</span>(<span class="params">obj, key, val</span>)&#123;</span><br><span class="line">    <span class="title function_">observe</span>(val)</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(obj, key, &#123;</span><br><span class="line">        <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`get <span class="subst">$&#123;key&#125;</span>: <span class="subst">$&#123;val&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">return</span> val;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">set</span>(<span class="params">newVal</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(newVal !== val)&#123;</span><br><span class="line">                <span class="title function_">observe</span>(newVal)</span><br><span class="line">                <span class="title function_">notifyUpdate</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">observe</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">&#x27;object&#x27;</span> || obj==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">keys</span>(obj).<span class="title function_">forEach</span>(<span class="function"><span class="params">k</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">defineReactive</span>(obj, k, obj[k])</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">const</span> obj=&#123;</span><br><span class="line">    <span class="attr">foo</span>: <span class="string">&#x27;foo&#x27;</span>,</span><br><span class="line">    <span class="attr">bar</span>: <span class="string">&#x27;bar&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">observe</span>(obj)</span><br></pre></td></tr></table></figure>
-
-<p>但是，其中还存在较多问题：</p>
-<ol>
-<li>无法劫持<strong>删除</strong>和<strong>添加</strong>操作</li>
-<li>对<strong>数组</strong>的监听，并不好用，对数组的api（push，pop等）无法劫持</li>
-<li>可以看到当数据是嵌套对象时，需要递归，会对性能产生影响（这个问题 vue3 似乎也存在）</li>
-</ol>
-<p>对上述1，2两个问题，<code>vue2</code>的解决方案：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组重写</span></span><br><span class="line"><span class="keyword">const</span> originalProto=<span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span></span><br><span class="line"><span class="keyword">const</span> arrayProto=<span class="title class_">Object</span>.<span class="title function_">create</span>(originalProto)</span><br><span class="line">[<span class="string">&#x27;push&#x27;</span>, <span class="string">&#x27;pop&#x27;</span>, <span class="string">&#x27;shift&#x27;</span>, <span class="string">&#x27;unshift&#x27;</span>, <span class="string">&#x27;splice&#x27;</span>, <span class="string">&#x27;reverse&#x27;</span>, <span class="string">&#x27;sort&#x27;</span>].<span class="title function_">forEach</span>(<span class="function"><span class="params">method</span> =&gt;</span> &#123;</span><br><span class="line">    arrayProto[method] = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">originalProto</span>(method).<span class="title function_">apply</span>(<span class="variable language_">this</span>.<span class="property">arguments</span>);</span><br><span class="line">        dep.<span class="title function_">notice</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h3><p><code>Proxy</code>可以代理对象的默认行为，我们可以改变默认行为，实现自定义。能代理的行为有：</p>
-<ul>
-<li>get(target,propKey,receiver)：拦截对象属性的读取</li>
-<li>set(target,propKey,value,receiver)：拦截对象属性的设置</li>
-<li>has(target,propKey)：拦截propKey in proxy的操作，返回一个布尔值</li>
-<li>deleteProperty(target,propKey)：拦截delete proxy[propKey]的操作，返回一个布尔值</li>
-<li>ownKeys(target)：拦截Object.keys(proxy)、for…in等循环，返回一个数组</li>
-<li>getOwnPropertyDescriptor(target, propKey)：拦截Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象</li>
-<li>defineProperty(target, propKey, propDesc)：拦截Object.defineProperty(proxy, propKey, propDesc)，返回一个布尔值</li>
-<li>其他：<code>preventExtensions(target)</code>、<code>getPrototypeOf(target)</code>、<code>isExtensible(target)</code>、<code>setPrototypeOf(target, proto)</code>、<code>apply(target, object, args)</code>、<code>construct(target, args)</code></li>
-</ul>
-<p><code>Reflect</code>对象，用于调用对象原先的默认行为，上面提到的所有内容。</p>
-<p><strong>补充</strong><br>通过<code>Proxy.revocable(target, handler);</code>可以创建一个可撤销的代理对象。调用<code>revoke()</code>方法即可撤销。</p>
-<p>使用<code>Proxy</code>实现一个响应式方法<code>reactive</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">reactive</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">&#x27;object&#x27;</span> &amp;&amp; obj != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> obj</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Proxy相当于在对象外层加拦截</span></span><br><span class="line">    <span class="keyword">const</span> observed = <span class="keyword">new</span> <span class="title class_">Proxy</span>(obj, &#123;</span><br><span class="line">        <span class="title function_">get</span>(<span class="params">target, key, receiver</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> res = <span class="title class_">Reflect</span>.<span class="title function_">get</span>(target, key, receiver)</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`获取<span class="subst">$&#123;key&#125;</span>:<span class="subst">$&#123;res&#125;</span>`</span>)</span><br><span class="line">            <span class="comment">// 如果是嵌套对象，使用递归</span></span><br><span class="line">            <span class="keyword">return</span> <span class="title function_">isObject</span>(res) ? <span class="title function_">reactive</span>(res) : res</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">set</span>(<span class="params">target, key, value, receiver</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> res = <span class="title class_">Reflect</span>.<span class="title function_">set</span>(target, key, value, receiver)</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`设置<span class="subst">$&#123;key&#125;</span>:<span class="subst">$&#123;value&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">deleteProperty</span>(<span class="params">target, key</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> res = <span class="title class_">Reflect</span>.<span class="title function_">deleteProperty</span>(target, key)</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`删除<span class="subst">$&#123;key&#125;</span>:<span class="subst">$&#123;res&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> observed</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>和<code>defineProperty</code>不同，<code>Proxy</code>直接劫持对象，所以不需要通过遍历劫持对象属性了。</p>
-<h2 id="挂载时发生了什么"><a href="#挂载时发生了什么" class="headerlink" title="挂载时发生了什么"></a>挂载时发生了什么</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// App.vue</span></span><br><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="comment">// 从一个单文件组件中导入根组件</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>)</span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-createApp"><a href="#1-createApp" class="headerlink" title="1. createApp"></a>1. createApp</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> createApp = (<span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="title function_">ensureRenderer</span>().<span class="title function_">createApp</span>(...args)</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-ensureRenderer"><a href="#2-ensureRenderer" class="headerlink" title="2. ensureRenderer"></a>2. ensureRenderer</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">ensureRenderer</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> renderer || (renderer = <span class="title function_">createRenderer</span>(rendererOptions))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-createRenderer"><a href="#3-createRenderer" class="headerlink" title="3. createRenderer"></a>3. createRenderer</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> createRenderer&lt;</span><br><span class="line">  <span class="title class_">HostNode</span> = <span class="title class_">RendererNode</span>,</span><br><span class="line">  <span class="title class_">HostElement</span> = <span class="title class_">RendererElement</span></span><br><span class="line">&gt;(<span class="attr">options</span>: <span class="title class_">RendererOptions</span>&lt;<span class="title class_">HostNode</span>, <span class="title class_">HostElement</span>&gt;) &#123;</span><br><span class="line">  <span class="keyword">return</span> baseCreateRenderer&lt;<span class="title class_">HostNode</span>, <span class="title class_">HostElement</span>&gt;(options)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-baseCreateRenderer"><a href="#4-baseCreateRenderer" class="headerlink" title="4. baseCreateRenderer"></a>4. baseCreateRenderer</h3><p>这个函数中，实现了<code>vnode</code>、<code>diff</code>、<code>patch</code>，很大很重要，目前只关注其返回值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">baseCreateRenderer</span>(<span class="params"></span></span><br><span class="line"><span class="params">  options: RendererOptions,</span></span><br><span class="line"><span class="params">  createHydrationFns?: <span class="keyword">typeof</span> createHydrationFunctions</span></span><br><span class="line"><span class="params"></span>): any &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="attr">insert</span>: hostInsert,</span><br><span class="line">    <span class="attr">remove</span>: hostRemove,</span><br><span class="line">    <span class="attr">patchProp</span>: hostPatchProp,</span><br><span class="line">    <span class="attr">createElement</span>: hostCreateElement,</span><br><span class="line">    <span class="attr">createText</span>: hostCreateText,</span><br><span class="line">    <span class="attr">createComment</span>: hostCreateComment,</span><br><span class="line">    <span class="attr">setText</span>: hostSetText,</span><br><span class="line">    <span class="attr">setElementText</span>: hostSetElementText,</span><br><span class="line">    <span class="attr">parentNode</span>: hostParentNode,</span><br><span class="line">    <span class="attr">nextSibling</span>: hostNextSibling,</span><br><span class="line">    <span class="attr">setScopeId</span>: hostSetScopeId = <span class="variable constant_">NOOP</span>,</span><br><span class="line">    <span class="attr">cloneNode</span>: hostCloneNode,</span><br><span class="line">    <span class="attr">insertStaticContent</span>: hostInsertStaticContent</span><br><span class="line">  &#125; = options</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ....此处省略两千行，我们先不管</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    render,</span><br><span class="line">    hydrate,</span><br><span class="line">    <span class="attr">createApp</span>: <span class="title function_">createAppAPI</span>(render, hydrate)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-createAppAPI"><a href="#5-createAppAPI" class="headerlink" title="5. createAppAPI"></a>5. createAppAPI</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> createAppAPI&lt;<span class="title class_">HostElement</span>&gt;(</span><br><span class="line">  <span class="attr">render</span>: <span class="title class_">RootRenderFunction</span>,</span><br><span class="line">  hydrate?: <span class="title class_">RootHydrateFunction</span></span><br><span class="line">): <span class="title class_">CreateAppFunction</span>&lt;<span class="title class_">HostElement</span>&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">createApp</span>(<span class="params">rootComponent, rootProps = <span class="literal">null</span></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (rootProps != <span class="literal">null</span> &amp;&amp; !<span class="title function_">isObject</span>(rootProps)) &#123;</span><br><span class="line">      __DEV__ &amp;&amp; <span class="title function_">warn</span>(<span class="string">`root props passed to app.mount() must be an object.`</span>)</span><br><span class="line">      rootProps = <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建默认APP配置</span></span><br><span class="line">    <span class="keyword">const</span> context = <span class="title function_">createAppContext</span>()</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="attr">app</span>: <span class="title class_">App</span> = &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment">// 都是一些眼熟的方法</span></span><br><span class="line">        <span class="title function_">use</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="title function_">mixin</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="title function_">component</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="title function_">directive</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line"></span><br><span class="line">        <span class="comment">// mount 我们拎出来讲</span></span><br><span class="line">        <span class="title function_">mount</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="title function_">unmount</span>(<span class="params"></span>) &#123;&#125;,</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> app</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-createAppContext"><a href="#6-createAppContext" class="headerlink" title="6. createAppContext"></a>6. createAppContext</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">createAppContext</span>(<span class="params"></span>): <span class="title class_">AppContext</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">config</span>: &#123;</span><br><span class="line">      <span class="attr">isNativeTag</span>: <span class="variable constant_">NO</span>,</span><br><span class="line">      <span class="attr">devtools</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">performance</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">globalProperties</span>: &#123;&#125;,</span><br><span class="line">      <span class="attr">optionMergeStrategies</span>: &#123;&#125;,</span><br><span class="line">      <span class="attr">isCustomElement</span>: <span class="variable constant_">NO</span>,</span><br><span class="line">      <span class="attr">errorHandler</span>: <span class="literal">undefined</span>,</span><br><span class="line">      <span class="attr">warnHandler</span>: <span class="literal">undefined</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">mixins</span>: [],</span><br><span class="line">    <span class="attr">components</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">directives</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">provides</span>: <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="literal">null</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>OK，结束了，虽然有很多东西没看到：如何实现响应式的、如何构建VNode的，之后再看吧！</p>
-<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>今天去了我这的市图书馆，环境还不错哈。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/013%E5%89%8D%E7%AB%AF/" data-id="clfmqs4tb000ktwaah1t083tc" data-title="013前端" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-012娱乐" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/22/012%E5%A8%B1%E4%B9%90/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.803Z" itemprop="datePublished">2023-03-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/22/012%E5%A8%B1%E4%B9%90/">012娱乐</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
-<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
-<p>今天娱乐了，死亡细胞真上瘾，黑暗荣耀好看，看多了桀哥直播，想玩马造了</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这三天，写了一小部分<code>number</code>的类型转换，开发VideoTV的播放页，确实没做重要事情。今天就当放假了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/012%E5%A8%B1%E4%B9%90/" data-id="clfmqs4tb000itwaa2am16sp0" data-title="012娱乐" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-011日志" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/22/011%E6%97%A5%E5%BF%97/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.799Z" itemprop="datePublished">2023-03-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/22/011%E6%97%A5%E5%BF%97/">011日志</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
-<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
-<p>今天没背八股文，工作量很少啊，搞不动了</p>
-<h1 id="VideosTV"><a href="#VideosTV" class="headerlink" title="VideosTV"></a>VideosTV</h1><p>地址：<a target="_blank" rel="noopener" href="https://gitee.com/t0o-yang/videos-tv">https://gitee.com/t0o-yang/videos-tv</a></p>
-<p>个人比较喜欢看影视作品，于是就有个这个项目，方便自己看看下载好的影视作品。兄弟姐妹们，感兴趣的可以看看。</p>
-<p>今日进度：播放页面；</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/011%E6%97%A5%E5%BF%97/" data-id="clfmqs4t9000ftwaa4erz6bmf" data-title="011日志" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-010类型转换" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/22/010%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="article-date">
-  <time class="dt-published" datetime="2023-03-22T13:42:24.796Z" itemprop="datePublished">2023-03-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/22/010%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">010类型转换</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>日志，各位看官就当乐子看吧。</p>
-<p><strong>正经人谁写日记啊？！！</strong>    ——鹅城县长</p>
-<p>写文档也是一门技术活，我这10天写的文档稀烂，我的博客内容都是参考阮一峰老师，和这个网站的内容<a target="_blank" rel="noopener" href="https://vue3js.cn/interview/">https://vue3js.cn/interview/</a></p>
-<h2 id="number的转换"><a href="#number的转换" class="headerlink" title="number的转换"></a>number的转换</h2><p>常用的转换函数：Number，parseInt，parseFloat。下面记录一下需要注意的特殊值。<code>number</code>类型的取值有数值、<code>NaN</code>和<code>Infinity</code>，所以结果只能是这三类。</p>
-<table>
-<thead>
-<tr>
-<th>原始值</th>
-<th>转换结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>‘’或”     “</td>
-<td>0</td>
-</tr>
-<tr>
-<td>‘012’</td>
-<td>12</td>
-</tr>
-<tr>
-<td>‘0o12’</td>
-<td>10</td>
-</tr>
-<tr>
-<td>012</td>
-<td>10</td>
-</tr>
-<tr>
-<td>-Infinity</td>
-<td>-Infinity</td>
-</tr>
-<tr>
-<td>undefined</td>
-<td>NaN</td>
-</tr>
-<tr>
-<td>null</td>
-<td>0</td>
-</tr>
-<tr>
-<td>Symbol</td>
-<td>Uncaught TypeError</td>
-</tr>
-<tr>
-<td>[]</td>
-<td>0</td>
-</tr>
-<tr>
-<td>[20]</td>
-<td>20</td>
-</tr>
-<tr>
-<td>[20,30]</td>
-<td>NaN</td>
-</tr>
-<tr>
-<td>{}</td>
-<td>NaN</td>
-</tr>
-<tr>
-<td>function(){}</td>
-<td>NaN</td>
-</tr>
-<tr>
-<td>Set</td>
-<td>NaN</td>
-</tr>
-<tr>
-<td>Map</td>
-<td>NaN</td>
-</tr>
-</tbody></table>
-<p><strong>注意</strong>上面的<code>012</code>，是表示八进制，但是极不推荐这种写法，现代很多环境仍支持这种写法，只是为了兼容旧版本代码。<br><strong>注意</strong>: <code>Number</code>和<code>parseInt</code>的一些区别，<code>parseInt</code>是对字符串进行解析，然后返回一个整数或 NaN</p>
-<table>
-<thead>
-<tr>
-<th>原始值</th>
-<th>Number</th>
-<th>parseInt</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>‘’或”     “</td>
-<td>0</td>
-<td>NaN</td>
-</tr>
-<tr>
-<td>‘   1  2’</td>
-<td>NaN</td>
-<td>1</td>
-</tr>
-<tr>
-<td>‘   12’</td>
-<td>12</td>
-<td>12</td>
-</tr>
-<tr>
-<td>[]</td>
-<td>0</td>
-<td>NaN</td>
-</tr>
-<tr>
-<td>[20]</td>
-<td>20</td>
-<td></td>
-</tr>
-<tr>
-<td>[20,30]</td>
-<td>NaN</td>
-<td>20</td>
-</tr>
-</tbody></table>
-<p>可以看到，对于首尾的空格，两个都会忽略，但是如果中间出现包括空格的非数值的字符，<code>Number</code>是严格的，<code>parseInt</code>会将参数尽量转换为数值，但注意空格的结果是<code>NaN</code>。</p>
-<h3 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a>parseInt</h3><p><code>parseInt(string, radix)</code>，第二个参数是2-36的整数，表示解析的基数，即进制。如果指定为0或未指定，基数会根据string的值进行推算，如<code>0x</code>，<code>0o</code>，对应16进制、8进制</p>
-<h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p>关于类型转换的博客会持续整合填充，日志只是记录当前的内容。可以看<a target="_blank" rel="noopener" href="http://t.csdn.cn/uvrgZ%E3%80%82%E5%86%99%E6%96%87%E6%A1%A3%E4%B9%9F%E6%98%AF%E4%B8%80%E9%97%A8%E6%8A%80%E6%9C%AF%E6%B4%BB%E5%95%8A%E3%80%82">http://t.csdn.cn/uvrgZ。写文档也是一门技术活啊。</a></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>找工作并不顺利：<br>实施没戏了，华为OD还在面（流程又臭又长，水平有限，得投投初级开发的岗位了）</p>
-<p>八股文这块背点，那里背点（数据结构和算法真没心思看）：<br>计网、操作系统、服务器；JS基础的字符串、数组、；ES6的新数据结构Set和Map；Vue的开发组件；</p>
-<p>Vue新学的所以也有个练手项目一直在做：<br>VideoTV；</p>
-<p>其他：<br>还花了时间看书《献给阿尔吉侬的花束》，刷剧《重启人生》；</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/22/010%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="clfmqs4t70008twaa5u2t1sz9" data-title="010类型转换" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/03/22/014vue3%E5%93%8D%E5%BA%94%E5%BC%8F%E6%BA%90%E7%A0%81/" data-id="clfmqs4td000ptwaa11a5h76a" data-title="014vue3响应式源码" class="article-share-link">Condividi</a>
       
       
       
@@ -687,7 +534,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/6/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">weiter &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prec</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">Succ &raquo;</a>
   </nav>
 
 </section>
@@ -696,7 +543,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
+    <h3 class="widget-title">Categorie</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a></li></ul></li></ul>
     </div>
@@ -706,7 +553,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Tag</h3>
     <div class="widget">
       <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/" rel="tag">MVVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-defineProperty/" rel="tag">Object.defineProperty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/" rel="tag">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/" rel="tag">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/" rel="tag">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computed/" rel="tag">computed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/" rel="tag">data()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eventloop/" rel="tag">eventloop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hide/" rel="tag">hide</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keep-alive/" rel="tag">keep-alive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/line-height/" rel="tag">line-height</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/new/" rel="tag">new</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nextTick/" rel="tag">nextTick</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/position/" rel="tag">position</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slot/" rel="tag">slot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this%E5%AF%B9%E8%B1%A1/" rel="tag">this对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="tag">作用域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B1%85%E4%B8%AD%E5%AF%B9%E9%BD%90/" rel="tag">居中对齐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" rel="tag">数据绑定</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="tag">生命周期</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96/" rel="tag">节流防抖</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
     </div>
@@ -725,7 +572,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archivio</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
     </div>
@@ -735,7 +582,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Post Recenti</h3>
     <div class="widget">
       <ul>
         
