@@ -59,10 +59,10 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -70,6 +70,115 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-056React中setState机制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/24/056React%E4%B8%ADsetState%E6%9C%BA%E5%88%B6/" class="article-date">
+  <time class="dt-published" datetime="2023-04-24T09:22:27.000Z" itemprop="datePublished">2023-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/24/056React%E4%B8%ADsetState%E6%9C%BA%E5%88%B6/">056React中setState机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="setState机制"><a href="#setState机制" class="headerlink" title="setState机制"></a>setState机制</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">setState</span>(partialState[, callback])</span><br></pre></td></tr></table></figure>
+<p><code>partialState</code>接收对象或函数或null;<br>callback：参数可选，更新后的回调函数;</p>
+<p>setState更新数据的情况可分为：</p>
+<ul>
+<li>异步更新：参数传入对象时属于异步，无法在更新后，紧接着获取最新数据。可以在callback中读取最新数据；</li>
+<li>同步更新：将setState的调用包裹在setTimeout或原生dom事件中；</li>
+<li>批量更新：当处于异步更新时，对同一个值进行多次 setState，后面的更新会覆盖前面的更新，最后只执行最后一次更新操作。可以通过传入函数完成批量更新。函数参数<code>(prevState, props)</code>，通过prevState访问当前值，并且return最新数据。实例代码如下</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">onClick = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="function">(<span class="params">prevState, props</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">count</span>: prevState.<span class="property">count</span> + <span class="number">1</span>&#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="function">(<span class="params">prevState, props</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">count</span>: prevState.<span class="property">count</span> + <span class="number">1</span>&#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/24/056React%E4%B8%ADsetState%E6%9C%BA%E5%88%B6/" data-id="clguxnq8h0002d4aa9ub4h5os" data-title="056React中setState机制" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-055React组件通信" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/23/055React%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" class="article-date">
+  <time class="dt-published" datetime="2023-04-23T08:42:04.000Z" itemprop="datePublished">2023-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/23/055React%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">055React组件通信</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对自己感兴趣的领域，要多学习</p>
+<h3 id="组件间通信"><a href="#组件间通信" class="headerlink" title="组件间通信"></a>组件间通信</h3><p><strong>父子</strong>：父组件在调用子组件的时候，只需要在子组件标签内传递参数，子组件通过props属性就能接收父组件传递过来的参数；<br><strong>子父</strong>：父组件向子组件传一个函数，然后通过这个函数的回调，拿到子组件传过来的值；<br><strong>兄弟</strong>：通过父组件，传递数据；<br><strong>跨级</strong>：使用<code>React.createContext</code>创建一个<code>context</code>，再通过<code>Provider</code>组件用于创建数据源，<code>Consumer</code>组件用于接收数据；<br><strong>非关系组件</strong>：</p>
+<ul>
+<li>如果项目复杂的话，采用<code>redux</code>进行全局的数据流管理</li>
+<li>采用发布订阅的<code>Event Bus</code>来进行组件通信</li>
+</ul>
+<p>这里举一个实现Event Bus的例子（<a target="_blank" rel="noopener" href="https://blog.csdn.net/wengqt/article/details/80114590">原文链接</a>）：A和B是两个互不相关的组件，A组件的功能是登录，B组件的功能是登录之后显示用户名，这里就需要A组件将用户名传递给B组件。那么我们应该怎么做呢？</p>
+<p>在A组件中注册&#x2F;发布一个type为login的事件；<br>在B组件中注册一个监听&#x2F;订阅，监听login事件的触发；<br>然后当登录的时候login事件触发，然后B组件就可以触发这个事件的回调函数。<br>Event Bus 的实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">EventBus</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">events</span> = <span class="variable language_">this</span>.<span class="property">events</span> || <span class="keyword">new</span> <span class="title class_">Object</span>(); </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//首先构造函数需要存储event事件，使用键值对存储</span></span><br><span class="line"><span class="comment">//然后我们需要发布事件，参数是事件的type和需要传递的参数</span></span><br><span class="line"><span class="title class_">EventBus</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">emit</span> = <span class="keyword">function</span>(<span class="params">type, ...args</span>) &#123; </span><br><span class="line">    <span class="keyword">let</span> e; </span><br><span class="line">    e = <span class="variable language_">this</span>.<span class="property">events</span>[type];  </span><br><span class="line">    <span class="comment">// 查看这个type的event有多少个回调函数，如果有多个需要依次调用。</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">Array</span>.<span class="title function_">isArray</span>(e)) &#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; e.<span class="property">length</span>; i++) &#123;   </span><br><span class="line">            e[i].<span class="title function_">apply</span>(<span class="variable language_">this</span>, args);    </span><br><span class="line">          &#125;  </span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          e[<span class="number">0</span>].<span class="title function_">apply</span>(<span class="variable language_">this</span>, args);  </span><br><span class="line">         &#125;  </span><br><span class="line">   &#125;;</span><br><span class="line"> <span class="comment">//然后我们需要写监听函数，参数是事件type和触发时需要执行的回调函数</span></span><br><span class="line"> <span class="title class_">EventBus</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">addListener</span> = <span class="keyword">function</span>(<span class="params">type, fun</span>) &#123; </span><br><span class="line">       <span class="keyword">const</span> e = <span class="variable language_">this</span>.<span class="property">events</span>[type]; </span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!e) &#123;   <span class="comment">//如果从未注册过监听函数，则将函数放入数组存入对应的键名下</span></span><br><span class="line">         <span class="variable language_">this</span>.<span class="property">events</span>[type]= [fun];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  <span class="comment">//如果注册过，则直接放入</span></span><br><span class="line">           e.<span class="title function_">push</span>(fun);</span><br><span class="line">        &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> eventBus = <span class="keyword">new</span> <span class="title class_">EventBus</span>();</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> eventBus;</span><br></pre></td></tr></table></figure>
+<p>A组件中注册：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">EventBus</span>.<span class="title function_">emit</span>(<span class="string">&#x27;login&#x27;</span>,values.<span class="property">userName</span>)</span><br></pre></td></tr></table></figure>
+<p>B组件中监听：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">EventBus</span>.<span class="title function_">addListener</span>(<span class="string">&#x27;login&#x27;</span>,<span class="function">(<span class="params">name</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;<span class="attr">user</span>:name&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/23/055React%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" data-id="clguxnq8g0000d4aaa0ythw9i" data-title="055React组件通信" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-053-54React题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -138,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/22/053-54React%E9%A2%98/" data-id="clgs48fqd0000dkaa34z1fy5n" data-title="053-54React题" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/22/053-54React%E9%A2%98/" data-id="clgs48fqd0000dkaa34z1fy5n" data-title="053-54React题" class="article-share-link">Teilen</a>
       
       
       
@@ -183,7 +292,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/20/052React%E5%AE%9E%E6%88%987/" data-id="clgp7imc30003zwaaadiiazug" data-title="052React实战7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/20/052React%E5%AE%9E%E6%88%987/" data-id="clgp7imc30003zwaaadiiazug" data-title="052React实战7" class="article-share-link">Teilen</a>
       
       
       
@@ -228,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/19/051React%E5%AE%9E%E6%88%986/" data-id="clgp7imc10001zwaa3noj9cpu" data-title="051React实战6" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/19/051React%E5%AE%9E%E6%88%986/" data-id="clgp7imc10001zwaa3noj9cpu" data-title="051React实战6" class="article-share-link">Teilen</a>
       
       
       
@@ -273,7 +382,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/18/050React%E5%AE%9E%E6%88%985/" data-id="clgp7imbz0000zwaa68us1bu1" data-title="050React实战5" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/18/050React%E5%AE%9E%E6%88%985/" data-id="clgp7imbz0000zwaa68us1bu1" data-title="050React实战5" class="article-share-link">Teilen</a>
       
       
       
@@ -320,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/18/049React%E5%AE%9E%E6%88%984/" data-id="clglnqohp000034aaav6b1e2y" data-title="049React实战4" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/18/049React%E5%AE%9E%E6%88%984/" data-id="clglnqohp000034aaav6b1e2y" data-title="049React实战4" class="article-share-link">Teilen</a>
       
       
       
@@ -371,206 +480,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/16/048React%E5%AE%9E%E6%88%983/" data-id="clgjhsst90000rwaaea3ohpi1" data-title="048React实战3" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/16/048React%E5%AE%9E%E6%88%983/" data-id="clgjhsst90000rwaaea3ohpi1" data-title="048React实战3" class="article-share-link">Teilen</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-047React实战2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/15/047React%E5%AE%9E%E6%88%982/" class="article-date">
-  <time class="dt-published" datetime="2023-04-15T09:10:39.000Z" itemprop="datePublished">2023-04-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>►<a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/15/047React%E5%AE%9E%E6%88%982/">047React实战2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="react-router"><a href="#react-router" class="headerlink" title="react router"></a>react router</h2><h3 id="什么是-SPA？"><a href="#什么是-SPA？" class="headerlink" title="什么是 SPA？"></a>什么是 SPA？</h3><h3 id="什么是路由？什么是虚拟路由？"><a href="#什么是路由？什么是虚拟路由？" class="headerlink" title="什么是路由？什么是虚拟路由？"></a>什么是路由？什么是虚拟路由？</h3><h3 id="如何在-typescript-项目中配置-react-router"><a href="#如何在-typescript-项目中配置-react-router" class="headerlink" title="如何在 typescript 项目中配置 react-router?"></a>如何在 typescript 项目中配置 react-router?</h3><h3 id="如何进行页面切换？"><a href="#如何进行页面切换？" class="headerlink" title="如何进行页面切换？"></a>如何进行页面切换？</h3><h3 id="使用-react-router-来处理路由需要满足哪些要求？"><a href="#使用-react-router-来处理路由需要满足哪些要求？" class="headerlink" title="使用 react-router 来处理路由需要满足哪些要求？"></a>使用 react-router 来处理路由需要满足哪些要求？</h3><h3 id="如何跨组件传递路由数据？withRouter-vs-useRouter"><a href="#如何跨组件传递路由数据？withRouter-vs-useRouter" class="headerlink" title="如何跨组件传递路由数据？withRouter() vs useRouter()"></a>如何跨组件传递路由数据？withRouter() vs useRouter()</h3><h3 id="history-push-vs"><a href="#history-push-vs" class="headerlink" title="history.push() vs ?"></a>history.push() vs <Link />?</h3><h2 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h2><h3 id="redux-有什么用？"><a href="#redux-有什么用？" class="headerlink" title="redux 有什么用？"></a>redux 有什么用？</h3><h3 id="如何创建一个具有订阅与推送功能的数据仓库？"><a href="#如何创建一个具有订阅与推送功能的数据仓库？" class="headerlink" title="如何创建一个具有订阅与推送功能的数据仓库？"></a>如何创建一个具有订阅与推送功能的数据仓库？</h3><h3 id="什么是-store？什么是-action？什么是-reducer？"><a href="#什么是-store？什么是-action？什么是-reducer？" class="headerlink" title="什么是 store？什么是 action？什么是 reducer？"></a>什么是 store？什么是 action？什么是 reducer？</h3><p>个人理解就好比 Store 是餐厅的老板，负责统筹全局；Action 则是餐厅服务员，负责招待客户；Reducer 则是餐厅大厨，负责老板吩咐要做的菜品；而组件则是消费者；</p>
-<h3 id="如何理解-redux-的工作流程？"><a href="#如何理解-redux-的工作流程？" class="headerlink" title="如何理解 redux 的工作流程？"></a>如何理解 redux 的工作流程？</h3><p><img src="/../images/redux%E5%B7%A5%E4%BD%9C%E6%B5%81.png" alt="redux工作流"></p>
-<h3 id="i18n-是什么？"><a href="#i18n-是什么？" class="headerlink" title="i18n 是什么？"></a>i18n 是什么？</h3><p>国际化，简单说就是网站支持其他语言</p>
-<h3 id="工厂模式是什么？"><a href="#工厂模式是什么？" class="headerlink" title="工厂模式是什么？"></a>工厂模式是什么？</h3><h3 id="如何在-redux-中使用-typescript-定义强类型？"><a href="#如何在-redux-中使用-typescript-定义强类型？" class="headerlink" title="如何在 redux 中使用 typescript 定义强类型？"></a>如何在 redux 中使用 typescript 定义强类型？</h3><h3 id="redux-和-react-redux-有什么关系？"><a href="#redux-和-react-redux-有什么关系？" class="headerlink" title="redux 和 react-redux 有什么关系？"></a>redux 和 react-redux 有什么关系？</h3><h3 id="connect-v-s-useDispatch-v-s-useSelector"><a href="#connect-v-s-useDispatch-v-s-useSelector" class="headerlink" title="connect() v.s. useDispatch() v.s. useSelector()"></a>connect() v.s. useDispatch() v.s. useSelector()</h3><h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><p>快速入门，不做笔记</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/15/047React%E5%AE%9E%E6%88%982/" data-id="clgi447o60000s8aad9r89dpq" data-title="047React实战2" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-046React实战" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/14/046React%E5%AE%9E%E6%88%98/" class="article-date">
-  <time class="dt-published" datetime="2023-04-14T12:10:56.000Z" itemprop="datePublished">2023-04-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>►<a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/14/046React%E5%AE%9E%E6%88%98/">046React实战</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这段时间学习 React 的内容，完成了一个小项目<code>robot-gallery</code>，现在做仿携程的旅游电商网站</p>
-<h1 id="react-travel-项目"><a href="#react-travel-项目" class="headerlink" title="react-travel 项目"></a>react-travel 项目</h1><p>进度：完成首页。之后通过<code>react-router</code>使用路由，完成页面切换。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/14/046React%E5%AE%9E%E6%88%98/" data-id="clggigthz0000mcaa24okcx6q" data-title="046React实战" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-045React学习开始3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/13/045React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B3/" class="article-date">
-  <time class="dt-published" datetime="2023-04-13T11:10:32.000Z" itemprop="datePublished">2023-04-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/13/045React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B3/">045React学习开始3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="react-中有哪些常用的-Hook-函数？"><a href="#react-中有哪些常用的-Hook-函数？" class="headerlink" title="react 中有哪些常用的 Hook 函数？"></a>react 中有哪些常用的 Hook 函数？</h3><p>useState, useEffect</p>
-<h3 id="函数式编程的核心思想是什么？"><a href="#函数式编程的核心思想是什么？" class="headerlink" title="函数式编程的核心思想是什么？"></a>函数式编程的核心思想是什么？</h3><p>hooks</p>
-<h3 id="副作用有害吗？"><a href="#副作用有害吗？" class="headerlink" title="副作用有害吗？"></a>副作用有害吗？</h3><p>合理使用</p>
-<h3 id="有状态和无状态组件有什么区别？"><a href="#有状态和无状态组件有什么区别？" class="headerlink" title="有状态和无状态组件有什么区别？"></a>有状态和无状态组件有什么区别？</h3><p>无状态组件没有 state，数据来源外部注入的 props。没有生命周期，没有副作用，无法在组件内访问 API，进行数据异步更新</p>
-<h3 id="如何通过-context-的实现组件间的数据传递？"><a href="#如何通过-context-的实现组件间的数据传递？" class="headerlink" title="如何通过 context 的实现组件间的数据传递？"></a>如何通过 context 的实现组件间的数据传递？</h3><p>无法回答</p>
-<h3 id="HOC-的实现原理是什么？"><a href="#HOC-的实现原理是什么？" class="headerlink" title="HOC 的实现原理是什么？"></a>HOC 的实现原理是什么？</h3><p>高阶组件的实现原理，无法回答</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/13/045React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B3/" data-id="clgf98scp0001asaagzkycqc9" data-title="045React学习开始3" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-044React学习开始2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/12/044React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B2/" class="article-date">
-  <time class="dt-published" datetime="2023-04-11T16:00:00.000Z" itemprop="datePublished">2023-04-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/12/044React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B2/">044React学习2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>学习函数式组件，Hook 的内容</p>
-<h3 id="什么是-Hooks？"><a href="#什么是-Hooks？" class="headerlink" title="什么是 Hooks？"></a>什么是 Hooks？</h3><p>在函数式组件中，为组件引入特定操作<br>常用的有，useState, useEffect</p>
-<h4 id="自定义hooks"><a href="#自定义hooks" class="headerlink" title="自定义hooks"></a>自定义hooks</h4><h3 id="什么是纯函数"><a href="#什么是纯函数" class="headerlink" title="什么是纯函数"></a>什么是纯函数</h3><p>给函数传入相同的参数，这个函数永远会返回相同的结果</p>
-<h3 id="什么是副作用"><a href="#什么是副作用" class="headerlink" title="什么是副作用"></a>什么是副作用</h3><p>副作用 side effect。函数中处理了与返回值无关的事情。在函数式组件中通过<code>useEffect </code>实现异步更新</p>
-<h3 id="有状态和无状态组件的区别"><a href="#有状态和无状态组件的区别" class="headerlink" title="有状态和无状态组件的区别"></a>有状态和无状态组件的区别</h3><p>无状态组件没有 state，数据来源外部注入的 props。没有生命周期，没有副作用，无法在组件内访问 API，进行数据异步更新</p>
-<h3 id="如何跨组件传递数据"><a href="#如何跨组件传递数据" class="headerlink" title="如何跨组件传递数据"></a>如何跨组件传递数据</h3><p>使用 props<br>react的上下文 context，在需要的组件中引入并使用appContext.Consumer标签<br>hooks中的 useContext</p>
-<h3 id="HOC-是什么意思"><a href="#HOC-是什么意思" class="headerlink" title="HOC 是什么意思"></a>HOC 是什么意思</h3><p>高阶组件，在组件外套一层组件。参数为组件，返回是个新组件的函数。<br>命名规范：以with为前缀</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/12/044React%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B2/" data-id="clgdw3l9n0000ccaa7uxpf39j" data-title="044React学习2" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
 
     </footer>
   </div>
@@ -584,7 +498,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">weiter &raquo;</a>
   </nav>
 
 </section>
@@ -593,7 +507,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Kategorien</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/%E4%BB%BF%E6%90%BA%E7%A8%8B%E7%BD%91%E7%AB%99/">仿携程网站</a></li></ul></li></ul>
     </div>
@@ -622,7 +536,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
     </div>
@@ -632,7 +546,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
         
