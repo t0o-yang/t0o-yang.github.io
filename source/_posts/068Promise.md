@@ -1,5 +1,5 @@
 ---
-title: 068Promise
+title: 068Promise.then
 tags: []
 categories:
   - 百日博客计划
