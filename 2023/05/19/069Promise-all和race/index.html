@@ -4,24 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>025uniapp-done | ylog</title>
+  <title>069Promise-all和race | ylog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="我的新闻小程序体验版，二维码：  这是一张一半大小的图，用于测试是否能正常显示   总结uniapp学习告一段落，gitee上审核严格，换成github了，只不过网络时好时坏。 引用图片，最终确定方案： 1![新闻案例网页](..&#x2F;images&#x2F;新闻案例网页.png) 在source文件夹下创建images目录，把图片放在这里。再根据相对路径引用。">
+  <meta name="description" content="手写Promise all和race的逻辑">
 <meta property="og:type" content="article">
-<meta property="og:title" content="025uniapp-done">
-<meta property="og:url" content="http://example.com/2023/03/24/025uniapp-done/index.html">
+<meta property="og:title" content="069Promise-all和race">
+<meta property="og:url" content="http://example.com/2023/05/19/069Promise-all%E5%92%8Crace/index.html">
 <meta property="og:site_name" content="ylog">
-<meta property="og:description" content="我的新闻小程序体验版，二维码：  这是一张一半大小的图，用于测试是否能正常显示   总结uniapp学习告一段落，gitee上审核严格，换成github了，只不过网络时好时坏。 引用图片，最终确定方案： 1![新闻案例网页](..&#x2F;images&#x2F;新闻案例网页.png) 在source文件夹下创建images目录，把图片放在这里。再根据相对路径引用。">
+<meta property="og:description" content="手写Promise all和race的逻辑">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://example.com/images/%E6%88%91%E7%9A%84%E6%96%B0%E9%97%BB%E4%BD%93%E9%AA%8C%E7%A0%81.jpg">
-<meta property="og:image" content="http://example.com/2023/03/24/images/%E6%88%91%E7%9A%84%E6%96%B0%E9%97%BB%E4%BD%93%E9%AA%8C%E7%A0%81.jpg">
-<meta property="article:published_time" content="2023-03-24T03:19:36.000Z">
-<meta property="article:modified_time" content="2023-03-24T16:04:09.173Z">
+<meta property="article:published_time" content="2023-05-19T14:41:37.000Z">
+<meta property="article:modified_time" content="2023-05-19T15:34:42.692Z">
 <meta property="article:author" content="yh0ng">
-<meta property="article:tag" content="uniapp">
-<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/%E6%88%91%E7%9A%84%E6%96%B0%E9%97%BB%E4%BD%93%E9%AA%8C%E7%A0%81.jpg">
   
     <link rel="alternate" href="/atom.xml" title="ylog" type="application/atom+xml">
   
@@ -78,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-025uniapp-done" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-069Promise-all和race" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/03/24/025uniapp-done/" class="article-date">
-  <time class="dt-published" datetime="2023-03-24T03:19:36.000Z" itemprop="datePublished">2023-03-24</time>
+    <a href="/2023/05/19/069Promise-all%E5%92%8Crace/" class="article-date">
+  <time class="dt-published" datetime="2023-05-19T14:41:37.000Z" itemprop="datePublished">2023-05-19</time>
 </a>
     
   <div class="article-category">
@@ -96,7 +91,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      025uniapp-done
+      069Promise-all和race
     </h1>
   
 
@@ -104,44 +99,24 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="我的新闻"><a href="#我的新闻" class="headerlink" title="我的新闻"></a>我的新闻</h1><p>小程序体验版，二维码：</p>
-<p><img src="/../images/%E6%88%91%E7%9A%84%E6%96%B0%E9%97%BB%E4%BD%93%E9%AA%8C%E7%A0%81.jpg" alt="我的新闻"></p>
-<p>这是一张一半大小的图，用于测试是否能正常显示</p>
-<img src="../images/我的新闻体验码.jpg" alt="我的新闻-缩略图" title="我的新闻-缩略图" style="width:50%">
-
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>uniapp学习告一段落，gitee上审核严格，换成github了，只不过网络时好时坏。</p>
-<p>引用图片，最终确定方案：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![新闻案例网页](../images/新闻案例网页.png)</span><br></pre></td></tr></table></figure>
-<p>在source文件夹下创建<code>images</code>目录，把图片放在这里。再根据相对路径引用。</p>
-
+        <h4 id="Promise-all和race逻辑"><a href="#Promise-all和race逻辑" class="headerlink" title="Promise all和race逻辑"></a>Promise all和race逻辑</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">MyPromise</span>.<span class="property">resolve</span> = <span class="keyword">function</span> (<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyPromise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> <span class="title function_">resolve</span>(value));</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title class_">MyPromise</span>.<span class="property">reject</span> = <span class="keyword">function</span> (<span class="params">reason</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyPromise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> <span class="title function_">reject</span>(reason));</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">MyPromise</span>.<span class="property">all</span> = <span class="keyword">function</span> (<span class="params">promiseList = []</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="title class_">MyPromise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> result = [];</span><br><span class="line">    <span class="keyword">const</span> length = promiseList.<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">let</span> resolveCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    promiseList.<span class="title function_">forEach</span>(<span class="function">(<span class="params">p</span>) =&gt;</span> &#123;</span><br><span class="line">      p.<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">        result.<span class="title function_">push</span>(data);</span><br><span class="line">        resolveCount++;</span><br><span class="line">        <span class="keyword">if</span> (resolveCount === length) &#123;</span><br><span class="line">          <span class="title function_">resolve</span>(result);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> <span class="title function_">reject</span>(err));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> p1;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">MyPromise</span>.<span class="property">race</span> = <span class="keyword">function</span> (<span class="params">promiseList = []</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> resolved = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="title class_">MyPromise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    promiseList.<span class="title function_">forEach</span>(<span class="function">(<span class="params">p</span>) =&gt;</span> &#123;</span><br><span class="line">      p.<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!resolved) &#123;</span><br><span class="line">          <span class="title function_">resolve</span>(result);</span><br><span class="line">          resolved = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">reject</span>(err);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> p1;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/24/025uniapp-done/" data-id="clfmqs4tj001gtwaa3194byxz" data-title="025uniapp-done" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2023/05/19/069Promise-all%E5%92%8Crace/" data-id="clhuqdpzd0001ikaabfah4oef" data-title="069Promise-all和race" class="article-share-link">Teilen</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uniapp/" rel="tag">uniapp</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2023/03/25/026-%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          #026#搭建网站服务器
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/03/23/024uniapp%E7%AC%AC%E4%B8%89%E5%A4%A9/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/05/18/068Promis.then/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">024uniapp第三天</div>
+      <div class="article-nav-title">068Promise.then</div>
     </a>
   
 </nav>
